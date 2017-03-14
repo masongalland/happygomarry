@@ -1,13 +1,25 @@
 
 <header>
-    <div class = 'logo'>happy-go-marry</div>
     <div class = 'HAM'>
         <div class = 'line'></div>
         <div class = 'line'></div>
         <div class = 'line'></div>
     </div>
     <div class = 'wide-nav'>
-
+        <div class = 'brand'>
+            <div class = 'small-logo'>
+                <a ui-sref = 'home'><img src="./images/logo100.png" alt="logo"></a>
+            </div>
+            <a ui-sref = 'home'><p>happy-go-marry</p></a>
+        </div>
+        <div class = 'wide-menu'>
+            <a ui-sref = 'howItWorks'>How It Works</a>
+            <a ui-sref = 'howItWorks'>About</a>
+            <a ui-sref = 'howItWorks'>Contact</a>
+            <a ui-sref = 'howItWorks'>
+                <a ui-sref = 'createPage'><button>SIGN IN</button></a>
+            </a>
+        </div>
     </div>
 </header>
 <div class = 'hero'>
@@ -72,4 +84,13 @@
             <a ui-sref = 'howItWorks'><button class = 'gray-btn'>MORE</button></a>
         </div>
     </section>
+    <h2 id = 'how-it-works-h2'>HOW IT WORKS</h2>
+    <section class = 'how-it-works'>
+        <a ui-sref = 'howItWorks'><button class = 'gray-btn'>VIEW DEMO COUPLE</button></a>
+        <a ui-sref = 'howItWorks'><button class = 'gray-btn'>WATCH THE VIDEO</button></a>
+    </section>
 </main>
+<section class = 'current-member'>
+    <h3>HAVE AN ACCOUNT?</h3>
+    <a ui-sref = 'howItWorks'><button class = 'gray-btn'>SIGN IN</button></a>
+</section>

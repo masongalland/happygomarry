@@ -5,13 +5,25 @@
         <meta charset = "UTF-8">
         <meta name = "viewport" content = "width=device-width, initial-scale=1">
         <link href = './styles/reset.css' rel = "stylesheet">
+        <link href = './styles/font-awesome-4.7.0/css/font-awesome.min.css' rel = "stylesheet">
         <link href = './styles/home.css' rel = "stylesheet">
+        <link href = './styles/howItWorks.css' rel = "stylesheet">
         
     </head>
     <body ng-controller = "mainCtrl">
        
      <ui-view></ui-view>
-
+     <footer>
+         <div class = 'footer-border'></div>
+        <div class = 'social-icons'>
+            <a href = '#' class = 'fa fa-twitter'></a>
+            <a href = '#' class = 'fa fa-facebook'></a>
+            <a href = '#' class = 'fa fa-instagram'></a>
+            <a href = '#' class = 'fa fa-linkedin'></a>
+            <a href = '#' class = 'fa fa-envelope'></a>
+        </div>
+        <p>© 2017 HappyGoMarry</p>
+     </footer>
 
     <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.js"></script>
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.4.2/angular-ui-router.js"></script>
