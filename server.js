@@ -2,26 +2,32 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var massive = require('massive');
-
-var port = 3000;
-var connectionString = "postgres://jlowvkmh:9ijT9GVp7bWTgJcHecIEceU4I7-sdapG@echo.db.elephantsql.com:5432/jlowvkmh";
-var db = massive.connectSync({connectionString : connectionString})
-
 var app = module.exports = express();
+
 app.use(bodyParser.json());
 app.use(cors());
+app.use(express.static('./public'));
 
-app.set('db', db);
-var couplesCtrl = require('./couplesCtrl.js');
-var wePayCtrl = require('./wePayCtrl.js');
+var port = 8080;
+var connectionString = "postgres://postgres:@localhost/HappyGoMarry";
+var db = massive.connect({connectionString : connectionString}, function (err, localdb){
+    if (err) console.log('connecting', err);
+    db = localdb;
+    app.set('db', db);
+    db.schema(function(err){
+    if (err) return console.log('schema.sql', err);        
+    else console.log("User Table Init");
+  });
+})
 
 
 
-app.get('/api/products', productsCtrl.GetAll);
-app.get('/api/product/:productId', productsCtrl.GetOne);
-app.put('/api/product/:productId', productsCtrl.Update);
-app.post('/api/product', productsCtrl.Create);
-app.delete('api/product/:productId', productsCtrl.Delete);
+var couplesCtrl = require('./serverCtrls/couplesCtrl.js');
+var wePayCtrl = require('./serverCtrls/wePayCtrl.js');
+
+
+
+
 
 app.listen(port, function(){
     console.log('listening on port ', port)

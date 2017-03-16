@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Sacramento|Source+Sans+Pro');
+@import url('https://fonts.googleapis.com/css?family=Sacramento|Source+Sans+Pro|Pacifico|Satisfy');
 
 
 p, h1, h2, h3, a, li {
@@ -84,6 +84,10 @@ header {
     font-weight: 600;
     padding-left: 10px;
 }
+.brand p:hover {
+    color: #1bc1b7;
+    transition: 0.5s;
+}
 .wide-menu {
     display: flex;
     align-items: center;
@@ -137,6 +141,7 @@ header {
     margin-bottom: 15px;
     font-size: 36px;
     text-align: center;
+    text-shadow: 3px 3px 32px #1b1b1b;    
     
 }
 .featured-content p {
@@ -145,7 +150,8 @@ header {
     letter-spacing: .325em;
     text-align: center;
     padding: 5px;
-    font-weight: 600;    
+    font-weight: 600;
+    text-shadow: 3px 3px 32px #1b1b1b;    
 }
 .logo-container {
     width: 100px;
@@ -333,7 +339,7 @@ footer p {
         font-weight: 200;
     }
 }
-@media (min-width: 980px) {
+@media (min-width: 900px) {
     .features {
         display: flex;
         justify-content: space-between;
