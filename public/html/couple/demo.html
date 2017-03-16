@@ -33,16 +33,19 @@
         </section>
         <section class = 'under-pic'>
             <div class = 'three-buttons'>
-                <div class = 'one-button'>
-                    <img src = './images/present_gray.png'>
+                <div class = 'one-button send-gift'>
+                    <img id = 'gray-present' src = './images/present_gray.png'>
+                    <img id = 'green-present' src = './images/present.png'>
                     <p>Send a gift</p>
                 </div>
-                <div class = 'one-button'>
-                    <img src = './images/envelope_gray.png'>
+                <div class = 'one-button send-address'>
+                    <img id = 'gray-envelope' src = './images/envelope_gray.png'>
+                    <img id = 'green-envelope' src = './images/envelope_green.png'>
                     <p>Send Address</p>                
                 </div>
-                <div class = 'one-button'>
-                    <img src = './images/check-circular-button-gray.png'>             
+                <div class = 'one-button send-rsvp'>
+                    <img id = 'gray-check' src = './images/check-circular-button-gray.png'>
+                    <img id = 'green-check' src = './images/check-circular-button-green.png'>
                     <p>RSVP</p>
                 </div>
             </div>
@@ -125,3 +128,6 @@
         </div>
     </section>
 </div>
+
+<send-address id = 'send-address' animate-dir></send-address>
+<rsvp-form id = 'send-rsvp' animate-dir></rsvp-form>

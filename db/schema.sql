@@ -28,7 +28,8 @@ CREATE TABLE payment_details (
     wepayId integer,
     donorName varchar(40),
     amount integer,
-    donationDate text
+    donationDate text,
+    message text
 );
 
 CREATE TABLE addresses(
