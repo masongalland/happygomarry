@@ -12,8 +12,8 @@ angular.module('happyGoMarry', ['ui.router'])
             })
             .state('createPage',{
                 url: '/create-page',
-                templateUrl: '/html/createPage/createPage.html',
-                controller: '/scripts/createPage/createPageCtrl.js'
+                templateUrl: './html/createPage/createPage.html',
+                controller: './scripts/createPage/createPageCtrl.js'
             })
             .state('demo', {
                 url: '/demo',
@@ -21,7 +21,7 @@ angular.module('happyGoMarry', ['ui.router'])
             })
             .state('testCouple', {
                 url: '/test-couple',
-                templateUrl: '.html/couple/testCouple.html',
-                controller: './scripts/couple/coupleCtrl.js'
+                templateUrl: './html/couple/testCouple.html',
+                controller: 'coupleCtrl'
             });
     })

@@ -34,6 +34,22 @@ angular.module('happyGoMarry')
                     $('#gray-envelope').css('display', 'block');
                     $('#green-envelope').css('display', 'none')
                 });
+                $('.HAM').click(function(){
+                    $('#mobile-menu').addClass('animated fadeInDown');
+                    $('#mobile-menu').css('display', 'flex');
+                    $('#mobile-menu').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+                        $('#mobile-menu').removeClass('animated fadeInDown');
+                    })
+                    $('.HAM').css('display', 'none');
+                });
+                $('.close-mobile, .mobile-menu-content a').click(function(){
+                    $('#mobile-menu').addClass('animated fadeOutUp');
+                    $('#mobile-menu').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+                        $('#mobile-menu').removeClass('animated fadeOutUp');
+                        $('#mobile-menu').css('display', 'none');
+                    })
+                    $('.HAM').css('display', 'flex');
+                })
             });
 
         }

@@ -102,6 +102,7 @@
     flex-direction: column;
     background-color: white;
     border-radius: 5px;
+    height: 100%;
 }
 .gift-summary {
     display: flex;
@@ -159,6 +160,7 @@
 }
 .recent-gift p {
     padding-left: 10px;
+    width: calc(100% - 60px);
 }
 .recent-gift-icon {
     width: 60px;
