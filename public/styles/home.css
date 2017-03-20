@@ -35,6 +35,9 @@ header {
     justify-content: space-between;
     position: fixed;
 }
+button {
+    font-size: 0.7em
+}
 .logo {
     display: none;
     height: 40px;

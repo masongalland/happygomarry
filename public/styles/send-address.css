@@ -71,6 +71,7 @@ input[type=number] {
     .email-and-partySize, .input-group {
         display: flex;
         justify-content: space-between;
+        flex-wrap: wrap;
     }
 }
 @media (min-width: 900px) {

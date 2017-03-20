@@ -1,4 +1,4 @@
-angular.module('happyGoMarry', ['ui.router'])
+angular.module('happyGoMarry', ['ui.router', 'ngMaterial', 'ngMessages'])
     .config(function($stateProvider, $urlRouterProvider){
         $urlRouterProvider.otherwise('/');
         $stateProvider
@@ -23,5 +23,10 @@ angular.module('happyGoMarry', ['ui.router'])
                 url: '/test-couple',
                 templateUrl: './html/couple/testCouple.html',
                 controller: 'coupleCtrl'
+            })
+            .state('dashboard', {
+                url: '/dashboard',
+                templateUrl: './html/dashboard/dashboard.html',
+                controller: 'dashboardCtrl'
             });
     })

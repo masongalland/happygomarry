@@ -1,0 +1,34 @@
+<div class = 'edit-page-container'>
+    <h2>NAMES</h2>
+    <div class = 'couple-names'>
+        <md-input-container class = 'md-input'>
+            <label>First Name</label>
+            <input ng-model="userUpdates.name">
+        </md-input-container>
+        <md-input-container class = 'md-input'>
+            <label>Partner's First Name</label>
+            <input ng-model="userUpdates.partnername">
+        </md-input-container>
+    </div>
+    <h2>WEDDING DATE</h2>
+    <div class = 'datepicker'>
+        <md-input-container class = 'md-input'>
+            <label>Enter Date</label>
+            <md-datepicker ng-model="userUpdates.date" md-open-on-focus></md-datepicker>
+        </md-input-container>
+    </div>
+    <h2>COVER IMAGE</h2>
+    <div class = 'dash-edit-img'>
+        <md-input-container class = 'md-input'>
+            <label>Image URL</label>
+            <input ng-model="userUpdates.imageUrl">
+        </md-input-container>
+        <div class = 'couple-image' style = 'background-image: url("{{couple.photourl}}")' >
+            <div class = 'name-date'>
+                <!--Names and date will be pulled from DB-->
+                <h1>{{couple.firstname}} & {{couple.partnerfirstname}}</h1> 
+                <p>{{couple.weddingdate}}</p> 
+            </div>
+        </div>
+    </div>
+</div>

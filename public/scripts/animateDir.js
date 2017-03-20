@@ -13,26 +13,33 @@ angular.module('happyGoMarry')
                 $('.cancel-btn').click(function(){
                     $('#send-address, #send-rsvp').css('display', 'none');
                 });
-                $('.send-gift').mouseenter(function(){
-                    $('#gray-present').css('display', 'none');
-                    $('#green-present').css('display', 'block')
+                $('.send-gift, #dash-gifts-btn').mouseenter(function(){
+                    $('.gray-present').css('display', 'none');
+                    $('.green-present').css('display', 'block')
                 }).mouseleave(function(){
-                    $('#gray-present').css('display', 'block');
-                    $('#green-present').css('display', 'none')
+                    $('.gray-present').css('display', 'block');
+                    $('.green-present').css('display', 'none')
                 });
-                $('.send-rsvp').mouseenter(function(){
-                    $('#gray-check').css('display', 'none');
-                    $('#green-check').css('display', 'block')
+                $('.send-rsvp, #dash-rsvp-btn').mouseenter(function(){
+                    $('.gray-check').css('display', 'none');
+                    $('.green-check').css('display', 'block')
                 }).mouseleave(function(){
-                    $('#gray-check').css('display', 'block');
-                    $('#green-check').css('display', 'none')
+                    $('.gray-check').css('display', 'block');
+                    $('.green-check').css('display', 'none')
                 });
-                $('.send-address').mouseenter(function(){
-                    $('#gray-envelope').css('display', 'none');
-                    $('#green-envelope').css('display', 'block')
+                $('.send-address, #dash-addressses-btn').mouseenter(function(){
+                    $('.gray-envelope').css('display', 'none');
+                    $('.green-envelope').css('display', 'block')
                 }).mouseleave(function(){
-                    $('#gray-envelope').css('display', 'block');
-                    $('#green-envelope').css('display', 'none')
+                    $('.gray-envelope').css('display', 'block');
+                    $('.green-envelope').css('display', 'none')
+                });
+                $('#dash-edit-btn').mouseenter(function(){
+                    $('.gray-edit').css('display', 'none');
+                    $('.green-edit').css('display', 'block')
+                }).mouseleave(function(){
+                    $('.gray-edit').css('display', 'block');
+                    $('.green-edit').css('display', 'none')
                 });
                 $('.HAM').click(function(){
                     $('#mobile-menu').addClass('animated fadeInDown');
@@ -49,6 +56,9 @@ angular.module('happyGoMarry')
                         $('#mobile-menu').css('display', 'none');
                     })
                     $('.HAM').css('display', 'flex');
+                })
+                $('#dash-edit-btn').click(function(){
+                    $('edit-page').css('display', 'block')
                 })
             });
 
