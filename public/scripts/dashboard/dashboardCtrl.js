@@ -16,8 +16,13 @@ angular.module('happyGoMarry')
         $scope.userUpdates = {
         name: $scope.couple.firstname,
         partnername: $scope.couple.partnerfirstname,
+        story: $scope.couple.story,
+        time: $scope.couple.hour,
+        place: $scope.couple.place,
         imageUrl: $scope.couple.photourl
         }
     }, 100) 
-
+    // setInterval(function() {
+    //     console.log($scope.userUpdates.date)
+    // }, 2000)
 })

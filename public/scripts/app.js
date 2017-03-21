@@ -1,5 +1,5 @@
 angular.module('happyGoMarry', ['ui.router', 'ngMaterial', 'ngMessages'])
-    .config(function($stateProvider, $urlRouterProvider){
+    .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider){
         $urlRouterProvider.otherwise('/');
         $stateProvider
             .state('home', {
@@ -29,4 +29,9 @@ angular.module('happyGoMarry', ['ui.router', 'ngMaterial', 'ngMessages'])
                 templateUrl: './html/dashboard/dashboard.html',
                 controller: 'dashboardCtrl'
             });
+
+        var indigo = $mdThemingProvider.extendPalette('indigo', {
+            '500': '1bc2b7'
+        });
+        $mdThemingProvider.definePalette('indigo', indigo);
     })
