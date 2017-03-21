@@ -16,5 +16,29 @@ module.exports = {
         db.getTotalDonations(function(err, resp){
             res.send(resp);
         })
+    },
+    postNewAddress: function(req, res) {
+        var params = [req.body.userId, req.body.firstName, req.body.lastName, req.body.street, req.body.city, req.body.state, req.body.zip, req.body.email]
+
+        db.postNewAddress(params, function(err, resp){
+            console.log('sent address')
+            res.send('Sent new address.');
+        })
+    },
+    postNewRsvp: function(req, res) {
+        var params = [req.body.userId, req.body.firstName, req.body.lastName, req.body.email, req.body.numberInParty]
+
+        db.postNewRsvp(params, function(err, resp){
+            console.log('sent RSVP')
+            res.send('Sent new RSVP.');
+        })
+    },
+    updateCouple: function(req, res){
+        let params = [req.body.firstName, req.body.partnerFirstName,  req.body.photoUrl, req.body.story, req.body.hour, req.body.place, req.body.userId, req.body.weddingDate]
+
+        db.updateCouple(params, function(err, product){
+            console.log('updated couple')
+            res.send('Success');
+        })
     }
 }

@@ -7,10 +7,12 @@
                 <input type = 'text'
                        id = 'address-first-name'
                        placeholder = 'first'
+                       ng-model = 'newAddress.firstName'
                 >
                 <input type = 'text'
                        id = 'address-last-name'
                        placeholder = 'last'
+                       ng-model = 'newAddress.lastName'
                 >
             </div>
             <label for = 'address'>Address</label>
@@ -18,18 +20,22 @@
                 <input type = 'text'
                        id = 'address-street'
                        placeholder = 'street'
+                       ng-model = 'newAddress.street'
                 >
                 <input type = 'text'
                        id = 'address-city'
                        placeholder = 'city'
+                       ng-model = 'newAddress.city'
                 >
                 <input type = 'text'
                        id = 'address-state'
                        placeholder = 'state'
+                       ng-model = 'newAddress.state'
                 >
                 <input type = 'text'
                        id = 'address-zip'
                        placeholder = 'zip'
+                       ng-model = 'newAddress.zip'
                 >
             </div>
             <label for = 'email'>Email</label>
@@ -37,11 +43,12 @@
                 <input type = 'email'
                        id = 'address-email'
                        placeholder = 'email'
+                       ng-model = 'newAddress.email'
                 >
             </div>
             <div class = 'form-btns'>
                 <button class = 'cancel-btn'>Cancel</button>
-                <button class = 'submit-btn'>Send</button>
+                <button class = 'submit-btn' ng-click = 'saveNewAddress(newAddress)'>Send</button>
             </div>
         </form>
     </div>

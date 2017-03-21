@@ -14,14 +14,26 @@ angular.module('happyGoMarry')
     })
     setTimeout(function(){
         $scope.userUpdates = {
-        name: $scope.couple.firstname,
-        partnername: $scope.couple.partnerfirstname,
+        firstName: $scope.couple.firstname,
+        partnerFirstName: $scope.couple.partnerfirstname,
+        photoUrl: $scope.couple.photourl,
         story: $scope.couple.story,
-        time: $scope.couple.hour,
+        hour: $scope.couple.hour,
         place: $scope.couple.place,
-        imageUrl: $scope.couple.photourl
+        userId: 1 //this will depend on who is logged in
         }
     }, 100) 
+    $scope.saveUpdatedCouple = function(userUpdates) {
+        coupleSrv.saveUpdatedCouple(userUpdates).success(function() { 
+            alert('Saved successfully!'); 
+        }).error(function(){
+            alert('something went wrong!');
+        });   
+        console.log('userupdates', $scope.userUpdates)
+        console.log('updatedCouple', $scope.couple)
+    }
+
+
     // setInterval(function() {
     //     console.log($scope.userUpdates.date)
     // }, 2000)

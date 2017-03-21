@@ -23,6 +23,9 @@ var couplesCtrl = require('./serverCtrls/couplesCtrl.js');
 app.get('/api/couple', couplesCtrl.GetCouple);
 app.get('/api/payments', couplesCtrl.GetPayments);
 app.get('/api/donations', couplesCtrl.GetTotalDonations);
+app.post('/api/address', couplesCtrl.postNewAddress);
+app.post('/api/rsvp', couplesCtrl.postNewRsvp);
+app.put('/api/couple', couplesCtrl.updateCouple);
 
 
 

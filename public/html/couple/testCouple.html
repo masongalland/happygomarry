@@ -28,7 +28,7 @@
             <div class = 'name-date'>
                 <!--Names and date will be pulled from DB-->
                 <h1>{{couple.firstname}} & {{couple.partnerfirstname}}</h1> 
-                <p>{{couple.weddingdate}}</p> 
+                <p>{{couple.weddingdate | date: 'MMMM d, y'}}</p> 
             </div>
         </section>
         <section class = 'under-pic'>
@@ -55,7 +55,7 @@
             </div>
             <div class = 'details'>
                 <h1>Wedding Details</h1>
-                <p><strong>Date:  </strong><span> {{couple.day}}, {{couple.weddingdate}}</span></p>
+                <p><strong>Date:  </strong><span> {{couple.weddingdate | date: 'EEEE, MMMM d, y'}}</span></p>
                 <p><strong>Time:  </strong><span> {{couple.hour}}</span></p>
                 <p><strong>Place:  </strong><span> {{couple.place}}</span></p>
             </div>

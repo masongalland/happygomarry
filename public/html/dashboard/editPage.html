@@ -5,13 +5,13 @@
             <div class = 'dash-edit-img'>
                 <md-input-container class = 'md-input'>
                     <label>Image URL</label>
-                    <input ng-model="userUpdates.imageUrl" md-select-on-focus>
+                    <input ng-model="userUpdates.photoUrl" md-select-on-focus>
                 </md-input-container>
                 <div id = 'dash-img' class = 'couple-image' style = 'background-image: url("{{couple.photourl}}")' >
                     <div class = 'name-date'>
                         <!--Names and date will be pulled from DB-->
                         <h1>{{couple.firstname}} & {{couple.partnerfirstname}}</h1> 
-                        <p>{{couple.weddingdate}}</p> 
+                        <p>{{couple.weddingdate | date: 'MMMM d, y'}}</p> 
                     </div>
                 </div>
             </div>
@@ -23,11 +23,11 @@
             <div class = 'dash-names'>
                 <md-input-container class = 'md-input'>
                     <label class = 'dash-name'>First Name</label>
-                    <input class = 'dash-name' ng-model="userUpdates.name">
+                    <input class = 'dash-name' ng-model="userUpdates.firstName">
                 </md-input-container>
                 <md-input-container class = 'md-input'>
                     <label class = 'dash-name'>Partner's First Name</label>
-                    <input class = 'dash-name' ng-model="userUpdates.partnername">
+                    <input class = 'dash-name' ng-model="userUpdates.partnerFirstName">
                 </md-input-container>
             </div>
         </div>
@@ -37,11 +37,11 @@
                 <div class = 'dash-date-time'>
                     <md-input-container class = 'md-input datepicker'>
                         <label>Enter Date</label>
-                        <md-datepicker ng-model="userUpdates.date" md-open-on-focus></md-datepicker>
+                        <md-datepicker ng-model="userUpdates.weddingDate" md-open-on-focus></md-datepicker>
                     </md-input-container>
                     <md-input-container class = 'md-input'>
                         <label>Time</label>
-                        <input ng-model="userUpdates.time">
+                        <input ng-model="userUpdates.hour">
                     </md-input-container>
                 </div>
                 <md-input-container class = 'md-input'>
@@ -64,6 +64,6 @@
 <div class = 'submit-updates'>
     <div class = 'dash-btn-container'>
         <button class = 'cancel-btn'>Cancel</button>
-        <button class = 'submit-btn'>Save</button>
+        <button class = 'submit-btn' ng-click = 'saveUpdatedCouple(userUpdates)'>Save</button>
     </div>
 </div>
