@@ -33,14 +33,22 @@ angular.module('happyGoMarry')
 
     $scope.saveNewAddress = function(newAddress) {
         coupleSrv.saveNewAddress(newAddress).success(function() { 
-            alert('sent successfully!'); 
+            swal(
+                'Thanks!',
+                'Your address was sent successfully.',
+                'success'
+            ); 
         }).error(function(){
             alert('something went wrong!');
         });   
     }
     $scope.saveNewRsvp = function(newRsvp) {
         coupleSrv.saveNewRsvp(newRsvp).success(function() { 
-            alert('sent successfully!'); 
+            swal(
+                'Thanks!',
+                'Your RSVP was sent successfully.',
+                'success'
+            ); 
         }).error(function(){
             alert('something went wrong!');
         });   

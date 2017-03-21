@@ -1,1 +1,48 @@
-<h1>Addresses</h1>
+<div class = 'addresses-container'>
+    <h1>Addresses</h1>
+    <div class = 'mobile-addresses'>
+        <div class = 'mobile-address' ng-repeat = 'address in addresses'>
+            <h2>{{address.firstname}} {{address.lastname}}</h2>
+            <p>{{address.street}}</p>
+            <p>{{address.city}}, {{address.state}} {{address.zip}}</p>
+            <div class = 'bottom-border'></div>
+        </div>
+    </div>
+    <div class = 'desktop-addresses'>
+        <table id="addresses-table" class="mdl-data-table" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Street</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Zip</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Street</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Zip</th>
+                    <th>Email</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                <tr ng-repeat = 'address in addresses'>
+                    <td>{{address.firstname}}</td>
+                    <td>{{address.lastname}}</td>
+                    <td>{{address.street}}</td>
+                    <td>{{address.city}}</td>
+                    <td>{{address.state}}</td>
+                    <td>{{address.zip}}</td>
+                    <td>{{address.email}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -12,6 +12,14 @@ angular.module('happyGoMarry')
         $scope.donations = response.data[0];
         console.log($scope.donations);
     })
+    coupleSrv.getAddresses().then(function(response){
+        $scope.addresses = response.data;
+        console.log($scope.addresses);
+    })
+    coupleSrv.getRsvps().then(function(response){
+        $scope.guests = response.data;
+        console.log($scope.guests);
+    })
     setTimeout(function(){
         $scope.userUpdates = {
         firstName: $scope.couple.firstname,

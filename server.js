@@ -23,6 +23,8 @@ var couplesCtrl = require('./serverCtrls/couplesCtrl.js');
 app.get('/api/couple', couplesCtrl.GetCouple);
 app.get('/api/payments', couplesCtrl.GetPayments);
 app.get('/api/donations', couplesCtrl.GetTotalDonations);
+app.get('/api/addresses/:userId', couplesCtrl.getAddresses);
+app.get('/api/rsvp/:userId', couplesCtrl.getRsvps);
 app.post('/api/address', couplesCtrl.postNewAddress);
 app.post('/api/rsvp', couplesCtrl.postNewRsvp);
 app.put('/api/couple', couplesCtrl.updateCouple);

@@ -71,3 +71,53 @@ VALUES (1, 23452345, 'Marc', 'Cabanilla', 40.50, '3/13/17', 'Yes! So happy for y
 
 INSERT INTO wepay (userId, wepayId)
 VALUES (1, 23452345);
+
+INSERT INTO addresses (userId, firstName, lastName, street, city, state, zip, email)
+VALUES (1, 'Gary', 'Galland', '432 W. Sheffield Dr.', 'Provo', 'UT', 84604, 'garygalland@me.com');
+INSERT INTO addresses (userId, firstName, lastName, street, city, state, zip, email)
+VALUES (1, 'Gary', 'Galland', '432 W. Sheffield Dr.', 'Provo', 'UT', 84604, 'garygalland@me.com');
+INSERT INTO addresses (userId, firstName, lastName, street, city, state, zip, email)
+VALUES (1, 'Gary', 'Galland', '432 W. Sheffield Dr.', 'Provo', 'UT', 84604, 'garygalland@me.com');
+INSERT INTO addresses (userId, firstName, lastName, street, city, state, zip, email)
+VALUES (1, 'Gary', 'Galland', '432 W. Sheffield Dr.', 'Provo', 'UT', 84604, 'garygalland@me.com');
+INSERT INTO addresses (userId, firstName, lastName, street, city, state, zip, email)
+VALUES (1, 'Gary', 'Galland', '432 W. Sheffield Dr.', 'Provo', 'UT', 84604, 'garygalland@me.com');
+INSERT INTO addresses (userId, firstName, lastName, street, city, state, zip, email)
+VALUES (1, 'Gary', 'Galland', '432 W. Sheffield Dr.', 'Provo', 'UT', 84604, 'garygalland@me.com');
+INSERT INTO addresses (userId, firstName, lastName, street, city, state, zip, email)
+VALUES (1, 'Gary', 'Galland', '432 W. Sheffield Dr.', 'Provo', 'UT', 84604, 'garygalland@me.com');
+INSERT INTO addresses (userId, firstName, lastName, street, city, state, zip, email)
+VALUES (1, 'Gary', 'Galland', '432 W. Sheffield Dr.', 'Provo', 'UT', 84604, 'garygalland@me.com');
+INSERT INTO addresses (userId, firstName, lastName, street, city, state, zip, email)
+VALUES (1, 'Gary', 'Galland', '432 W. Sheffield Dr.', 'Provo', 'UT', 84604, 'garygalland@me.com');
+INSERT INTO addresses (userId, firstName, lastName, street, city, state, zip, email)
+VALUES (1, 'Gary', 'Galland', '432 W. Sheffield Dr.', 'Provo', 'UT', 84604, 'garygalland@me.com');
+INSERT INTO addresses (userId, firstName, lastName, street, city, state, zip, email)
+VALUES (1, 'Gary', 'Galland', '432 W. Sheffield Dr.', 'Provo', 'UT', 84604, 'garygalland@me.com');
+INSERT INTO addresses (userId, firstName, lastName, street, city, state, zip, email)
+VALUES (1, 'Gary', 'Galland', '432 W. Sheffield Dr.', 'Provo', 'UT', 84604, 'garygalland@me.com');
+INSERT INTO addresses (userId, firstName, lastName, street, city, state, zip, email)
+VALUES (1, 'Gary', 'Galland', '432 W. Sheffield Dr.', 'Provo', 'UT', 84604, 'garygalland@me.com');
+
+INSERT INTO rsvp (userId, firstName, lastName, email, numberInParty)
+VALUES (1, 'Riley', 'Bennett', 'test@gmail.com', 4);
+INSERT INTO rsvp (userId, firstName, lastName, email, numberInParty)
+VALUES (1, 'Riley', 'Bennett', 'test@gmail.com', 4);
+INSERT INTO rsvp (userId, firstName, lastName, email, numberInParty)
+VALUES (1, 'Riley', 'Bennett', 'test@gmail.com', 4);
+INSERT INTO rsvp (userId, firstName, lastName, email, numberInParty)
+VALUES (1, 'Riley', 'Bennett', 'test@gmail.com', 4);
+INSERT INTO rsvp (userId, firstName, lastName, email, numberInParty)
+VALUES (1, 'Riley', 'Bennett', 'test@gmail.com', 4);
+INSERT INTO rsvp (userId, firstName, lastName, email, numberInParty)
+VALUES (1, 'Riley', 'Bennett', 'test@gmail.com', 4);
+INSERT INTO rsvp (userId, firstName, lastName, email, numberInParty)
+VALUES (1, 'Riley', 'Bennett', 'test@gmail.com', 4);
+INSERT INTO rsvp (userId, firstName, lastName, email, numberInParty)
+VALUES (1, 'Riley', 'Bennett', 'test@gmail.com', 4);
+INSERT INTO rsvp (userId, firstName, lastName, email, numberInParty)
+VALUES (1, 'Riley', 'Bennett', 'test@gmail.com', 4);
+INSERT INTO rsvp (userId, firstName, lastName, email, numberInParty)
+VALUES (1, 'Riley', 'Bennett', 'test@gmail.com', 4);
+INSERT INTO rsvp (userId, firstName, lastName, email, numberInParty)
+VALUES (1, 'Riley', 'Bennett', 'test@gmail.com', 4);

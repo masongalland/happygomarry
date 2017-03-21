@@ -33,12 +33,22 @@ module.exports = {
             res.send('Sent new RSVP.');
         })
     },
-    updateCouple: function(req, res){
+    updateCouple: function(req, res) {
         let params = [req.body.firstName, req.body.partnerFirstName,  req.body.photoUrl, req.body.story, req.body.hour, req.body.place, req.body.userId, req.body.weddingDate]
 
         db.updateCouple(params, function(err, product){
             console.log('updated couple')
             res.send('Success');
+        })
+    },
+    getAddresses: function(req, res) {
+        db.getAddresses([req.params.userId], function(err, resp){
+            res.send(resp);
+        })
+    },
+    getRsvps: function(req, res) {
+        db.getRsvps([req.params.userId], function(err, resp){
+            res.send(resp);
         })
     }
 }

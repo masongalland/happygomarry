@@ -6,6 +6,9 @@ p, h1, h2, h3, a, li {
     color: #525252;
     
 }
+h1, h2 {
+    font-weight: bold;
+}
 h1 {
     font-size: 2em;
     color: #525252;
@@ -16,6 +19,7 @@ h2 {
     letter-spacing: .325em;
     padding: 10px 20px;
     text-align: center;
+    line-height: inherit;
 }
 h3 {
     letter-spacing: 2px;

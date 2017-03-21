@@ -11,6 +11,12 @@ angular.module('happyGoMarry').service('coupleSrv', function($http){
     this.getDonations = function() {
         return $http.get(baseUrl + 'donations')        
     }
+    this.getAddresses = function() {
+        return $http.get(baseUrl + 'addresses/1') //will need to change the paramater to be based on who is logged in
+    }
+    this.getRsvps = function() {
+        return $http.get(baseUrl + 'rsvp/1') //will need to change the paramater to be based on who is logged in
+    }
     this.saveNewAddress = function(newAddress) {
         return $http({ method: 'POST', url: '/api/address', data: newAddress})
     }
