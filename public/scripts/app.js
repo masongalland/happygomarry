@@ -17,18 +17,19 @@ angular.module('happyGoMarry', ['ui.router', 'ngMaterial', 'ngMessages'])
             })
             .state('demo', {
                 url: '/demo',
-                templateUrl: './html/couple/demo.html'
-            })
-            .state('testCouple', {
-                url: '/test-couple',
-                templateUrl: './html/couple/testCouple.html',
+                templateUrl: './html/couple/demo.html',
                 controller: 'coupleCtrl'
             })
             .state('dashboard', {
                 url: '/dashboard',
                 templateUrl: './html/dashboard/dashboard.html',
                 controller: 'dashboardCtrl'
-            });
+            })
+            .state('signup', {
+                url: '/signup',
+                templateUrl: './html/signup/signup.html',
+                controller: 'signupCtrl'
+            })
 
         var indigo = $mdThemingProvider.extendPalette('indigo', {
             '500': '1bc2b7'

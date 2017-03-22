@@ -180,7 +180,18 @@
 #send-rsvp {
     display: none;
 }
-
+.swal2-icon.swal2-success .line {
+    background-color: #1bc2b7;
+}
+.swal2-icon.swal2-success {
+    border-color: #1bc2b7;
+}
+.swal2-styled {
+    background-color: #1bc2b7 !important;
+}
+.swal2-modal h2 {
+    letter-spacing: .2em
+}
 @media (min-width: 600px) {
     .one-button p {
         margin-bottom: 15px;

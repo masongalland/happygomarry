@@ -13,6 +13,7 @@ h1 {
     font-size: 2em;
     color: #525252;
     letter-spacing: 2px;
+    line-height: 1em;
 }
 h2 {
     font-size: 1.25em;
@@ -23,6 +24,7 @@ h2 {
 }
 h3 {
     letter-spacing: 2px;
+    line-height: inherit;
 }
 p {
     line-height: 1.7em;
@@ -306,7 +308,7 @@ a {
     margin-bottom: 25px;
 }
 .how-it-works button{
-    width: 233px;
+    width: 235px;
     margin: 0 0 15px 0;
 }
 .current-member {
