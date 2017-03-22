@@ -33,9 +33,17 @@ angular.module('happyGoMarry')
     }, 100) 
     $scope.saveUpdatedCouple = function(userUpdates) {
         coupleSrv.saveUpdatedCouple(userUpdates).success(function() { 
-            alert('Saved successfully!'); 
+            swal(
+                'Thanks!',
+                'Your RSVP was sent successfully.',
+                'success'
+            ); 
         }).error(function(){
-            alert('something went wrong!');
+            swal(
+                'Oops...',
+                'Something went wrong!',
+                'error'
+            );
         });   
         console.log('userupdates', $scope.userUpdates)
         console.log('updatedCouple', $scope.couple)

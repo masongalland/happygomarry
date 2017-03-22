@@ -1,0 +1,141 @@
+<header class = 'couples-page-header'>
+    <div class = 'HAM' animate-dir>
+        <div class = 'line'></div>
+        <div class = 'line'></div>
+        <div class = 'line'></div>
+    </div>
+    <div class = 'wide-nav'>
+        <div class = 'brand'>
+            <div class = 'small-logo'>
+                <a ui-sref = 'home'><img src="./images/logo100.png" alt="logo"></a>
+            </div>
+            <a ui-sref = 'home'><p>happy-go-marry</p></a>
+        </div>
+        <div class = 'wide-menu'>
+            <a ui-sref = 'howItWorks'>How It Works</a>
+            <a ui-sref = 'demo'>Demo</a>
+            <a ui-sref = 'howItWorks'>About</a>
+            <a ui-sref = 'howItWorks'>Contact</a>
+            <a ui-sref = 'howItWorks'>
+                <a ui-sref = 'dashboard'><button>SIGN IN</button></a>
+            </a>
+        </div>
+    </div>
+</header>
+<section class = 'sign-up-wrapper'>
+    <div class = 'form-container' signup-controls>
+        <div class = 'signup-div' id = 'welcome-message'>
+            <h1>Welcome, Mason!</h1> <!--name will come from auth0 response-->
+            <p>To get started, please answer some quick questions.</p>
+            <button id = 'welcome-btn' class = 'submit-btn'>OK!</button>
+        </div>
+        <div class = 'signup-div' id = 'question1'>
+            <h2>What is your partner's name?</h2>
+            <md-input-container class = 'md-input'>
+                <label class = 'dash-name'>First Name</label>
+                <input class = 'dash-name' ng-model="newCouple.partnerFirstName">
+            </md-input-container>
+            <md-input-container class = 'md-input'>
+                <label class = 'dash-name'>Last Name</label>
+                <input class = 'dash-name' ng-model="newCouple.lastName">
+            </md-input-container>
+            <div class = 'signup-btn-container'>
+                <button id = 'name-next-btn' class = 'submit-btn'>Next</button>
+            </div>
+            <div class = 'progress-container'>
+                <div class = 'progress-dot filled-dot'></div>
+                <div class = 'progress-dot'></div>
+                <div class = 'progress-dot'></div>
+                <div class = 'progress-dot'></div>
+                <div class = 'progress-dot'></div>
+                <div class = 'progress-dot'></div>
+            </div>
+        </div>
+        <div class = 'signup-div' id = 'question2'>
+            <h2>When is the big day?</h2>
+            <md-input-container class = 'md-input datepicker'>
+                <label>Enter Date</label>
+                <md-datepicker ng-model="newCouple.weddingDate" md-open-on-focus></md-datepicker>
+            </md-input-container>
+            <md-input-container class = 'md-input'>
+                <label>Time</label>
+                <input type = 'time' ng-model="newCouple.hour">
+            </md-input-container>
+            <md-input-container class = 'md-input'>
+                <label>Place</label>
+                <input ng-model="newCouple.place">
+            </md-input-container>
+            <div class = 'signup-btn-container'>
+                <button id = 'details-back-btn' class = 'back-btn'>Back</button>
+                <button id = 'details-next-btn' class = 'submit-btn'>Next</button>
+            </div>
+            <div class = 'progress-container'>
+                <div class = 'progress-dot pg1 filled-dot'></div>
+                <div class = 'progress-dot pg2 filled-dot'></div>
+                <div class = 'progress-dot pg3'></div>
+                <div class = 'progress-dot pg4'></div>
+                <div class = 'progress-dot pg5'></div>
+            </div>
+        </div>
+        <div class = 'signup-div' id = 'question3'>
+            <h2>Choose a photo of you and your partner</h2>
+            <md-input-container class = 'md-input'>
+                    <label>Image URL</label>
+                    <input ng-model="newCouple.photoUrl" md-select-on-focus>
+                </md-input-container>
+                <div id = 'signup-img' class = 'couple-image' style = 'background-image: url("{{newCouple.photoUrl}}")' >
+                    <div class = 'name-date'>
+                        <h1>{{newCouple.firstname}} & {{newCouple.partnerFirstName}}</h1> 
+                        <p>{{newCouple.weddingDate | date: 'MMMM d, y'}}</p> 
+                    </div>
+                </div>
+            <div class = 'signup-btn-container'>
+                <button id = 'photo-back-btn' class = 'back-btn'>Back</button>
+                <button id = 'photo-next-btn' class = 'submit-btn'>Next</button>
+            </div>
+            <div class = 'progress-container'>
+                <div class = 'progress-dot pg1 filled-dot'></div>
+                <div class = 'progress-dot pg2 filled-dot'></div>
+                <div class = 'progress-dot pg3 filled-dot'></div>
+                <div class = 'progress-dot pg4'></div>
+                <div class = 'progress-dot pg5'></div>
+            </div>
+        </div>
+        <div class = 'signup-div' id = 'question4'>
+            <h2>Write your love story</h2>
+            <p>(leave this blank if you don't want to include this on your page)</p>
+            <md-input-container class = 'md-input md-block'>
+                <label>Story</label>
+                <textarea ng-model="newCouple.story" rows = "5" md-select-on-focus></textarea>
+            </md-input-container>
+            <div class = 'signup-btn-container'>
+                <button id = 'story-back-btn' class = 'back-btn'>Back</button>
+                <button id = 'story-next-btn' class = 'submit-btn'>Next</button>
+            </div>
+            <div class = 'progress-container'>
+                <div class = 'progress-dot pg1 filled-dot'></div>
+                <div class = 'progress-dot pg2 filled-dot'></div>
+                <div class = 'progress-dot pg3 filled-dot'></div>
+                <div class = 'progress-dot pg4 filled-dot'></div>
+                <div class = 'progress-dot pg5'></div>
+            </div>
+        </div>
+        <div class = 'signup-div' id = 'verify-url'>
+            <h2>Congratulations, your page is ready!</h2>
+            <h2 id = 'couple-url'>localhost:8080/#/demo</h2>
+            <p>Click 'Next' to view your page</p>
+            <div class = 'signup-btn-container'>
+                <button id = 'url-back-btn' class = 'back-btn'>Back</button>
+                <a ui-sref = 'demo'><button id = 'url-next-btn' class = 'submit-btn'>Next</button></a>
+            </div>
+            <div class = 'progress-container'>
+                <div class = 'progress-dot pg1 filled-dot'></div>
+                <div class = 'progress-dot pg2 filled-dot'></div>
+                <div class = 'progress-dot pg3 filled-dot'></div>
+                <div class = 'progress-dot pg4 filled-dot'></div>
+                <div class = 'progress-dot pg5 filled-dot'></div>
+            </div>
+        </div>
+        
+    </div>
+</section>

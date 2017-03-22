@@ -170,6 +170,9 @@ button {
     align-items: center;
     color: white;
 }
+.featured-content button {
+    background-color: rgba(48, 48, 48, 0.5);
+}
 .featured-content h1 {
     font-family: 'Sacramento', cursive;
     border-bottom: 2px solid white;

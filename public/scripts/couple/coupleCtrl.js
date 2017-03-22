@@ -39,7 +39,11 @@ angular.module('happyGoMarry')
                 'success'
             ); 
         }).error(function(){
-            alert('something went wrong!');
+            swal(
+                'Oops...',
+                'Something went wrong!',
+                'error'
+            );
         });   
     }
     $scope.saveNewRsvp = function(newRsvp) {
@@ -50,7 +54,11 @@ angular.module('happyGoMarry')
                 'success'
             ); 
         }).error(function(){
-            alert('something went wrong!');
+            swal(
+                'Oops...',
+                'Something went wrong!',
+                'error'
+            );
         });   
     }
 
