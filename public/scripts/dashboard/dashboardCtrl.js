@@ -15,11 +15,11 @@ angular.module('happyGoMarry')
         $scope.donations = response.data[0];
         console.log($scope.donations);
     })
-    coupleSrv.getAddresses().then(function(response){
+    coupleSrv.getAddresses($scope.couple.userid).then(function(response){
         $scope.addresses = response.data;
         console.log($scope.addresses);
     })
-    coupleSrv.getRsvps().then(function(response){
+    coupleSrv.getRsvps($scope.couple.userid).then(function(response){
         $scope.guests = response.data;
         console.log($scope.guests);
     })

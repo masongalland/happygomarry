@@ -4,7 +4,7 @@ angular.module('happyGoMarry')
     coupleSrv.getCouple($stateParams.url).then(function(response){
         $scope.couple = response[0];
         $scope.newAddress = {
-            // userId: $scope.couple.userid, 
+            userId: $scope.couple.userid, 
             firstName: '',
             lastName: '',
             street: '',
@@ -14,7 +14,7 @@ angular.module('happyGoMarry')
             email: ''
         };
         $scope.newRsvp = {
-            // userId: $scope.couple.userid, 
+            userId: $scope.couple.userid, 
             firstName: '',
             lastName: '',
             email: '',
