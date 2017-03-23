@@ -2,8 +2,10 @@ angular.module('happyGoMarry').service('coupleSrv', function($http){
 
     var baseUrl = '/api/';
 
-    this.getCouple = function() {
-        return $http.get(baseUrl + 'couple')
+    this.getCouple = function(url) {
+        return $http.get(baseUrl + 'couple/' + url).then(function(response){
+            return response.data;
+        })
     };
     this.getPayments = function() {
         return $http.get(baseUrl + 'payments')

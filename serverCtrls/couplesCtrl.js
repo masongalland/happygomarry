@@ -3,7 +3,7 @@ var db = app.get('db');
 
 module.exports = {
     GetCouple: function(req, res) {
-        db.getCouple(function(err, resp){
+        db.getCouple([req.params.url], function(err, resp){
             res.send(resp);
         })
     },

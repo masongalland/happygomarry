@@ -1,8 +1,9 @@
 angular.module('happyGoMarry')
-.controller('dashboardCtrl', function($scope, coupleSrv){
-    coupleSrv.getCouple().then(function(response){
-        $scope.couple = response.data[0];
-        console.log($scope.couple);
+.controller('dashboardCtrl', function($scope, coupleSrv, $stateParams){
+
+    coupleSrv.getCouple($stateParams.url).then(function(response){
+        $scope.couple = response[0];
+        console.log('couple:', $scope.couple);
     })
     coupleSrv.getPayments().then(function(response){
         $scope.payments = response.data;

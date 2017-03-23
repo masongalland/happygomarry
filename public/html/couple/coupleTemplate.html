@@ -1,0 +1,87 @@
+<header class = 'couples-page-header'>
+    <div class = 'HAM' animate-dir>
+        <div class = 'line'></div>
+        <div class = 'line'></div>
+        <div class = 'line'></div>
+    </div>
+    <div class = 'wide-nav'>
+        <div class = 'brand'>
+            <div class = 'small-logo'>
+                <a ui-sref = 'home'><img src="./images/logo100.png" alt="logo"></a>
+            </div>
+            <a ui-sref = 'home'><p>happy-go-marry</p></a>
+        </div>
+        <div class = 'wide-menu'>
+            <a ui-sref = 'howItWorks'>How It Works</a>
+            <a ui-sref = 'demo'>Demo</a>
+            <a ui-sref = 'howItWorks'>About</a>
+            <a ui-sref = 'howItWorks'>Contact</a>
+            <a ui-sref = 'howItWorks'>
+                <a ui-sref = 'dashboard'><button>SIGN IN</button></a>
+            </a>
+        </div>
+    </div>
+</header>
+<div class = 'couple-container'>
+    <main class = 'couple-info'>
+        <!--image URL will be a url pulled from DB-->    
+        <section class = 'couple-image' style = 'background-image: url("{{couple.photourl}}")' >
+            <div class = 'name-date'>
+                <!--Names and date will be pulled from DB-->
+                <h1>{{couple.firstname}} & {{couple.partnerfirstname}}</h1> 
+                <p>{{couple.weddingdate | date: 'MMMM d, y'}}</p> 
+            </div>
+        </section>
+        <section class = 'under-pic'>
+            <div class = 'three-buttons'>
+                <div class = 'one-button send-gift'>
+                    <img class = 'gray-present' src = './images/present_gray.png'>
+                    <img class = 'green-present' src = './images/present.png'>
+                    <p>Send a gift</p>
+                </div>
+                <div class = 'one-button send-address'>
+                    <img class = 'gray-envelope' src = './images/envelope_gray.png'>
+                    <img class = 'green-envelope' src = './images/envelope_green.png'>
+                    <p>Send Address</p>                
+                </div>
+                <div class = 'one-button send-rsvp'>
+                    <img class = 'gray-check' src = './images/check-circular-button-gray.png'>
+                    <img class = 'green-check' src = './images/check-circular-button-green.png'>
+                    <p>RSVP</p>
+                </div>
+            </div>
+            <div class = 'details'>
+                <h1>Our Story</h1>
+                <p>{{couple.story}}</p>
+            </div>
+            <div class = 'details'>
+                <h1>Wedding Details</h1>
+                <p><strong>Date:  </strong><span> {{couple.weddingdate | date: 'EEEE, MMMM d, y'}}</span></p>
+                <p><strong>Time:  </strong><span> {{couple.hour}}</span></p>
+                <p><strong>Place:  </strong><span> {{couple.place}}</span></p>
+            </div>
+        </section>
+    </main>
+    <section class = 'gifting-container'>
+        <div class = 'gifting'>
+            <div class = 'gift-summary'>
+                <div class = 'total-gifts'>{{donations.number_of_donors}}</div>
+                <h3>People have sent a cash gift</h3>
+                <button class = 'send-gift-btn'>Send Gift</button>
+                <p>Send a cash gift to show the </br>lucky couple some love</p>
+            </div>
+            <h2>Recent Gifts</h2>
+            <div class = 'recent-gifts'>
+                <div class = 'recent-gift-container' ng-repeat = 'payment in payments'>
+                    <div class = 'recent-gift' >
+                        <div class = 'recent-gift-icon'>{{payment.donorfirstname[0]}}{{payment.donorlastname[0]}}</div>
+                        <p>{{payment.message}}</p>
+                    </div>
+                    <div class = 'bottom-border'></div>
+                </div>              
+        </div>
+    </section>
+</div>
+
+<send-address id = 'send-address' animate-dir></send-address>
+<rsvp-form id = 'send-rsvp' animate-dir></rsvp-form>

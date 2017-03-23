@@ -97,7 +97,7 @@ app.get('/auth/logout', function(req, res) {
 })
 
 //regular endpoints
-app.get('/api/couple', couplesCtrl.GetCouple);
+app.get('/api/couple/:url', couplesCtrl.GetCouple);
 app.get('/api/payments', couplesCtrl.GetPayments);
 app.get('/api/donations', couplesCtrl.GetTotalDonations);
 app.get('/api/addresses/:userId', couplesCtrl.getAddresses);

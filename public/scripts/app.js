@@ -10,10 +10,10 @@ angular.module('happyGoMarry', ['ui.router', 'ngMaterial', 'ngMessages'])
                 url: '/how-it-works',
                 templateUrl: './html/howItWorks/howItWorks.html'
             })
-            .state('createPage',{
-                url: '/create-page',
-                templateUrl: './html/createPage/createPage.html',
-                controller: './scripts/createPage/createPageCtrl.js'
+            .state('couple',{
+                url: '/couple/:url',
+                templateUrl: './html/couple/coupleTemplate.html',
+                controller: 'coupleTempCtrl'
             })
             .state('demo', {
                 url: '/demo',
@@ -21,7 +21,7 @@ angular.module('happyGoMarry', ['ui.router', 'ngMaterial', 'ngMessages'])
                 controller: 'coupleCtrl'
             })
             .state('dashboard', {
-                url: '/dashboard',
+                url: '/dashboard/:url',
                 templateUrl: './html/dashboard/dashboard.html',
                 controller: 'dashboardCtrl'
             })
