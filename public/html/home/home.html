@@ -17,9 +17,8 @@
             <a ui-sref = 'demo'>Demo</a>
             <a ui-sref = 'howItWorks'>About</a>
             <a ui-sref = 'howItWorks'>Contact</a>
-            <a ui-sref = 'howItWorks'>
-                <a ui-sref = 'createPage'><button>SIGN IN</button></a>
-            </a>
+            <a href = '/auth' ng-hide="signedIn"><button>SIGN IN</button></a>
+            <a ui-sref = 'dashboard' ng-show="signedIn"><button>{{couple.firstname}}</button></a>
         </div>
     </div>
 </header>
@@ -31,7 +30,7 @@
         </div>
         <h1>happy-go-marry</h1>
         <p>ENJOY A HAPPY-GO-LUCKY </br> ENGAGEMENT</p>
-        <a ui-sref = 'createPage'><button>CREATE A PAGE</button></a>
+        <a href = '/auth'><button>CREATE A PAGE</button></a>
     </div>
 </div>
 <div class = 'mobile-nav'>
@@ -44,7 +43,7 @@
         </div>
         <h2>CREATE YOUR PAGE</h2>
         <p>Create a page personalized to you and  your fiance to collect addresses, RSVPs, and cash gifts from your family and friends!</p>
-        <a ui-sref = 'signup'><button class = 'gray-btn'>GET STARTED</button></a>
+        <a href = '/auth'><button class = 'gray-btn'>GET STARTED</button></a>
     </div>
     <section class = 'features'>
         
@@ -93,5 +92,5 @@
 </main>
 <section class = 'current-member'>
     <h3>HAVE AN ACCOUNT?</h3>
-    <a ui-sref = 'howItWorks'><button class = 'gray-btn'>SIGN IN</button></a>
+    <a href = '/auth'><button class = 'gray-btn'>SIGN IN</button></a>
 </section>

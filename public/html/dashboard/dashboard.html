@@ -15,8 +15,8 @@
             <a ui-sref = 'howItWorks'>How It Works</a>
             <a ui-sref = 'howItWorks'>About</a>
             <a ui-sref = 'howItWorks'>Contact</a>
-            <a ui-sref = 'howItWorks'>
-                <a ui-sref = 'createPage'><button>SIGN IN</button></a>
+            <a href = '/auth' ng-hide="signedIn"><button>SIGN IN</button></a>
+            <a href = '/auth/logout' ng-show="signedIn"><button>SIGN OUT</button></a>
             </a>
         </div>
     </div>

@@ -1,5 +1,7 @@
 angular.module('happyGoMarry')
-.controller('coupleCtrl', function($scope, coupleSrv){
+.controller('coupleCtrl', function($scope, coupleSrv, $rootScope){
+
+    
     coupleSrv.getCouple().then(function(response){
         $scope.couple = response.data[0];
         console.log($scope.couple);

@@ -7,6 +7,11 @@ module.exports = {
             res.send(resp);
         })
     },
+    GetCurrentCouple: function(req, res) {
+        db.getCurrentCouple([req.params.auth0id], function(err, resp){
+            res.send(resp);
+        })
+    },
     GetPayments: function(req, res) {
         db.getPayments(function(err, resp){
             res.send(resp);
@@ -18,7 +23,7 @@ module.exports = {
         })
     },
     postNewAddress: function(req, res) {
-        var params = [req.body.userId, req.body.firstName, req.body.lastName, req.body.street, req.body.city, req.body.state, req.body.zip, req.body.email]
+        let params = [req.body.userId, req.body.firstName, req.body.lastName, req.body.street, req.body.city, req.body.state, req.body.zip, req.body.email]
 
         db.postNewAddress(params, function(err, resp){
             console.log('sent address')
@@ -26,7 +31,7 @@ module.exports = {
         })
     },
     postNewRsvp: function(req, res) {
-        var params = [req.body.userId, req.body.firstName, req.body.lastName, req.body.email, req.body.numberInParty]
+        let params = [req.body.userId, req.body.firstName, req.body.lastName, req.body.email, req.body.numberInParty]
 
         db.postNewRsvp(params, function(err, resp){
             console.log('sent RSVP')
@@ -38,6 +43,14 @@ module.exports = {
 
         db.updateCouple(params, function(err, product){
             console.log('updated couple')
+            res.send('Success');
+        })
+    },
+    saveNewCouple: function(req, res) {
+        let params = [req.body.partnerFirstName, req.body.partnerLastName, req.body.weddingDate, req.body.hour, req.body.place, req.body.photoUrl, req.body.story, req.body.userId, req.body.url]
+
+        db.saveNewCouple(params, function(err, product){
+            console.log('saved couple')
             res.send('Success');
         })
     },

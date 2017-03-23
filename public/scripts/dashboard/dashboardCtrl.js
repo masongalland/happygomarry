@@ -1,10 +1,12 @@
 angular.module('happyGoMarry')
-.controller('dashboardCtrl', function($scope, coupleSrv, $stateParams){
+.controller('dashboardCtrl', function($scope, coupleSrv){
 
-    coupleSrv.getCouple($stateParams.url).then(function(response){
-        $scope.couple = response[0];
-        console.log('couple:', $scope.couple);
+    coupleSrv.getUser()
+    .then(function(response){
+        $scope.couple = response;  
+        console.log('dash couple: ', $scope.couple)
     })
+
     coupleSrv.getPayments().then(function(response){
         $scope.payments = response.data;
         console.log($scope.payments);
@@ -29,14 +31,14 @@ angular.module('happyGoMarry')
         story: $scope.couple.story,
         hour: $scope.couple.hour,
         place: $scope.couple.place,
-        userId: 1 //this will depend on who is logged in
+        userId: $scope.couple.userid //this will depend on who is logged in
         }
     }, 100) 
     $scope.saveUpdatedCouple = function(userUpdates) {
         coupleSrv.saveUpdatedCouple(userUpdates).success(function() { 
             swal(
                 'Thanks!',
-                'Your RSVP was sent successfully.',
+                'Your page has been updated',
                 'success'
             ); 
         }).error(function(){

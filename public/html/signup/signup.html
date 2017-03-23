@@ -16,8 +16,8 @@
             <a ui-sref = 'demo'>Demo</a>
             <a ui-sref = 'howItWorks'>About</a>
             <a ui-sref = 'howItWorks'>Contact</a>
-            <a ui-sref = 'howItWorks'>
-                <a ui-sref = 'dashboard'><button>SIGN IN</button></a>
+            <a href = '/auth' ng-hide="signedIn"><button>SIGN IN</button></a>
+            <a ui-sref = 'dashboard' ng-show="signedIn"><button>{{couple.firstname}}</button></a>
             </a>
         </div>
     </div>
@@ -25,7 +25,7 @@
 <section class = 'sign-up-wrapper'>
     <div class = 'form-container' signup-controls>
         <div class = 'signup-div' id = 'welcome-message'>
-            <h1>Welcome, Mason!</h1> <!--name will come from auth0 response-->
+            <h1>Welcome, {{couple.firstname}}!</h1>
             <p>To get started, please answer some quick questions.</p>
             <button id = 'welcome-btn' class = 'submit-btn'>OK!</button>
         </div>
@@ -37,10 +37,12 @@
             </md-input-container>
             <md-input-container class = 'md-input'>
                 <label class = 'dash-name'>Last Name</label>
-                <input class = 'dash-name' ng-model="newCouple.lastName">
+                <input class = 'dash-name' ng-model="newCouple.partnerLastName">
             </md-input-container>
+            <!--<input type = 'text' id = 'couple-url' ng-model = 'newCouple.url' value="{{couple.firstname}}-plus-{{newCouple.partnerFirstName}}">
+            {{couple.firstname}}-plus-{{newCouple.partnerFirstName}}-->
             <div class = 'signup-btn-container'>
-                <button id = 'name-next-btn' class = 'submit-btn'>Next</button>
+                <button ng-click = 'addUrl()' id = 'name-next-btn' class = 'submit-btn'>Next</button>
             </div>
             <div class = 'progress-container'>
                 <div class = 'progress-dot filled-dot'></div>
@@ -85,7 +87,7 @@
                 </md-input-container>
                 <div id = 'signup-img' class = 'couple-image' style = 'background-image: url("{{newCouple.photoUrl}}")' >
                     <div class = 'name-date'>
-                        <h1>{{newCouple.firstname}} & {{newCouple.partnerFirstName}}</h1> 
+                        <h1>{{couple.firstname}} & {{newCouple.partnerFirstName}}</h1> 
                         <p>{{newCouple.weddingDate | date: 'MMMM d, y'}}</p> 
                     </div>
                 </div>
@@ -122,11 +124,11 @@
         </div>
         <div class = 'signup-div' id = 'verify-url'>
             <h2>Congratulations, your page is ready!</h2>
-            <h2 id = 'couple-url'>localhost:8080/#/demo</h2>
+            <h2 id = 'couple-url'>www.happygomarry.com/couple/{{newCouple.url}}</h2>
             <p>Click 'Next' to view your page</p>
             <div class = 'signup-btn-container'>
                 <button id = 'url-back-btn' class = 'back-btn'>Back</button>
-                <a ui-sref = 'demo'><button id = 'url-next-btn' class = 'submit-btn'>Next</button></a>
+                <a href="/#/couple/{{newCouple.url}}"><button id = 'url-next-btn' class = 'submit-btn' ng-click = 'saveNewCouple(newCouple)'>Next</button></a>
             </div>
             <div class = 'progress-container'>
                 <div class = 'progress-dot pg1 filled-dot'></div>

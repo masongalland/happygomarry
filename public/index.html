@@ -29,8 +29,8 @@
                 <a ui-sref = 'demo'>Demo</a>
                 <a ui-sref = 'howItWorks'>About</a>
                 <a ui-sref = 'howItWorks'>Contact</a>
-                <a ui-sref = 'dashboard'>Dashboard</a>
-                <a id = 'mobile-sign-in-btn' ui-sref = 'createPage'><button>SIGN IN</button></a>
+                <a href = '/auth' ng-hide="signedIn" class = 'mobile-sign-in-btn' ui-sref = 'createPage'><button>SIGN IN</button></a>
+                <a ui-sref = 'dashboard' ng-show="signedIn" class = 'mobile-sign-in-btn' ui-sref = 'createPage'><button>{{couple.firstname}}</button></a>
             </div>
         </nav>
        

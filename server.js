@@ -44,12 +44,12 @@ passport.use(new Auth0Strategy({
             if (err) {
                 throw new Error(err)
             }
-          console.log('USER CREATED', user);
-          console.log('profile: ', profile)
+        //   console.log('USER CREATED', user);
+        //   console.log('profile: ', profile)
           return done(err, user[0]); // GOES TO SERIALIZE USER
         })
       } else { //when we find the user, return it
-        console.log('FOUND USER', user);
+        // console.log('FOUND USER', user);
         return done(err, user);
       }
     })
@@ -84,19 +84,22 @@ app.get('/auth/callback',
       }else {
           res.redirect('/#/home')
       }
-      console.log('req.user: ', req.user)
 })
 app.get('/auth/me', function(req, res) {
-  if (!req.user) return res.sendStatus(404);
+  if (!req.user) return res.status(200).send('null');
   //THIS IS WHATEVER VALUE WE GOT FROM userC variable above.
-  res.status(200).send(req.user);
+    db.getCurrentCouple([req.user.auth0id], function(err, resp){
+        if (err) return console.log(err)
+        else res.send(resp[0]);
+    })
 })
 app.get('/auth/logout', function(req, res) {
   req.logout();
-  res.redirect('/');
+  res.redirect('/#');
 })
 
 //regular endpoints
+app.get('./api/current-couple/:auth0id', couplesCtrl.GetCurrentCouple);
 app.get('/api/couple/:url', couplesCtrl.GetCouple);
 app.get('/api/payments', couplesCtrl.GetPayments);
 app.get('/api/donations', couplesCtrl.GetTotalDonations);
@@ -105,6 +108,7 @@ app.get('/api/rsvp/:userId', couplesCtrl.getRsvps);
 app.post('/api/address', couplesCtrl.postNewAddress);
 app.post('/api/rsvp', couplesCtrl.postNewRsvp);
 app.put('/api/couple', couplesCtrl.updateCouple);
+app.put('/api/new-couple', couplesCtrl.saveNewCouple);
 
 
 

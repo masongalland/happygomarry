@@ -21,7 +21,7 @@ angular.module('happyGoMarry', ['ui.router', 'ngMaterial', 'ngMessages'])
                 controller: 'coupleCtrl'
             })
             .state('dashboard', {
-                url: '/dashboard/:url',
+                url: '/dashboard',
                 templateUrl: './html/dashboard/dashboard.html',
                 controller: 'dashboardCtrl'
             })

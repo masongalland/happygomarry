@@ -1,9 +1,16 @@
 angular.module('happyGoMarry').service('coupleSrv', function($http){
-
+    
     var baseUrl = '/api/';
+
+    this.couple;
 
     this.getCouple = function(url) {
         return $http.get(baseUrl + 'couple/' + url).then(function(response){
+            return response.data;
+        })
+    };
+    this.getUser = function() {
+        return $http.get('/auth/me').then(function(response){
             return response.data;
         })
     };
@@ -27,5 +34,8 @@ angular.module('happyGoMarry').service('coupleSrv', function($http){
     }
     this.saveUpdatedCouple = function(userUpdates) {
         return $http({ method: 'PUT', url: baseUrl + 'couple', data: userUpdates})
+    }
+    this.saveNewCouple = function(newCouple) {
+        return $http({ method: 'PUT', url: baseUrl + 'new-couple', data: newCouple})
     }
 })
