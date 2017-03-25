@@ -3,6 +3,7 @@ angular.module('happyGoMarry').service('coupleSrv', function($http){
     var baseUrl = '/api/';
 
     this.couple;
+    this.url;
 
     this.getCouple = function(url) {
         return $http.get(baseUrl + 'couple/' + url).then(function(response){
@@ -24,7 +25,7 @@ angular.module('happyGoMarry').service('coupleSrv', function($http){
         return $http.get(baseUrl + 'addresses/' + userid) //will need to change the paramater to be based on who is logged in
     }
     this.getRsvps = function(userid) {
-        return $http.get(baseUrl + 'rsvp/1/' + userid) //will need to change the paramater to be based on who is logged in
+        return $http.get(baseUrl + 'rsvp/' + userid) //will need to change the paramater to be based on who is logged in
     }
     this.saveNewAddress = function(newAddress) {
         return $http({ method: 'POST', url: '/api/address', data: newAddress})

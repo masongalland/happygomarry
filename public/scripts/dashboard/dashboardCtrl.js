@@ -31,7 +31,8 @@ angular.module('happyGoMarry')
         story: $scope.couple.story,
         hour: $scope.couple.hour,
         place: $scope.couple.place,
-        userId: $scope.couple.userid //this will depend on who is logged in
+        userId: $scope.couple.userid,
+        weddingDate: $scope.couple.weddingDate
         }
     }, 100) 
     $scope.saveUpdatedCouple = function(userUpdates) {

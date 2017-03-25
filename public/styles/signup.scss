@@ -1,9 +1,12 @@
-.sign-up-wrapper {
+@mixin wrapper(){
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     background-color: #d4d4d4;
     padding-top: 75px;
+} 
+.sign-up-wrapper {
+    @include wrapper();
 }
 .form-container {
     background-color: white;
@@ -12,6 +15,7 @@
     border-radius: 5px;
     padding: 20px;
     text-align: center;
+    margin-bottom: 66vh;
 }
 .form-container h1 {
     margin-bottom: 15px;
@@ -83,6 +87,8 @@
     float: none;
     margin-top: -25.5px;
 }
-@media (min-width: 650px) {
-
+@media (min-width: 900px) {
+    .sign-up-wrapper{
+        height: calc(100% - 160px);
+    }
 }

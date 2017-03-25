@@ -50,6 +50,7 @@ passport.use(new Auth0Strategy({
         })
       } else { //when we find the user, return it
         // console.log('FOUND USER', user);
+        user.weddingDate = true;
         return done(err, user);
       }
     })
@@ -82,7 +83,7 @@ app.get('/auth/callback',
       if (!req.user.weddingDate) {
         res.redirect('/#/signup');
       }else {
-          res.redirect('/#/home')
+          res.redirect('/#/dashboard')
       }
 })
 app.get('/auth/me', function(req, res) {

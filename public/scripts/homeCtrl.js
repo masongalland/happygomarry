@@ -1,4 +1,4 @@
-angular.module("happyGoMarry").controller("mainCtrl", function($scope, coupleSrv, $rootScope){
+angular.module("happyGoMarry").controller("homeCtrl", function($scope, coupleSrv, $rootScope){
    coupleSrv.getUser()
     .then(function(response){
         console.log('tried to get user and got', response == 'null')

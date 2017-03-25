@@ -16,8 +16,11 @@ angular.module('happyGoMarry')
     })
     $scope.addUrl = function(){
         $scope.newCouple.url = $scope.couple.firstname.toLowerCase() + '-plus-' + $scope.newCouple.partnerFirstName.toLowerCase();
+        coupleSrv.url = $scope.newCouple.url
         console.log($scope.newCouple.url)
+        console.log('srv url: ', coupleSrv.url)
     }
+    
     $scope.photoBackground = {
         "background-image": "url($scope.newCouple.photoUrl)"
     }

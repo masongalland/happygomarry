@@ -60,6 +60,12 @@ angular.module('happyGoMarry')
                 $('#dash-edit-btn').click(function(){
                     $('edit-page').css('display', 'block')
                 })
+                $('.user-btn').mouseenter(function(){
+                    $('.drop-down').css('display', 'flex')
+                })
+                $('.drop-down').mouseleave(function(){
+                    $('.drop-down').css('display', 'none')
+                })
             });
 
         }
