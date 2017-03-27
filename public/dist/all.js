@@ -31,6 +31,30 @@ angular.module('happyGoMarry', ['ui.router', 'ngMaterial', 'ngMessages']).config
     });
     $mdThemingProvider.definePalette('indigo', indigo);
 });
+"use strict";
+
+angular.module("happyGoMarry").controller("mainCtrl", function ($scope, coupleSrv, $rootScope) {
+    coupleSrv.getUser().then(function (response) {
+        console.log('tried to get user and got', response == 'null');
+        $rootScope.signedIn = response !== 'null' ? true : false;
+        coupleSrv.couple = response;
+        $scope.couple = coupleSrv.couple;
+    });
+    $scope.url = coupleSrv.url;
+    console.log('mainctrl url: ', $scope.url);
+});
+"use strict";
+
+angular.module("happyGoMarry").controller("homeCtrl", function ($scope, coupleSrv, $rootScope) {
+    coupleSrv.getUser().then(function (response) {
+        console.log('tried to get user and got', response == 'null');
+        $rootScope.signedIn = response !== 'null' ? true : false;
+        coupleSrv.couple = response;
+        $scope.couple = coupleSrv.couple;
+    });
+    $scope.url = coupleSrv.url;
+    console.log('mainctrl url: ', $scope.url);
+});
 'use strict';
 
 angular.module('happyGoMarry').directive('animateDir', function () {
@@ -44,8 +68,11 @@ angular.module('happyGoMarry').directive('animateDir', function () {
                 $('.send-rsvp').click(function () {
                     $('#send-rsvp').css('display', 'block');
                 });
+                $('.send-gift').click(function () {
+                    $('#send-gift').css('display', 'block');
+                });
                 $('.cancel-btn, .submit-btn').click(function () {
-                    $('#send-address, #send-rsvp').css('display', 'none');
+                    $('#send-address, #send-rsvp, #send-gift').css('display', 'none');
                 });
                 $('.send-gift, #dash-gifts-btn').mouseenter(function () {
                     $('.gray-present').css('display', 'none');
@@ -118,6 +145,11 @@ angular.module('happyGoMarry').service('coupleSrv', function ($http) {
             return response.data;
         });
     };
+    this.getDemoCouple = function () {
+        return $http.get(baseUrl + 'demo').then(function (response) {
+            return response.data[0];
+        });
+    };
     this.getUser = function () {
         return $http.get('/auth/me').then(function (response) {
             return response.data;
@@ -148,30 +180,6 @@ angular.module('happyGoMarry').service('coupleSrv', function ($http) {
         return $http({ method: 'PUT', url: baseUrl + 'new-couple', data: newCouple });
     };
 });
-"use strict";
-
-angular.module("happyGoMarry").controller("homeCtrl", function ($scope, coupleSrv, $rootScope) {
-    coupleSrv.getUser().then(function (response) {
-        console.log('tried to get user and got', response == 'null');
-        $rootScope.signedIn = response !== 'null' ? true : false;
-        coupleSrv.couple = response;
-        $scope.couple = coupleSrv.couple;
-    });
-    $scope.url = coupleSrv.url;
-    console.log('mainctrl url: ', $scope.url);
-});
-"use strict";
-
-angular.module("happyGoMarry").controller("mainCtrl", function ($scope, coupleSrv, $rootScope) {
-    coupleSrv.getUser().then(function (response) {
-        console.log('tried to get user and got', response == 'null');
-        $rootScope.signedIn = response !== 'null' ? true : false;
-        coupleSrv.couple = response;
-        $scope.couple = coupleSrv.couple;
-    });
-    $scope.url = coupleSrv.url;
-    console.log('mainctrl url: ', $scope.url);
-});
 'use strict';
 
 angular.module('happyGoMarry').directive('navDir', function () {
@@ -186,9 +194,9 @@ angular.module('happyGoMarry').directive('navDir', function () {
 
 angular.module('happyGoMarry').controller('coupleCtrl', function ($scope, coupleSrv, $rootScope) {
 
-    coupleSrv.getCouple().then(function (response) {
-        $scope.couple = response.data[0];
-        console.log($scope.couple);
+    coupleSrv.getDemoCouple().then(function (response) {
+        $scope.couple = response;
+        console.log('demo: ', $scope.couple);
     });
     coupleSrv.getPayments().then(function (response) {
         $scope.payments = response.data;
@@ -259,6 +267,14 @@ angular.module('happyGoMarry').controller('coupleTempCtrl', function ($scope, co
             email: '',
             numberInParty: 1
         };
+        $scope.newGift = {
+            userId: $scope.couple.userid,
+            firstName: '',
+            lastName: '',
+            amount: 0.00,
+            date: new Date(),
+            message: ''
+        };
         console.log('couple/;dlkf:', $scope.couple);
     });
     coupleSrv.getPayments().then(function (response) {
@@ -299,6 +315,14 @@ angular.module('happyGoMarry').directive('sendAddress', function () {
     return {
         restrict: 'AE',
         templateUrl: './html/couple/sendAddressTemplate.html'
+    };
+});
+'use strict';
+
+angular.module('happyGoMarry').directive('sendGift', function () {
+    return {
+        restrict: 'AE',
+        templateUrl: './html/couple/sendGift.html'
     };
 });
 'use strict';

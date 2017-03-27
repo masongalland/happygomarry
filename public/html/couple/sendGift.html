@@ -1,0 +1,42 @@
+<div class = 'modal'>
+    <div class = 'modal-content animated fadeInUpBig'>
+        <h2>SEND GIFT</h2>
+        <form id = 'gift-form'>
+            <label for = 'name'>Name</label>
+            <div class = 'form-name input-group'>
+                <input type = 'text'
+                       id = 'gift-first-name'
+                       placeholder = 'first'
+                       ng-model = 'newGift.firstName'
+                       required
+                >
+                <input type = 'text'
+                       id = 'address-last-name'
+                       placeholder = 'last'
+                       ng-model = 'newGift.lastName'
+                >
+            </div>
+            <label for = 'amount'>Amount</label>
+            <div class = 'form-address input-group'>
+                <input type = 'number'
+                       step = 'any'
+                       id = 'gift-amount'
+                       ng-model = 'newGift.amount'
+                       required
+                >
+            </div>
+            <label for = 'message'>Message</label>
+            <div class = 'form-email input-group'>
+                <textarea rows = '4'
+                          id = 'gift-message'
+                          placeholder = 'type a short message to the lucky couple'
+                          ng-model = 'newGift.message'
+                ></textarea>
+            </div>
+            <div class = 'form-btns'>
+                <button class = 'cancel-btn'>Cancel</button>
+                <button class = 'submit-btn' ng-click = 'saveNewAddress(newAddress)'>Send</button>
+            </div>
+        </form>
+    </div>
+</div>

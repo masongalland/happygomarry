@@ -19,6 +19,14 @@ angular.module('happyGoMarry')
             lastName: '',
             email: '',
             numberInParty: 1
+        };
+        $scope.newGift = {
+            userId: $scope.couple.userid,
+            firstName: '',
+            lastName: '',
+            amount: 0.00,
+            date: new Date(),
+            message: ''
         }
         console.log('couple/;dlkf:', $scope.couple);
     })

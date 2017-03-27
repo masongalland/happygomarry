@@ -2,6 +2,12 @@ var app = require('../server.js');
 var db = app.get('db');
 
 module.exports = {
+    GetDemoCouple: function(req, res) {
+        console.log('got demo')
+        db.getDemoCouple(function(err, resp){
+            res.send(resp)
+        })
+    },
     GetCouple: function(req, res) {
         db.getCouple([req.params.url], function(err, resp){
             res.send(resp);

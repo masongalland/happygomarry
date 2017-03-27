@@ -10,8 +10,11 @@ angular.module('happyGoMarry')
                 $('.send-rsvp').click(function(){
                     $('#send-rsvp').css('display', 'block');
                 });
+                $('.send-gift').click(function(){
+                    $('#send-gift').css('display', 'block');
+                });
                 $('.cancel-btn, .submit-btn').click(function(){
-                    $('#send-address, #send-rsvp').css('display', 'none');
+                    $('#send-address, #send-rsvp, #send-gift').css('display', 'none');
                 });
                 $('.send-gift, #dash-gifts-btn').mouseenter(function(){
                     $('.gray-present').css('display', 'none');

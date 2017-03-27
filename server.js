@@ -102,6 +102,7 @@ app.get('/auth/logout', function(req, res) {
 //regular endpoints
 app.get('./api/current-couple/:auth0id', couplesCtrl.GetCurrentCouple);
 app.get('/api/couple/:url', couplesCtrl.GetCouple);
+app.get('/api/demo', couplesCtrl.GetDemoCouple);
 app.get('/api/payments', couplesCtrl.GetPayments);
 app.get('/api/donations', couplesCtrl.GetTotalDonations);
 app.get('/api/addresses/:userId', couplesCtrl.getAddresses);

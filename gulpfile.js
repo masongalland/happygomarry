@@ -5,7 +5,7 @@ const sass = require('gulp-sass');
 
 // Instructions for how task will run.
 gulp.task('concat', function(){
-  gulp.src(['./public/scripts/app.js', './public/scripts/*.js','./public/scripts/**/*.js'])
+  gulp.src(['./public/scripts/app.js', './public/scripts/mainCtrl.js', './public/scripts/homeCtrl.js', './public/scripts/*.js','./public/scripts/**/*.js'])
   .pipe(babel({
     presets: ['es2015']
   }))

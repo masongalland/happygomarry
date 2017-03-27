@@ -2,9 +2,9 @@ angular.module('happyGoMarry')
 .controller('coupleCtrl', function($scope, coupleSrv, $rootScope){
 
     
-    coupleSrv.getCouple().then(function(response){
-        $scope.couple = response.data[0];
-        console.log($scope.couple);
+    coupleSrv.getDemoCouple().then(function(response){
+        $scope.couple = response;
+        console.log('demo: ', $scope.couple);
     })
     coupleSrv.getPayments().then(function(response){
         $scope.payments = response.data;

@@ -83,10 +83,6 @@
   float: none;
   margin-top: -25.5px; }
 
-@media (min-width: 900px) {
-  .sign-up-wrapper {
-    height: calc(100% - 160px); } }
-
 /*!
  * animate.css -http://daneden.me/animate
  * Version - 3.5.1
@@ -2633,6 +2629,9 @@
 #send-rsvp {
   display: none; }
 
+#send-gift {
+  display: none; }
+
 .swal2-icon.swal2-success .line {
   background-color: #1bc2b7; }
 
@@ -3421,7 +3420,7 @@ label {
   font-family: 'Source Sans Pro', sans-serif;
   color: #525252; }
 
-input[type=text], input[type=email], input[type=number] {
+input[type=text], input[type=email], input[type=number], textarea {
   width: 100%;
   padding: 5px 20px;
   border: 1px solid #525252;
@@ -3474,7 +3473,7 @@ input[type=number] {
     margin: 0 10% 15px 10%; }
   label {
     font-size: 24px; }
-  input[type=text], input[type=email], input[type=number] {
+  input[type=text], input[type=email], input[type=number], textarea {
     font-size: 16px;
     padding: 12px;
     border-width: 2px; }

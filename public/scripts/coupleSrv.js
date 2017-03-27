@@ -10,6 +10,11 @@ angular.module('happyGoMarry').service('coupleSrv', function($http){
             return response.data;
         })
     };
+    this.getDemoCouple = function(){
+        return $http.get(baseUrl + 'demo').then(function(response){
+            return response.data[0];
+        })
+    }
     this.getUser = function() {
         return $http.get('/auth/me').then(function(response){
             return response.data;
@@ -19,7 +24,7 @@ angular.module('happyGoMarry').service('coupleSrv', function($http){
         return $http.get(baseUrl + 'payments')
     };
     this.getDonations = function() {
-        return $http.get(baseUrl + 'donations')        
+        return $http.get(baseUrl + 'donations')      
     }
     this.getAddresses = function(userid) {
         return $http.get(baseUrl + 'addresses/' + userid) //will need to change the paramater to be based on who is logged in

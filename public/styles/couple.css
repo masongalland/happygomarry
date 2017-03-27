@@ -180,6 +180,9 @@
 #send-rsvp {
     display: none;
 }
+#send-gift {
+    display: none;
+}
 .swal2-icon.swal2-success .line {
     background-color: #1bc2b7;
 }
