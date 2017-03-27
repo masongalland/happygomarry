@@ -19,12 +19,12 @@ module.exports = {
         })
     },
     GetPayments: function(req, res) {
-        db.getPayments(function(err, resp){
+        db.getPayments([req.params.userId], function(err, resp){
             res.send(resp);
         })
     },
     GetTotalDonations: function(req, res) {
-        db.getTotalDonations(function(err, resp){
+        db.getTotalDonations(req.params.userId, function(err, resp){
             res.send(resp);
         })
     },
@@ -68,6 +68,13 @@ module.exports = {
     getRsvps: function(req, res) {
         db.getRsvps([req.params.userId], function(err, resp){
             res.send(resp);
+        })
+    },
+    saveNewGift: function(req, res) {
+        let params = [req.body.userId, req.body.firstName, req.body.lastName, req.body.amount, req.body.date, req.body.message]
+
+        db.saveNewGift(params, function(err, resp){
+            console.log('saved new gift')
         })
     }
 }

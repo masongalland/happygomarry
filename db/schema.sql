@@ -68,6 +68,17 @@ INSERT INTO payment_details (userId, wepayId, donorFirstName, donorLastName, amo
 VALUES (1, 23452345, 'Bryce', 'Lund', 25, '3/14/17', 'Get yourselves something nice :)');
 INSERT INTO payment_details (userId, wepayId, donorFirstName, donorLastName, amount, donationDate, message)
 VALUES (1, 23452345, 'Marc', 'Cabanilla', 40.50, '3/13/17', 'Yes! So happy for you.');
+INSERT INTO payment_details (userId, wepayId, donorFirstName, donorLastName, amount, donationDate, message)
+VALUES (1, 23452345, 'Marc', 'Cabanilla', 40.50, '3/13/17', 'Yes! So happy for you.');
+
+INSERT INTO payment_details (userId, wepayId, donorFirstName, donorLastName, amount, donationDate, message)
+VALUES (2, 23452345, 'Braydon', 'Galland', 200.50, '3/26/27', 'Congratulations, you two!');
+INSERT INTO payment_details (userId, wepayId, donorFirstName, donorLastName, amount, donationDate, message)
+VALUES (2, 23452345, 'Gary', 'Galland', 200, '3/25/27', 'I called it from the beginning!');
+INSERT INTO payment_details (userId, wepayId, donorFirstName, donorLastName, amount, donationDate, message)
+VALUES (2, 23452345, 'Bryce', 'Lund', 25, '3/24/27', 'Get yourselves something nice :)');
+INSERT INTO payment_details (userId, wepayId, donorFirstName, donorLastName, amount, donationDate, message)
+VALUES (2, 23452345, 'Marc', 'Cabanilla', 40.50, '3/23/27', 'Yes! So happy for you.');
 
 INSERT INTO wepay (userId, wepayId)
 VALUES (1, 23452345);

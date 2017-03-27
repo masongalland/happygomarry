@@ -155,11 +155,11 @@ angular.module('happyGoMarry').service('coupleSrv', function ($http) {
             return response.data;
         });
     };
-    this.getPayments = function () {
-        return $http.get(baseUrl + 'payments');
+    this.getPayments = function (userid) {
+        return $http.get(baseUrl + 'payments/' + userid);
     };
-    this.getDonations = function () {
-        return $http.get(baseUrl + 'donations');
+    this.getDonations = function (userid) {
+        return $http.get(baseUrl + 'donations/' + userid);
     };
     this.getAddresses = function (userid) {
         return $http.get(baseUrl + 'addresses/' + userid); //will need to change the paramater to be based on who is logged in
@@ -178,6 +178,9 @@ angular.module('happyGoMarry').service('coupleSrv', function ($http) {
     };
     this.saveNewCouple = function (newCouple) {
         return $http({ method: 'PUT', url: baseUrl + 'new-couple', data: newCouple });
+    };
+    this.saveNewGift = function (newGift) {
+        return $http({ method: 'POST', url: baseUrl + 'new-gift', data: newGift });
     };
 });
 'use strict';
@@ -249,9 +252,9 @@ angular.module('happyGoMarry').controller('coupleCtrl', function ($scope, couple
 angular.module('happyGoMarry').controller('coupleTempCtrl', function ($scope, coupleSrv, $stateParams, $rootScope) {
 
     coupleSrv.getCouple($stateParams.url).then(function (response) {
-        $scope.couple = response[0];
+        $scope.coupleInfo = response[0];
         $scope.newAddress = {
-            userId: $scope.couple.userid,
+            userId: $scope.coupleInfo.userid,
             firstName: '',
             lastName: '',
             street: '',
@@ -261,27 +264,30 @@ angular.module('happyGoMarry').controller('coupleTempCtrl', function ($scope, co
             email: ''
         };
         $scope.newRsvp = {
-            userId: $scope.couple.userid,
+            userId: $scope.coupleInfo.userid,
             firstName: '',
             lastName: '',
             email: '',
             numberInParty: 1
         };
         $scope.newGift = {
-            userId: $scope.couple.userid,
+            userId: $scope.coupleInfo.userid,
             firstName: '',
             lastName: '',
             amount: 0.00,
             date: new Date(),
             message: ''
         };
-        console.log('couple/;dlkf:', $scope.couple);
-    });
-    coupleSrv.getPayments().then(function (response) {
+        console.log('couple/;dlkf:', $scope.coupleInfo);
+
+        return coupleSrv.getPayments($scope.coupleInfo.userid);
+    }).then(function (response) {
         $scope.payments = response.data;
         console.log('payments: ', $scope.payments);
-    });
-    coupleSrv.getDonations().then(function (response) {
+        console.log('payments userid: ', $scope.coupleInfo.userid);
+
+        return coupleSrv.getDonations($scope.coupleInfo.userid);
+    }).then(function (response) {
         $scope.donations = response.data[0];
         console.log('donations:', $scope.donations);
     });
@@ -299,6 +305,17 @@ angular.module('happyGoMarry').controller('coupleTempCtrl', function ($scope, co
         }).error(function () {
             swal('Oops...', 'Something went wrong!', 'error');
         });
+    };
+    $scope.saveNewGift = function (newGift) {
+        coupleSrv.saveNewGift(newGift);
+        swal('Thanks!', 'Your Gift was sent successfully.', 'success');
+        // }).error(function(){
+        //     swal(
+        //         'Oops...',
+        //         'Something went wrong!',
+        //         'error'
+        //     );
+        // });   
     };
 });
 'use strict';

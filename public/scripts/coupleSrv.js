@@ -20,11 +20,11 @@ angular.module('happyGoMarry').service('coupleSrv', function($http){
             return response.data;
         })
     };
-    this.getPayments = function() {
-        return $http.get(baseUrl + 'payments')
+    this.getPayments = function(userid) {
+        return $http.get(baseUrl + 'payments/' + userid)
     };
-    this.getDonations = function() {
-        return $http.get(baseUrl + 'donations')      
+    this.getDonations = function(userid) {
+        return $http.get(baseUrl + 'donations/' +userid)      
     }
     this.getAddresses = function(userid) {
         return $http.get(baseUrl + 'addresses/' + userid) //will need to change the paramater to be based on who is logged in
@@ -43,5 +43,8 @@ angular.module('happyGoMarry').service('coupleSrv', function($http){
     }
     this.saveNewCouple = function(newCouple) {
         return $http({ method: 'PUT', url: baseUrl + 'new-couple', data: newCouple})
+    }
+    this.saveNewGift = function(newGift) {
+        return $http({ method: 'POST', url: baseUrl + 'new-gift', data: newGift})
     }
 })

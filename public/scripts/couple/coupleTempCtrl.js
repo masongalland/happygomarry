@@ -1,10 +1,11 @@
 angular.module('happyGoMarry')
 .controller('coupleTempCtrl', function($scope, coupleSrv, $stateParams, $rootScope){
-
-    coupleSrv.getCouple($stateParams.url).then(function(response){
-        $scope.couple = response[0];
+  
+    coupleSrv.getCouple($stateParams.url)
+    .then(function(response){
+        $scope.coupleInfo = response[0];
         $scope.newAddress = {
-            userId: $scope.couple.userid, 
+            userId: $scope.coupleInfo.userid, 
             firstName: '',
             lastName: '',
             street: '',
@@ -14,27 +15,32 @@ angular.module('happyGoMarry')
             email: ''
         };
         $scope.newRsvp = {
-            userId: $scope.couple.userid, 
+            userId: $scope.coupleInfo.userid, 
             firstName: '',
             lastName: '',
             email: '',
             numberInParty: 1
         };
         $scope.newGift = {
-            userId: $scope.couple.userid,
+            userId: $scope.coupleInfo.userid,
             firstName: '',
             lastName: '',
             amount: 0.00,
             date: new Date(),
             message: ''
         }
-        console.log('couple/;dlkf:', $scope.couple);
+        console.log('couple/;dlkf:', $scope.coupleInfo);
+
+        return coupleSrv.getPayments($scope.coupleInfo.userid)
     })
-    coupleSrv.getPayments().then(function(response){
+    .then(function(response){
         $scope.payments = response.data;
         console.log('payments: ', $scope.payments);
+        console.log('payments userid: ', $scope.coupleInfo.userid)
+
+        return     coupleSrv.getDonations($scope.coupleInfo.userid)
     })
-    coupleSrv.getDonations().then(function(response){
+    .then(function(response){
         $scope.donations = response.data[0];
         console.log('donations:', $scope.donations);
     });
@@ -69,5 +75,20 @@ angular.module('happyGoMarry')
                 'error'
             );
         });   
+    }
+    $scope.saveNewGift = function(newGift) {
+        coupleSrv.saveNewGift(newGift) 
+        swal(
+            'Thanks!',
+            'Your Gift was sent successfully.',
+            'success'
+        ); 
+        // }).error(function(){
+        //     swal(
+        //         'Oops...',
+        //         'Something went wrong!',
+        //         'error'
+        //     );
+        // });   
     }
 });

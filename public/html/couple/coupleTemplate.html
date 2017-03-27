@@ -18,7 +18,7 @@
             <a ui-sref = 'howItWorks'>About</a>
             <a ui-sref = 'howItWorks'>Contact</a>
             <a href = '/auth' ng-hide="signedIn"><button>SIGN IN</button></a>
-            <a class = 'user-btn' ng-show="signedIn" animate-dir><button>{{couple.firstname}}</button></a>
+            <a class = 'user-btn' ng-show="signedIn" animate-dir><button>{{coupleInfo.firstname}}</button></a>
             </a>
         </div>
     </div>
@@ -26,11 +26,11 @@
 <div class = 'couple-container'>
     <main class = 'couple-info'>
         <!--image URL will be a url pulled from DB-->    
-        <section class = 'couple-image' style = 'background-image: url("{{couple.photourl}}")' >
+        <section class = 'couple-image' style = 'background-image: url("{{coupleInfo.photourl}}")' >
             <div class = 'name-date'>
                 <!--Names and date will be pulled from DB-->
-                <h1>{{couple.firstname}} & {{couple.partnerfirstname}}</h1> 
-                <p>{{couple.weddingdate | date: 'MMMM d, y'}}</p> 
+                <h1>{{coupleInfo.firstname}} & {{coupleInfo.partnerfirstname}}</h1> 
+                <p>{{coupleInfo.weddingdate | date: 'MMMM d, y'}}</p> 
             </div>
         </section>
         <section class = 'under-pic'>
@@ -53,13 +53,13 @@
             </div>
             <div class = 'details'>
                 <h1>Our Story</h1>
-                <p>{{couple.story}}</p>
+                <p>{{coupleInfo.story}}</p>
             </div>
             <div class = 'details'>
                 <h1>Wedding Details</h1>
-                <p><strong>Date:  </strong><span> {{couple.weddingdate | date: 'EEEE, MMMM d, y'}}</span></p>
-                <p><strong>Time:  </strong><span> {{couple.hour | date: 'h:mm a'}}</span></p>
-                <p><strong>Place:  </strong><span> {{couple.place}}</span></p>
+                <p><strong>Date:  </strong><span> {{coupleInfo.weddingdate | date: 'EEEE, MMMM d, y'}}</span></p>
+                <p><strong>Time:  </strong><span> {{coupleInfo.hour | date: 'h:mm a'}}</span></p>
+                <p><strong>Place:  </strong><span> {{coupleInfo.place}}</span></p>
             </div>
         </section>
     </main>

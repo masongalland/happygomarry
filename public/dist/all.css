@@ -2594,6 +2594,10 @@
   border-bottom: 2px solid #525252;
   margin: 0 14% 20px 14%; }
 
+.recent-gifts {
+  display: flex;
+  flex-direction: column-reverse; }
+
 .recent-gift {
   display: flex;
   align-items: center;
