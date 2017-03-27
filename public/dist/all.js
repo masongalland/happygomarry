@@ -369,6 +369,10 @@ angular.module('happyGoMarry').directive('dashControls', function () {
                     $('addresses-page, rsvp-page').css('display', 'none');
                     $('edit-page').css('display', 'block');
                 });
+                $('#dash-gifts-btn').click(function () {
+                    $('addresses-page, rsvp-page, edit-page').css('display', 'none');
+                    $('gifts-page').css('display', 'block');
+                });
 
                 $('#addresses-table').DataTable({
                     columnDefs: [{
@@ -393,12 +397,13 @@ angular.module('happyGoMarry').controller('dashboardCtrl', function ($scope, cou
     coupleSrv.getUser().then(function (response) {
         $scope.couple = response;
         console.log('dash couple: ', $scope.couple);
+
+        return coupleSrv.getPayments($scope.couple.userid);
+    }).then(function (response) {
+        $scope.gifts = response.data;
+        console.log('dash gifts: ', $scope.gifts);
     });
 
-    coupleSrv.getPayments().then(function (response) {
-        $scope.payments = response.data;
-        console.log($scope.payments);
-    });
     coupleSrv.getDonations().then(function (response) {
         $scope.donations = response.data[0];
         console.log($scope.donations);
@@ -443,6 +448,14 @@ angular.module('happyGoMarry').directive('editPage', function () {
     return {
         restrict: 'AE',
         templateUrl: './html/dashboard/editPage.html'
+    };
+});
+'use strict';
+
+angular.module('happyGoMarry').directive('giftsPage', function () {
+    return {
+        restrict: 'AE',
+        templateUrl: './html/dashboard/gifts.html'
     };
 });
 'use strict';

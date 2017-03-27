@@ -16,6 +16,10 @@ angular.module('happyGoMarry')
                     $('addresses-page, rsvp-page').css('display', 'none');
                     $('edit-page').css('display', 'block');
                 })
+                $('#dash-gifts-btn').click(function(){
+                    $('addresses-page, rsvp-page, edit-page').css('display', 'none');
+                    $('gifts-page').css('display', 'block')
+                })
 
                 $('#addresses-table').DataTable( {
                     columnDefs: [

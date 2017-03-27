@@ -1,0 +1,42 @@
+<div class = 'addresses-container'>
+    <h1>Gifts</h1>
+    <div class = 'mobile-addresses'>
+        <div class = 'mobile-address' ng-repeat = 'gift in gifts'>
+            <h2>{{gift.donorfirstname}} {{gift.donorlastname}}</h2>
+            <p>${{gift.amount}}</p>
+            <p>{{gift.message}}</p>
+            <div class = 'bottom-border'></div>
+        </div>
+    </div>
+    <div class = 'desktop-addresses'>
+        <table id="gift-table" class="mdl-data-table" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Amount</th>
+                    <th>Message</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Amount</th>
+                    <th>Message</th>
+                    <th>Date</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                <tr ng-repeat = 'gift in gifts'>
+                    <td>{{gift.donorfirstname}}</td>
+                    <td>{{gift.donorlastname}}</td>
+                    <td>${{gift.amount}}</td>
+                    <td>{{gift.message}}</td>
+                    <td>{{gift.donationdate | date: 'M/d/yy'}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

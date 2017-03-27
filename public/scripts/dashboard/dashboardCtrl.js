@@ -5,12 +5,14 @@ angular.module('happyGoMarry')
     .then(function(response){
         $scope.couple = response;  
         console.log('dash couple: ', $scope.couple)
+
+        return coupleSrv.getPayments($scope.couple.userid)
+    })
+    .then(function(response){
+        $scope.gifts = response.data;
+        console.log('dash gifts: ', $scope.gifts);
     })
 
-    coupleSrv.getPayments().then(function(response){
-        $scope.payments = response.data;
-        console.log($scope.payments);
-    })
     coupleSrv.getDonations().then(function(response){
         $scope.donations = response.data[0];
         console.log($scope.donations);
