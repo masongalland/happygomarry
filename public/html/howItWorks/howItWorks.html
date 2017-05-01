@@ -1,0 +1,78 @@
+
+<header class = 'sub-page-header'>
+    <nav-dir></nav-dir>
+    <div class = 'HAM' animate-dir>
+        <div class = 'line'></div>
+        <div class = 'line'></div>
+        <div class = 'line'></div>
+    </div>
+    <div class = 'wide-nav'>
+        <div class = 'brand'>
+            <div class = 'small-logo'>
+                <a ui-sref = 'home'><img src="./images/logo100.png" alt="logo"></a>
+            </div>
+            <a ui-sref = 'home'><p>happy-go-marry</p></a>
+        </div>
+        <div class = 'wide-menu'>
+            <a ui-sref = 'howItWorks'>How It Works</a>
+            <a ui-sref = 'couple({url: "mason-aly"})'>Demo</a>
+            <a ui-sref = 'howItWorks'>About</a>
+            <a ui-sref = 'howItWorks'>Contact</a>
+            <a href = '/auth' ng-hide="signedIn"><button>SIGN IN</button></a>
+            <a class = 'user-btn' ng-show="signedIn" animate-dir><button>{{couple.firstname}}</button></a>
+            </a>
+        </div>
+    </div>
+</header>
+<main class = 'how-it-works-container'>
+    <!--<h1 class = 'centered'>HOW IT WORKS</h1>-->
+    <section class = 'watch-the-video'>
+        <h2>WATCH THE VIDEO</h2>
+        <div class = 'video-wrapper'>
+             <iframe src="https://player.vimeo.com/video/212247003" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        </div>     
+    </section>
+    <section class = 'steps'>
+        <div class = 'step'>
+            <div class = 'circle-step float-left'>
+                <h3>STEP <span class = 'bold'>ONE</span></h3>
+                <i class="fa fa-laptop fa-4x" aria-hidden="true"></i>
+                <h3>CREATE</h3>
+            </div>
+            <div class = 'right-bullets'>
+                <ul>
+                    <li>Create your page and invite your fiance to join</li>
+                    <li>Share wedding details and make necessary announcements</li>
+                    <li>Verify bank information so cash gifts can be collected</li>
+                </ul>
+            </div>
+        </div>
+        <div class = 'step'>
+            <div class = 'circle-step float-right'>
+                <h3>STEP <span class = 'bold'>TWO</span></h3>
+                <i class="fa fa-share-alt fa-4x" aria-hidden="true"></i>
+                <h3>SHARE</h3>
+            </div>
+            <div class = 'left-bullets'>
+                <ul>
+                    <li>Our built-in sharing features make sharing your page effortless</li>
+                    <li>Adding your URL to your wedding invite isnt a bad idea either</li>
+                </ul>
+            </div>
+        </div>
+        <div class = 'step'>
+            <div class = 'circle-step float-right'>
+                <h3>STEP <span class = 'bold'>THREE</span></h3>
+                <img id = "collect-img" src="./images/rsvp_address_gift.png" alt="collect image">
+                <h3>COLLECT</h3>
+            </div>
+            <div class = 'left-bullets'>
+                <ul>
+                    <li>Collect addresses sent in by those who wish to receive an invite, and even print themailing labels from your page</li>
+                    <li>Collect RSVPs and get an idea of how many hotdogs to make for the reception</li>
+                    <li>Make it easy on yourselves and on your guests by easily collecting cash gifts on your page--the money can go toward wedding expenses or whatever you'd like!</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</main>

@@ -1,0 +1,49 @@
+<div class = 'modal'>
+    <div class = 'modal-content animated fadeInUpBig'>
+        <h2>RSVP</h2>
+        <form id = 'rsvp-form'>
+            <label for = 'name'>Name</label>
+            <div class = 'form-name input-group'>
+                <input type = 'text'
+                       id = 'rsvp-first-name'
+                       placeholder = 'first'
+                       ng-model = 'newRsvp.firstName'
+                >
+                <input type = 'text'
+                       id = 'rsvp-last-name'
+                       placeholder = 'last'
+                       ng-model = 'newRsvp.lastName'
+                       
+                >
+            </div>
+            <div class = 'email-and-partySize'>
+                <div class = 'label-input-wrapper'>
+                    <label for = 'email'>Email</label>
+                    <div class = 'form-email'>
+                        <input type = 'email'
+                            id = 'rsvp-email'
+                            placeholder = 'email'
+                            ng-model = 'newRsvp.email'     
+                        >
+                    </div>
+                </div>
+                <div class = 'label-input-wrapper'>
+                    <label for = 'partySize'>Number in your party</label>
+                    <div class = 'party-size'>
+                        <input type = 'number'
+                            id = 'party-size'
+                            min = '1'
+                            max = '10'
+                            value = '1'
+                            ng-model = 'newRsvp.numberInParty'
+                        >
+                    </div>
+                </div>    
+            </div>
+            <div class = 'form-btns'>
+                <button class = 'cancel-btn'>Cancel</button>
+                <button class = 'submit-btn' ng-click = 'saveNewRsvp(newRsvp)'>Send</button>
+            </div>
+        </form>
+    </div>
+</div>

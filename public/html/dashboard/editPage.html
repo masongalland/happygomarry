@@ -1,0 +1,69 @@
+<div class = 'edit-page-container'>
+    <div class = 'edit-left'>
+        <div class = 'edit-section'>
+            <h2>COVER IMAGE</h2>
+            <div class = 'dash-edit-img'>
+                <md-input-container class = 'md-input'>
+                    <label>Image URL</label>
+                    <input ng-model="userUpdates.photoUrl" md-select-on-focus>
+                </md-input-container>
+                <div id = 'dash-img' class = 'couple-image' style = 'background-image: url("{{couple.photourl}}")' >
+                    <div class = 'name-date'>
+                        <!--Names and date will be pulled from DB-->
+                        <h1>{{couple.firstname}} & {{couple.partnerfirstname}}</h1> 
+                        <p>{{couple.weddingdate | date: 'MMMM d, y'}}</p> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class = 'edit-right'>
+        <div class = 'edit-section'>
+            <h2>NAMES</h2>
+            <div class = 'dash-names'>
+                <md-input-container class = 'md-input'>
+                    <label class = 'dash-name'>First Name</label>
+                    <input class = 'dash-name' ng-model="userUpdates.firstName">
+                </md-input-container>
+                <md-input-container class = 'md-input'>
+                    <label class = 'dash-name'>Partner's First Name</label>
+                    <input class = 'dash-name' ng-model="userUpdates.partnerFirstName">
+                </md-input-container>
+            </div>
+        </div>
+        <div class = 'edit-section'>
+            <h2>WEDDING DETAILS</h2>
+            <div class = 'dash-details'>
+                <div class = 'dash-date-time'>
+                    <md-input-container class = 'md-input datepicker'>
+                        <label>Enter Date</label>
+                        <md-datepicker ng-model="userUpdates.weddingDate" md-open-on-focus></md-datepicker>
+                    </md-input-container>
+                    <md-input-container class = 'md-input'>
+                        <label>Time</label>
+                        <input type = 'time' ng-model="userUpdates.hour" value = '{{userUpdates.hour | date: "HH:mm"}}'>
+                    </md-input-container>
+                </div>
+                <md-input-container class = 'md-input'>
+                    <label>Place</label>
+                    <input ng-model="userUpdates.place">
+                </md-input-container>
+            </div>
+        </div>
+        <div class = 'edit-section'>
+            <h2>STORY</h2>
+            <div class = 'dash-story'>
+                <md-input-container class = 'md-input md-block'>
+                    <label>Edit Story</label>
+                    <textarea ng-model="userUpdates.story" rows = "5" md-select-on-focus></textarea>
+                </md-input-container>
+            </div>
+        </div>
+    </div>
+</div>
+<div class = 'submit-updates'>
+    <div class = 'dash-btn-container'>
+        <button class = 'cancel-btn'>Cancel</button>
+        <button class = 'submit-btn' ng-click = 'saveUpdatedCouple(userUpdates)'>Save</button>
+    </div>
+</div>
