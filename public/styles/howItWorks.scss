@@ -60,12 +60,18 @@
 .bold {
     font-weight: 900;
 }
-.right-bullets {
-   margin-left: 30px;
+.right-bullets, .left-bullets {
+    // margin-left: 30px;
+    width: 80%;
+    margin: 0 auto;
+    padding-left: 50px;
 }
 li {
     line-height: 1.25em;
     margin-bottom: 5px;
+}
+#collect-img {
+    width: 50%;
 }
 
 @media (min-width: 750px) {
@@ -84,6 +90,9 @@ li {
     }
     .circle-step {
         margin-bottom: 0;
+    }
+    .left-bullets, .right-bullets {
+        width: 60%;
     }
    
 }

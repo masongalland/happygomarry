@@ -609,8 +609,20 @@ angular.module('happyGoMarry').directive('signupControls', function () {
                     }, 500);
                 });
                 $('#url-back-btn').click(function () {
-                    $('#verify-url').css('display', 'none');
-                    $('#question4').css('display', 'block');
+
+                    $('#verify-url').addClass('animated fadeOutRight');
+                    $('#verify-url').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                        $('#verify-url').removeClass('animated fadeOutRight');
+                    });
+                    $('#question4').addClass('animated slideInLeft');
+                    $('#question4').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                        $('#question4').removeClass('animated slideInLeft');
+                    });
+
+                    setTimeout(function () {
+                        $('#verify-url').css('display', 'none');
+                        $('#question4').css('display', 'block');
+                    }, 500);
                 });
             });
         }
