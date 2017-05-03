@@ -630,7 +630,7 @@ angular.module('happyGoMarry').directive('signupControls', function () {
 });
 'use strict';
 
-angular.module('happyGoMarry').controller('signupCtrl', function ($scope, coupleSrv, $rootScope) {
+angular.module('happyGoMarry').controller('signupCtrl', function ($scope, coupleSrv, $rootScope, $state) {
 
     coupleSrv.getUser().then(function (response) {
         console.log('tried to get user and got', response == 'null');
@@ -657,6 +657,7 @@ angular.module('happyGoMarry').controller('signupCtrl', function ($scope, couple
 
     $scope.saveNewCouple = function (newCouple) {
         coupleSrv.saveNewCouple(newCouple).success(function () {
+            $state.go('couple', { url: $scope.newCouple.url });
             swal('Congratulations!', 'To edit your page, click on your name in the menu.', 'success');
         }).error(function () {
             swal('Oops...', 'Something went wrong!', 'error');

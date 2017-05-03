@@ -20,7 +20,7 @@ app.use(passport.session());
 app.use(express.static('./public'));
 
 var port = 8080;
-var connectionString = "postgres://postgres:@localhost/HappyGoMarry";
+var connectionString = config.connString;
 var db = massive.connectSync({connectionString : connectionString});
 
 app.set('db', db);
