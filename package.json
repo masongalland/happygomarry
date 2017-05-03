@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -29,5 +30,14 @@
     "massive": "^2.6.0",
     "passport": "^0.3.2",
     "passport-auth0": "^0.6.0"
+  },
+  "now": {
+    "env": {
+      "sessionsecret": "@sessionsecret",
+      "connstring": "@connstring",
+      "domain": "@domain",
+      "clientid": "@clientid",
+      "clientsecret": "@clientsecret"
+    }
   }
 }

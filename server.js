@@ -4,15 +4,15 @@ var cors = require('cors');
 var massive = require('massive');
 const session = require('express-session'),
       passport = require('passport'),
-      Auth0Strategy = require('passport-auth0'),
-      config = require('./config.js');
+      Auth0Strategy = require('passport-auth0');
+      
 
 var app = module.exports = express();
 app.use(bodyParser.json());
 app.use(session({
   resave: true, //Without this you get a constant warning about default values
   saveUninitialized: true, //Without this you get a constant warning about default values
-  secret: config.sessionSecret
+  secret: process.env.sessionsecret
 }))
 app.use(passport.initialize());
 app.use(passport.session());
@@ -20,7 +20,7 @@ app.use(passport.session());
 app.use(express.static('./public'));
 
 var port = 8080;
-var connectionString = config.connString;
+var connectionString = process.env.connstring;
 var db = massive.connectSync({connectionString : connectionString});
 
 app.set('db', db);
@@ -29,9 +29,9 @@ app.set('db', db);
 //     else console.log("User Table Init");
 // });
 passport.use(new Auth0Strategy({
-   domain:       config.auth0.domain,
-   clientID:     config.auth0.clientID,
-   clientSecret: config.auth0.clientSecret,
+   domain:       process.env.domain,
+   clientID:     process.env.clientid,
+   clientSecret: process.env.clientsecret,
    callbackURL:  '/auth/callback'
   },
   function(accessToken, refreshToken, extraParams, profile, done) {
