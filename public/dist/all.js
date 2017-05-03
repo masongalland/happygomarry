@@ -195,209 +195,6 @@ angular.module('happyGoMarry').directive('navDir', function () {
 "use strict";
 'use strict';
 
-angular.module('happyGoMarry').directive('signupControls', function () {
-    return {
-        restrict: 'AE',
-        link: function link(scope, element, attributes) {
-            $(document).ready(function () {
-                $('#welcome-btn').click(function () {
-
-                    $('#welcome-message').addClass('animated fadeOutLeft');
-                    $('#welcome-message').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                        $('#welcome-message').removeClass('animated fadeOutLeft');
-                    });
-                    $('#question1').addClass('animated slideInRight');
-                    $('#question1').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                        $('#question1').removeClass('animated slideInRight');
-                    });
-                    setTimeout(function () {
-                        $('#welcome-message').css('display', 'none');
-                        $('#question1').css('display', 'block');
-                    }, 500);
-                });
-                $('#name-next-btn').click(function () {
-
-                    $('#question1').addClass('animated fadeOutLeft');
-                    $('#question1').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                        $('#question1').removeClass('animated fadeOutLeft');
-                    });
-                    $('#question2').addClass('animated slideInRight');
-                    $('#question2').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                        $('#question2').removeClass('animated slideInRight');
-                    });
-
-                    setTimeout(function () {
-                        $('#question1').css('display', 'none');
-                        $('#question2').css('display', 'block');
-                    }, 500);
-                });
-                ////////back button//////////
-                $('#details-back-btn').click(function () {
-
-                    $('#question2').addClass('animated fadeOutRight');
-                    $('#question2').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                        $('#question2').removeClass('animated fadeOutRight');
-                    });
-                    $('#question1').addClass('animated slideInLeft');
-                    $('#question1').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                        $('#question1').removeClass('animated slideInLeft');
-                    });
-
-                    setTimeout(function () {
-                        $('#question2').css('display', 'none');
-                        $('#question1').css('display', 'block');
-                    }, 500);
-                });
-                ////////back button//////////
-
-
-                $('#details-next-btn').click(function () {
-
-                    $('#question2').addClass('animated fadeOutLeft');
-                    $('#question2').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                        $('#question2').removeClass('animated fadeOutLeft');
-                    });
-                    $('#question3').addClass('animated slideInRight');
-                    $('#question3').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                        $('#question3').removeClass('animated slideInRight');
-                    });
-
-                    setTimeout(function () {
-                        $('#question2').css('display', 'none');
-                        $('#question3').css('display', 'block');
-                    }, 500);
-                });
-                ////////back button//////////                
-                $('#photo-back-btn').click(function () {
-
-                    $('#question3').addClass('animated fadeOutRight');
-                    $('#question3').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                        $('#question3').removeClass('animated fadeOutRight');
-                    });
-                    $('#question2').addClass('animated slideInLeft');
-                    $('#question2').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                        $('#question2').removeClass('animated slideInLeft');
-                    });
-
-                    setTimeout(function () {
-                        $('#question3').css('display', 'none');
-                        $('#question2').css('display', 'block');
-                    }, 500);
-                });
-                ////////back button//////////                
-                $('#photo-next-btn').click(function () {
-
-                    $('#question3').addClass('animated fadeOutLeft');
-                    $('#question3').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                        $('#question3').removeClass('animated fadeOutLeft');
-                    });
-                    $('#question4').addClass('animated slideInRight');
-                    $('#question4').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                        $('#question4').removeClass('animated slideInRight');
-                    });
-
-                    setTimeout(function () {
-                        $('#question3').css('display', 'none');
-                        $('#question4').css('display', 'block');
-                    }, 500);
-                });
-                ////////back button//////////                                
-                $('#story-back-btn').click(function () {
-
-                    $('#question4').addClass('animated fadeOutRight');
-                    $('#question4').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                        $('#question4').removeClass('animated fadeOutRight');
-                    });
-                    $('#question3').addClass('animated slideInLeft');
-                    $('#question3').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                        $('#question3').removeClass('animated slideInLeft');
-                    });
-
-                    setTimeout(function () {
-                        $('#question4').css('display', 'none');
-                        $('#question3').css('display', 'block');
-                    }, 500);
-                });
-                ////////back button//////////                                
-                $('#story-next-btn').click(function () {
-
-                    $('#question4').addClass('animated fadeOutLeft');
-                    $('#question4').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                        $('#question4').removeClass('animated fadeOutLeft');
-                    });
-                    $('#verify-url').addClass('animated slideInRight');
-                    $('#verify-url').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                        $('#verify-url').removeClass('animated slideInRight');
-                    });
-
-                    setTimeout(function () {
-                        $('#question4').css('display', 'none');
-                        $('#verify-url').css('display', 'block');
-                    }, 500);
-                });
-                $('#url-back-btn').click(function () {
-
-                    $('#verify-url').addClass('animated fadeOutRight');
-                    $('#verify-url').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                        $('#verify-url').removeClass('animated fadeOutRight');
-                    });
-                    $('#question4').addClass('animated slideInLeft');
-                    $('#question4').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                        $('#question4').removeClass('animated slideInLeft');
-                    });
-
-                    setTimeout(function () {
-                        $('#verify-url').css('display', 'none');
-                        $('#question4').css('display', 'block');
-                    }, 500);
-                });
-            });
-        }
-    };
-});
-'use strict';
-
-angular.module('happyGoMarry').controller('signupCtrl', function ($scope, coupleSrv, $rootScope) {
-
-    coupleSrv.getUser().then(function (response) {
-        console.log('tried to get user and got', response == 'null');
-        $rootScope.signedIn = response !== 'null' ? true : false;
-        coupleSrv.couple = response;
-        $scope.couple = coupleSrv.couple;
-        console.log('couple: ', $scope.couple);
-
-        $scope.newCouple = {
-            userId: $scope.couple.userid
-
-        };
-    });
-    $scope.addUrl = function () {
-        $scope.newCouple.url = $scope.couple.firstname.toLowerCase() + '-plus-' + $scope.newCouple.partnerFirstName.toLowerCase();
-        coupleSrv.url = $scope.newCouple.url;
-        console.log($scope.newCouple.url);
-        console.log('srv url: ', coupleSrv.url);
-    };
-
-    $scope.photoBackground = {
-        "background-image": "url($scope.newCouple.photoUrl)"
-    };
-
-    $scope.saveNewCouple = function (newCouple) {
-        coupleSrv.saveNewCouple(newCouple).success(function () {
-            swal('Congratulations!', 'To edit your page, click on your name in the menu.', 'success');
-        }).error(function () {
-            swal('Oops...', 'Something went wrong!', 'error');
-        });
-        console.log('newCouple', $scope.newCouple);
-        console.log('updatedCouple', $scope.couple);
-    };
-
-    // setInterval(function(){
-    //     console.log($scope.newCouple)
-    // }, 5000)
-});
-'use strict';
-
 angular.module('happyGoMarry').controller('coupleCtrl', function ($scope, coupleSrv, $rootScope) {
 
     coupleSrv.getDemoCouple().then(function (response) {
@@ -668,4 +465,207 @@ angular.module('happyGoMarry').directive('rsvpPage', function () {
         restrict: 'AE',
         templateUrl: './html/dashboard/rsvp.html'
     };
+});
+'use strict';
+
+angular.module('happyGoMarry').directive('signupControls', function () {
+    return {
+        restrict: 'AE',
+        link: function link(scope, element, attributes) {
+            $(document).ready(function () {
+                $('#welcome-btn').click(function () {
+
+                    $('#welcome-message').addClass('animated fadeOutLeft');
+                    $('#welcome-message').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                        $('#welcome-message').removeClass('animated fadeOutLeft');
+                    });
+                    $('#question1').addClass('animated slideInRight');
+                    $('#question1').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                        $('#question1').removeClass('animated slideInRight');
+                    });
+                    setTimeout(function () {
+                        $('#welcome-message').css('display', 'none');
+                        $('#question1').css('display', 'block');
+                    }, 500);
+                });
+                $('#name-next-btn').click(function () {
+
+                    $('#question1').addClass('animated fadeOutLeft');
+                    $('#question1').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                        $('#question1').removeClass('animated fadeOutLeft');
+                    });
+                    $('#question2').addClass('animated slideInRight');
+                    $('#question2').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                        $('#question2').removeClass('animated slideInRight');
+                    });
+
+                    setTimeout(function () {
+                        $('#question1').css('display', 'none');
+                        $('#question2').css('display', 'block');
+                    }, 500);
+                });
+                ////////back button//////////
+                $('#details-back-btn').click(function () {
+
+                    $('#question2').addClass('animated fadeOutRight');
+                    $('#question2').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                        $('#question2').removeClass('animated fadeOutRight');
+                    });
+                    $('#question1').addClass('animated slideInLeft');
+                    $('#question1').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                        $('#question1').removeClass('animated slideInLeft');
+                    });
+
+                    setTimeout(function () {
+                        $('#question2').css('display', 'none');
+                        $('#question1').css('display', 'block');
+                    }, 500);
+                });
+                ////////back button//////////
+
+
+                $('#details-next-btn').click(function () {
+
+                    $('#question2').addClass('animated fadeOutLeft');
+                    $('#question2').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                        $('#question2').removeClass('animated fadeOutLeft');
+                    });
+                    $('#question3').addClass('animated slideInRight');
+                    $('#question3').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                        $('#question3').removeClass('animated slideInRight');
+                    });
+
+                    setTimeout(function () {
+                        $('#question2').css('display', 'none');
+                        $('#question3').css('display', 'block');
+                    }, 500);
+                });
+                ////////back button//////////                
+                $('#photo-back-btn').click(function () {
+
+                    $('#question3').addClass('animated fadeOutRight');
+                    $('#question3').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                        $('#question3').removeClass('animated fadeOutRight');
+                    });
+                    $('#question2').addClass('animated slideInLeft');
+                    $('#question2').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                        $('#question2').removeClass('animated slideInLeft');
+                    });
+
+                    setTimeout(function () {
+                        $('#question3').css('display', 'none');
+                        $('#question2').css('display', 'block');
+                    }, 500);
+                });
+                ////////back button//////////                
+                $('#photo-next-btn').click(function () {
+
+                    $('#question3').addClass('animated fadeOutLeft');
+                    $('#question3').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                        $('#question3').removeClass('animated fadeOutLeft');
+                    });
+                    $('#question4').addClass('animated slideInRight');
+                    $('#question4').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                        $('#question4').removeClass('animated slideInRight');
+                    });
+
+                    setTimeout(function () {
+                        $('#question3').css('display', 'none');
+                        $('#question4').css('display', 'block');
+                    }, 500);
+                });
+                ////////back button//////////                                
+                $('#story-back-btn').click(function () {
+
+                    $('#question4').addClass('animated fadeOutRight');
+                    $('#question4').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                        $('#question4').removeClass('animated fadeOutRight');
+                    });
+                    $('#question3').addClass('animated slideInLeft');
+                    $('#question3').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                        $('#question3').removeClass('animated slideInLeft');
+                    });
+
+                    setTimeout(function () {
+                        $('#question4').css('display', 'none');
+                        $('#question3').css('display', 'block');
+                    }, 500);
+                });
+                ////////back button//////////                                
+                $('#story-next-btn').click(function () {
+
+                    $('#question4').addClass('animated fadeOutLeft');
+                    $('#question4').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                        $('#question4').removeClass('animated fadeOutLeft');
+                    });
+                    $('#verify-url').addClass('animated slideInRight');
+                    $('#verify-url').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                        $('#verify-url').removeClass('animated slideInRight');
+                    });
+
+                    setTimeout(function () {
+                        $('#question4').css('display', 'none');
+                        $('#verify-url').css('display', 'block');
+                    }, 500);
+                });
+                $('#url-back-btn').click(function () {
+
+                    $('#verify-url').addClass('animated fadeOutRight');
+                    $('#verify-url').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                        $('#verify-url').removeClass('animated fadeOutRight');
+                    });
+                    $('#question4').addClass('animated slideInLeft');
+                    $('#question4').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                        $('#question4').removeClass('animated slideInLeft');
+                    });
+
+                    setTimeout(function () {
+                        $('#verify-url').css('display', 'none');
+                        $('#question4').css('display', 'block');
+                    }, 500);
+                });
+            });
+        }
+    };
+});
+'use strict';
+
+angular.module('happyGoMarry').controller('signupCtrl', function ($scope, coupleSrv, $rootScope) {
+
+    coupleSrv.getUser().then(function (response) {
+        console.log('tried to get user and got', response == 'null');
+        $rootScope.signedIn = response !== 'null' ? true : false;
+        coupleSrv.couple = response;
+        $scope.couple = coupleSrv.couple;
+        console.log('couple: ', $scope.couple);
+
+        $scope.newCouple = {
+            userId: $scope.couple.userid
+
+        };
+    });
+    $scope.addUrl = function () {
+        $scope.newCouple.url = $scope.couple.firstname.toLowerCase() + '-plus-' + $scope.newCouple.partnerFirstName.toLowerCase();
+        coupleSrv.url = $scope.newCouple.url;
+        console.log($scope.newCouple.url);
+        console.log('srv url: ', coupleSrv.url);
+    };
+
+    $scope.photoBackground = {
+        "background-image": "url($scope.newCouple.photoUrl)"
+    };
+
+    $scope.saveNewCouple = function (newCouple) {
+        coupleSrv.saveNewCouple(newCouple).success(function () {
+            swal('Congratulations!', 'To edit your page, click on your name in the menu.', 'success');
+        }).error(function () {
+            swal('Oops...', 'Something went wrong!', 'error');
+        });
+        console.log('newCouple', $scope.newCouple);
+        console.log('updatedCouple', $scope.couple);
+    };
+
+    // setInterval(function(){
+    //     console.log($scope.newCouple)
+    // }, 5000)
 });
