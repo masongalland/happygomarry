@@ -1,5 +1,5 @@
 angular.module('happyGoMarry')
-.controller('signupCtrl', function($scope, coupleSrv, $rootScope){
+.controller('signupCtrl', function($scope, coupleSrv, $rootScope, $state){
 
     coupleSrv.getUser()
     .then(function(response){
@@ -27,6 +27,7 @@ angular.module('happyGoMarry')
 
     $scope.saveNewCouple = function(newCouple) {
         coupleSrv.saveNewCouple(newCouple).success(function() { 
+            $state.go('couple', {url: $scope.newCouple.url});
             swal(
                 'Congratulations!',
                 'To edit your page, click on your name in the menu.',
