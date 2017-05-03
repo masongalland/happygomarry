@@ -5,6 +5,7 @@ angular.module('happyGoMarry')
     .then(function(response){
         $scope.couple = response;  
         console.log('dash couple: ', $scope.couple)
+        $scope.url = response.url;
 
         return coupleSrv.getPayments($scope.couple.userid)
     })

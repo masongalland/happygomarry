@@ -397,6 +397,7 @@ angular.module('happyGoMarry').controller('dashboardCtrl', function ($scope, cou
     coupleSrv.getUser().then(function (response) {
         $scope.couple = response;
         console.log('dash couple: ', $scope.couple);
+        $scope.url = response.url;
 
         return coupleSrv.getPayments($scope.couple.userid);
     }).then(function (response) {

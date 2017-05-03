@@ -24,10 +24,10 @@ var connectionString = config.connString;
 var db = massive.connectSync({connectionString : connectionString});
 
 app.set('db', db);
-db.schema(function(err){
-    if (err) return console.log('schema.sql', err);        
-    else console.log("User Table Init");
-});
+// db.schema(function(err){
+//     if (err) return console.log('schema.sql', err);        
+//     else console.log("User Table Init");
+// });
 passport.use(new Auth0Strategy({
    domain:       config.auth0.domain,
    clientID:     config.auth0.clientID,
