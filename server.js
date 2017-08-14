@@ -5,6 +5,7 @@ var massive = require('massive');
 const session = require('express-session'),
       passport = require('passport'),
       Auth0Strategy = require('passport-auth0');
+require('dotenv').config();
       
 
 var app = module.exports = express();
@@ -12,7 +13,7 @@ app.use(bodyParser.json());
 app.use(session({
   resave: true, //Without this you get a constant warning about default values
   saveUninitialized: true, //Without this you get a constant warning about default values
-  secret: process.env.sessionsecret
+  secret: process.env.SESSION_SECRET
 }))
 app.use(passport.initialize());
 app.use(passport.session());
@@ -20,7 +21,7 @@ app.use(passport.session());
 app.use(express.static('./public'));
 
 var port = 8080;
-var connectionString = process.env.connstring;
+var connectionString = process.env.CONNECTION_STRING;
 var db = massive.connectSync({connectionString : connectionString});
 
 app.set('db', db);
@@ -29,9 +30,9 @@ app.set('db', db);
 //     else console.log("User Table Init");
 // });
 passport.use(new Auth0Strategy({
-   domain:       process.env.domain,
-   clientID:     process.env.clientid,
-   clientSecret: process.env.clientsecret,
+   domain:       process.env.DOMAIN,
+   clientID:     process.env.CLIENT_ID,
+   clientSecret: process.env.CLIENT_SECRET,
    callbackURL:  '/auth/callback'
   },
   function(accessToken, refreshToken, extraParams, profile, done) {
