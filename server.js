@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var massive = require('massive');
+var http = require('http');
 const session = require('express-session'),
       passport = require('passport'),
       Auth0Strategy = require('passport-auth0');
@@ -115,7 +116,8 @@ app.put('/api/couple', couplesCtrl.updateCouple);
 app.put('/api/new-couple', couplesCtrl.saveNewCouple);
 
 
+var server = http.createServer(app);
 
-app.listen(port, function(){
+server.listen(port, function(){
     console.log('listening on port ', port)
 });

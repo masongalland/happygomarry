@@ -31,14 +31,5 @@
     "massive": "^2.6.0",
     "passport": "^0.3.2",
     "passport-auth0": "^0.6.0"
-  },
-  "now": {
-    "env": {
-      "sessionsecret": "@sessionsecret",
-      "connstring": "@connstring",
-      "domain": "@domain",
-      "clientid": "@clientid",
-      "clientsecret": "@clientsecret"
-    }
   }
 }
