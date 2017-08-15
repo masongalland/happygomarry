@@ -116,7 +116,6 @@ app.put('/api/new-couple', couplesCtrl.saveNewCouple);
 
 
 
-
 app.listen(port, function(){
     console.log('listening on port ', port)
 });
