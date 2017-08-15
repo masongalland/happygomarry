@@ -21,7 +21,28 @@ app.use(passport.session());
 
 app.use(express.static('./public'));
 
-var port = 8080;
+//////////////Port setup///////
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+
+var port = normalizePort(process.env.PORT || '8081');
+app.set('port', process.env.PORT || 8081);
+
+///////////////////
+
 var connectionString = process.env.CONNECTION_STRING;
 var db = massive.connectSync({connectionString : connectionString});
 
