@@ -4,6 +4,7 @@ angular.module("happyGoMarry").controller("homeCtrl", function($scope, coupleSrv
         console.log('tried to get user and got', response == 'null')
         $rootScope.signedIn = response !== 'null' ? true : false;
         coupleSrv.couple = response;
+        $scope.loggedInUrl = response.url;
         $scope.couple = coupleSrv.couple;  
     });
     $scope.url = coupleSrv.url;

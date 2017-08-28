@@ -5,6 +5,13 @@ angular.module('happyGoMarry')
         $scope.couple = response;  
         console.log('dashboard couple: ', $scope.couple)
         $scope.url = response.url;
+        $scope.weddingDateArr = $scope.couple.weddingdate.slice(0, 10).split("-").map((e, i) => {
+            if(e[0] == 0){
+                e.slice(1)
+            }
+            return Number(e);
+          })
+          console.log("Array", $scope.weddingDateArr)
 
         return coupleSrv.getPayments($scope.couple.userid)
     })
@@ -25,7 +32,7 @@ angular.module('happyGoMarry')
             $scope.guests = response.data;
             console.log($scope.guests);
         })
-        setTimeout(function(){
+        
             $scope.userUpdates = {
             firstName: $scope.couple.firstname,
             partnerFirstName: $scope.couple.partnerfirstname,
@@ -34,9 +41,11 @@ angular.module('happyGoMarry')
             hour: $scope.couple.hour,
             place: $scope.couple.place,
             userId: $scope.couple.userid,
-            weddingDate: $scope.couple.weddingDate
+            weddingDate: new Date($scope.weddingDateArr[0], $scope.weddingDateArr[1] - 1, $scope.weddingDateArr[2])
             }
-        }, 100) 
+            console.log("userUpdates.weddingDate", $scope.userUpdates.weddingDate)
+            
+        
         $scope.saveUpdatedCouple = function(userUpdates) {
             coupleSrv.saveUpdatedCouple(userUpdates).success(function() { 
                 swal(

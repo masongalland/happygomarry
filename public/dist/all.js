@@ -50,6 +50,7 @@ angular.module("happyGoMarry").controller("homeCtrl", function ($scope, coupleSr
         console.log('tried to get user and got', response == 'null');
         $rootScope.signedIn = response !== 'null' ? true : false;
         coupleSrv.couple = response;
+        $scope.loggedInUrl = response.url;
         $scope.couple = coupleSrv.couple;
     });
     $scope.url = coupleSrv.url;
@@ -397,6 +398,13 @@ angular.module('happyGoMarry').controller('dashboardCtrl', function ($scope, cou
         $scope.couple = response;
         console.log('dashboard couple: ', $scope.couple);
         $scope.url = response.url;
+        $scope.weddingDateArr = $scope.couple.weddingdate.slice(0, 10).split("-").map(function (e, i) {
+            if (e[0] == 0) {
+                e.slice(1);
+            }
+            return Number(e);
+        });
+        console.log("Array", $scope.weddingDateArr);
 
         return coupleSrv.getPayments($scope.couple.userid);
     }).then(function (response) {
@@ -416,18 +424,19 @@ angular.module('happyGoMarry').controller('dashboardCtrl', function ($scope, cou
             $scope.guests = response.data;
             console.log($scope.guests);
         });
-        setTimeout(function () {
-            $scope.userUpdates = {
-                firstName: $scope.couple.firstname,
-                partnerFirstName: $scope.couple.partnerfirstname,
-                photoUrl: $scope.couple.photourl,
-                story: $scope.couple.story,
-                hour: $scope.couple.hour,
-                place: $scope.couple.place,
-                userId: $scope.couple.userid,
-                weddingDate: $scope.couple.weddingDate
-            };
-        }, 100);
+
+        $scope.userUpdates = {
+            firstName: $scope.couple.firstname,
+            partnerFirstName: $scope.couple.partnerfirstname,
+            photoUrl: $scope.couple.photourl,
+            story: $scope.couple.story,
+            hour: $scope.couple.hour,
+            place: $scope.couple.place,
+            userId: $scope.couple.userid,
+            weddingDate: new Date($scope.weddingDateArr[0], $scope.weddingDateArr[1] - 1, $scope.weddingDateArr[2])
+        };
+        console.log("userUpdates.weddingDate", $scope.userUpdates.weddingDate);
+
         $scope.saveUpdatedCouple = function (userUpdates) {
             coupleSrv.saveUpdatedCouple(userUpdates).success(function () {
                 swal('Thanks!', 'Your page has been updated', 'success');
