@@ -42,6 +42,7 @@ var port = normalizePort(process.env.PORT || '8081');
 app.set('port', port);
 
 ///////////////////
+console.log("env connstring: ", process.env.CONNECTION_STRING)
 
 var connectionString = process.env.CONNECTION_STRING;
 var db = massive.connectSync({connectionString : connectionString});
