@@ -386,7 +386,7 @@ angular.module('happyGoMarry').controller('dashboardCtrl', function ($scope, cou
         document.getElementsByClassName('dashDirective')[0].setAttribute('style', 'display: none;');
         document.getElementsByClassName('dashDirective')[1].setAttribute('style', 'display: none;');
         document.getElementsByClassName('dashDirective')[2].setAttribute('style', 'display: none;');
-    }, 1000);
+    }, 1500);
 
     coupleSrv.getUser().then(function (response) {
         $scope.couple = response;
@@ -406,7 +406,7 @@ angular.module('happyGoMarry').controller('dashboardCtrl', function ($scope, cou
 
         $scope.giftOptions = {
             data: $scope.gifts,
-            columnDefs: [{ field: 'donorfirstname', name: 'giftFN', displayName: "First Name", enableHiding: false }, { field: 'donorlastname', name: 'giftLN', displayName: "Last Name" }, { field: 'donationdate', name: 'dd', cellTooltip: true, displayName: "Date", width: '11%' }, { field: 'message', name: 'message', cellTooltip: true }, { field: 'amount', type: 'number', name: 'amount', cellTooltip: true, aggregationType: uiGridConstants.aggregationTypes.sum, width: '11%', cellFilter: "currency" }]
+            columnDefs: [{ field: 'donorfirstname', name: 'giftFN', displayName: "First Name", enableHiding: false, with: '*' }, { field: 'donorlastname', name: 'giftLN', displayName: "Last Name", with: '*' }, { field: 'donationdate', name: 'dd', cellTooltip: true, displayName: "Date", width: '11%' }, { field: 'message', name: 'message', cellTooltip: true, width: "33%" }, { field: 'amount', type: 'number', name: 'amount', cellTooltip: true, aggregationType: uiGridConstants.aggregationTypes.sum, cellFilter: "currency", footerCellFilter: 'currency', width: '*' }]
         };
 
         coupleSrv.getDonations().then(function (response) {

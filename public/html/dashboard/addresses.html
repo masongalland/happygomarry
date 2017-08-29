@@ -1,6 +1,7 @@
 <div class = 'addresses-container'>
     <h1>Addresses</h1>
-    <div class = 'mobile-addresses'>
+    <h2 ng-if='addresses.length === 0'>No addresses have been sent</h2>
+    <div ng-if='addresses.length > 0' class = 'mobile-addresses'>
         <div class = 'mobile-address' ng-repeat = 'address in addresses'>
             <h2>{{address.firstname}} {{address.lastname}}</h2>
             <p>{{address.street}}</p>

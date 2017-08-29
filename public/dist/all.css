@@ -373,7 +373,7 @@ select {
 
 .myGrid {
   width: 100%;
-  height: 450px; }
+  max-height: 450px; }
   .myGrid button {
     margin: 0; }
   .myGrid .ui-grid-menu-inner li {

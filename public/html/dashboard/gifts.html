@@ -1,6 +1,7 @@
 <div class = 'addresses-container'>
     <h1>Gifts</h1>
-    <div class = 'mobile-addresses'>
+    <h2 ng-if='gifts.length === 0'>You have not received any gifts...yet!</h2>
+    <div ng-if='gifts.length > 0' class = 'mobile-addresses'>
         <div class = 'mobile-address' ng-repeat = 'gift in gifts'>
             <h2>{{gift.donorfirstname}} {{gift.donorlastname}}</h2>
             <p>${{gift.amount}}</p>

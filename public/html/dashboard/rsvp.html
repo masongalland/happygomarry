@@ -1,6 +1,7 @@
 <div class = 'addresses-container'>
     <h1>Guest List</h1>
-    <div class = 'mobile-addresses'>
+    <h2 ng-if='guests.length === 0'>No one has RSVP'd yet</h2>
+    <div ng-if='guests.length > 0' class = 'mobile-addresses'>
         <div class = 'mobile-address' ng-repeat = 'guest in guests'>
             <h2>{{guest.firstname}} {{guest.lastname}}</h2>
             <p>Email: {{guest.email}}</p>
