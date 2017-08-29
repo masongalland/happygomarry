@@ -1,5 +1,13 @@
 angular.module('happyGoMarry')
 .controller('dashboardCtrl', function($scope, coupleSrv, uiGridConstants){
+
+    setTimeout(function(){
+        document.getElementsByClassName('dashDirective')[0].setAttribute('style', 'display: none;')
+        document.getElementsByClassName('dashDirective')[1].setAttribute('style', 'display: none;')
+        document.getElementsByClassName('dashDirective')[2].setAttribute('style', 'display: none;')
+    }, 1000)
+
+
     coupleSrv.getUser()
     .then(function(response){
         $scope.couple = response;  

@@ -87,9 +87,9 @@ select {
     justify-content: space-around;
     width: 50%;
 }
-addresses-page {
-    display: none;
-}
+// addresses-page {
+//     display: none;
+// }
 .addresses-container {
     background-color: white;
     width: 100%;
@@ -132,13 +132,20 @@ addresses-page {
     background-color: #67f9f0;
     color: #525252;
 }
-rsvp-page {
-    display: none;
-}
-gifts-page {
-    display: none;
-}
-
+// rsvp-page {
+//     display: none;
+// }
+// gifts-page {
+//     display: none;
+// }
+// .hidden {
+//     visibility: hidden;
+//     opacity: 0;
+// }
+// .visible {
+//     visibility: visible;
+//     opacity: 1;
+// }
 
 ////////UI-GRID///////
 .myGrid {

@@ -329,9 +329,6 @@ select {
   justify-content: space-around;
   width: 50%; }
 
-addresses-page {
-  display: none; }
-
 .addresses-container {
   background-color: white;
   width: 100%;
@@ -373,12 +370,6 @@ addresses-page {
 .mdl-button--raised.mdl-button--colored:active, .mdl-button--raised.mdl-button--colored:hover {
   background-color: #67f9f0;
   color: #525252; }
-
-rsvp-page {
-  display: none; }
-
-gifts-page {
-  display: none; }
 
 .myGrid {
   width: 100%;

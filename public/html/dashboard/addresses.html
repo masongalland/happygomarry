@@ -8,7 +8,7 @@
             <div class = 'bottom-border'></div>
         </div>
     </div>
-    <div class = 'desktop-addresses'>
+    <div ng-if='addresses.length > 0' class = 'desktop-addresses'>
             <div ui-grid="{data: gridOptions.data, 
                            enableFiltering: true,
                            columnDefs: gridOptions.columnDefs,
