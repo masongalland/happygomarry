@@ -374,19 +374,6 @@ angular.module('happyGoMarry').directive('dashControls', function () {
                     $('addresses-page, rsvp-page, edit-page').css('display', 'none');
                     $('gifts-page').css('display', 'block');
                 });
-
-                $('#addresses-table').DataTable({
-                    columnDefs: [{
-                        targets: [0, 1, 2],
-                        className: 'mdl-data-table__cell--non-numeric'
-                    }]
-                });
-                $('#rsvp-table').DataTable({
-                    columnDefs: [{
-                        targets: [0, 1, 2],
-                        className: 'mdl-data-table__cell--non-numeric'
-                    }]
-                });
             });
         }
     };
@@ -396,7 +383,7 @@ angular.module('happyGoMarry').directive('dashControls', function () {
 angular.module('happyGoMarry').controller('dashboardCtrl', function ($scope, coupleSrv, uiGridConstants) {
     coupleSrv.getUser().then(function (response) {
         $scope.couple = response;
-        console.log('dashboard couple: ', $scope.couple);
+        // console.log('dashboard couple: ', $scope.couple)
         $scope.url = response.url;
         $scope.weddingDateArr = $scope.couple.weddingdate.slice(0, 10).split("-").map(function (e, i) {
             if (e[0] == 0) {
@@ -404,21 +391,24 @@ angular.module('happyGoMarry').controller('dashboardCtrl', function ($scope, cou
             }
             return Number(e);
         });
-        console.log("Array", $scope.weddingDateArr);
 
         return coupleSrv.getPayments($scope.couple.userid);
     }).then(function (response) {
         $scope.gifts = response.data;
         console.log('dash gifts: ', $scope.gifts);
-        console.log('scope.couple: ', $scope.couple);
+
+        $scope.giftOptions = {
+            data: $scope.gifts,
+            columnDefs: [{ field: 'donorfirstname', name: 'giftFN', displayName: "First Name", enableHiding: false }, { field: 'donorlastname', name: 'giftLN', displayName: "Last Name" }, { field: 'donationdate', name: 'dd', cellTooltip: true, displayName: "Date", width: '11%' }, { field: 'message', name: 'message', cellTooltip: true }, { field: 'amount', type: 'number', name: 'amount', cellTooltip: true, aggregationType: uiGridConstants.aggregationTypes.sum, width: '11%', cellFilter: "currency" }]
+        };
 
         coupleSrv.getDonations().then(function (response) {
             $scope.donations = response.data[0];
-            console.log($scope.donations);
+            // console.log("scope.donations", $scope.donations);
         });
         coupleSrv.getAddresses($scope.couple.userid).then(function (response) {
             $scope.addresses = response.data;
-            console.log($scope.addresses);
+            // console.log($scope.addresses);
             $scope.gridOptions = {
                 data: $scope.addresses,
                 columnDefs: [{ field: 'firstname', displayName: "First Name", width: '13%', enableHiding: false }, { field: 'lastname', displayName: "Last Name", width: '13%' }, { field: 'street', width: '15%', cellTooltip: true }, { field: 'city', width: '13%' }, { field: 'state', width: '10%' }, { field: 'zip', width: '10%' }, { field: 'email', cellTooltip: true }]
@@ -426,10 +416,10 @@ angular.module('happyGoMarry').controller('dashboardCtrl', function ($scope, cou
         });
         coupleSrv.getRsvps($scope.couple.userid).then(function (response) {
             $scope.guests = response.data;
-            console.log($scope.guests);
+            // console.log($scope.guests);
             $scope.rsvpOptions = {
                 data: $scope.guests,
-                columnDefs: [{ field: 'firstname', displayName: "First Name", enableHiding: false }, { field: 'lastname', displayName: "Last Name" }, { field: 'email', cellTooltip: true }, { field: 'numberinparty', cellTooltip: true, displayName: "# in Party", aggregationType: uiGridConstants.aggregationTypes.sum }]
+                columnDefs: [{ field: 'firstname', name: 'rsvpFN', displayName: "First Name", enableHiding: false }, { field: 'lastname', name: 'rsvpLN', displayName: "Last Name" }, { field: 'email', name: 'rsvpEmail', cellTooltip: true, displayName: "Email" }, { field: 'numberinparty', name: 'rsvpNum', cellTooltip: true, displayName: "# in Party", aggregationType: uiGridConstants.aggregationTypes.sum }]
             };
         });
 
@@ -443,7 +433,8 @@ angular.module('happyGoMarry').controller('dashboardCtrl', function ($scope, cou
             userId: $scope.couple.userid,
             weddingDate: new Date($scope.weddingDateArr[0], $scope.weddingDateArr[1] - 1, $scope.weddingDateArr[2])
         };
-        console.log("userUpdates.weddingDate", $scope.userUpdates.weddingDate);
+        // console.log("userUpdates.weddingDate", $scope.userUpdates.weddingDate)
+
 
         $scope.saveUpdatedCouple = function (userUpdates) {
             coupleSrv.saveUpdatedCouple(userUpdates).success(function () {

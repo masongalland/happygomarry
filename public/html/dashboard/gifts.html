@@ -9,6 +9,14 @@
         </div>
     </div>
     <div class = 'desktop-addresses'>
+            <div    ui-grid="{  data: giftOptions.data, 
+                                enableFiltering: true,
+                                columnDefs: giftOptions.columnDefs,
+                                enableGridMenu: true,
+                                showColumnFooter: true }"
+                    id="giftTable"
+                    ui-grid-exporter  
+                    class="myGrid"></div>
         <!-- <table id="gift-table" class="mdl-data-table" cellspacing="0" width="100%">
             <thead>
                 <tr>
