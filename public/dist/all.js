@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('happyGoMarry', ['ui.router', 'ngMaterial', 'ngMessages']).config(function ($stateProvider, $urlRouterProvider, $mdThemingProvider) {
+angular.module('happyGoMarry', ['ui.router', 'ngMaterial', 'ngMessages', 'ui.grid', 'ui.grid.exporter', 'ui.grid.selection']).config(function ($stateProvider, $urlRouterProvider, $mdThemingProvider) {
     $urlRouterProvider.otherwise('/');
     $stateProvider.state('home', {
         url: '/',
@@ -419,6 +419,10 @@ angular.module('happyGoMarry').controller('dashboardCtrl', function ($scope, cou
         coupleSrv.getAddresses($scope.couple.userid).then(function (response) {
             $scope.addresses = response.data;
             console.log($scope.addresses);
+            $scope.gridOptions = {
+                data: $scope.addresses,
+                columnDefs: [{ field: 'firstname', displayName: "First Name", width: '13%', enableHiding: false }, { field: 'lastname', displayName: "Last Name", width: '13%' }, { field: 'street', width: '15%', cellTooltip: true }, { field: 'city', width: '13%' }, { field: 'state', width: '10%' }, { field: 'zip', width: '10%' }, { field: 'email', cellTooltip: true }]
+            };
         });
         coupleSrv.getRsvps($scope.couple.userid).then(function (response) {
             $scope.guests = response.data;

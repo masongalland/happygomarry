@@ -27,23 +27,37 @@ angular.module('happyGoMarry')
         coupleSrv.getAddresses($scope.couple.userid).then(function(response){
             $scope.addresses = response.data;
             console.log($scope.addresses);
+            $scope.gridOptions = {
+                data: $scope.addresses,
+                columnDefs: [
+                    { field: 'firstname', displayName: "First Name", width: '13%', enableHiding: false },
+                    { field: 'lastname', displayName: "Last Name", width: '13%'},
+                    { field: 'street', width: '15%', cellTooltip: true},
+                    { field: 'city', width: '13%'},
+                    { field: 'state', width: '10%'},
+                    { field: 'zip', width: '10%'},
+                    { field: 'email', cellTooltip: true}
+                ]
+            }
         })
         coupleSrv.getRsvps($scope.couple.userid).then(function(response){
             $scope.guests = response.data;
             console.log($scope.guests);
         })
+
         
-            $scope.userUpdates = {
-            firstName: $scope.couple.firstname,
-            partnerFirstName: $scope.couple.partnerfirstname,
-            photoUrl: $scope.couple.photourl,
-            story: $scope.couple.story,
-            hour: $scope.couple.hour,
-            place: $scope.couple.place,
-            userId: $scope.couple.userid,
-            weddingDate: new Date($scope.weddingDateArr[0], $scope.weddingDateArr[1] - 1, $scope.weddingDateArr[2])
-            }
-            console.log("userUpdates.weddingDate", $scope.userUpdates.weddingDate)
+        
+        $scope.userUpdates = {
+        firstName: $scope.couple.firstname,
+        partnerFirstName: $scope.couple.partnerfirstname,
+        photoUrl: $scope.couple.photourl,
+        story: $scope.couple.story,
+        hour: $scope.couple.hour,
+        place: $scope.couple.place,
+        userId: $scope.couple.userid,
+        weddingDate: new Date($scope.weddingDateArr[0], $scope.weddingDateArr[1] - 1, $scope.weddingDateArr[2])
+        }
+        console.log("userUpdates.weddingDate", $scope.userUpdates.weddingDate)
             
         
         $scope.saveUpdatedCouple = function(userUpdates) {

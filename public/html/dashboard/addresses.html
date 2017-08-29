@@ -9,7 +9,14 @@
         </div>
     </div>
     <div class = 'desktop-addresses'>
-        <table id="addresses-table" class="mdl-data-table" cellspacing="0" width="100%">
+            <div ui-grid="{data: gridOptions.data, 
+                           enableFiltering: true,
+                           columnDefs: gridOptions.columnDefs,
+                           enableGridMenu: true,
+                           gridMenuCustomItems: []}"
+                 ui-grid-exporter  
+                 class="myGrid"></div>
+        <!-- <table id="addresses-table" class="mdl-data-table" cellspacing="0" width="100%">
             <thead>
                 <tr>
                     <th>First Name</th>
@@ -43,6 +50,6 @@
                     <td>{{address.email}}</td>
                 </tr>
             </tbody>
-        </table>
+        </table> -->
     </div>
 </div>

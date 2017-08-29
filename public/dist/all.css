@@ -380,6 +380,21 @@ rsvp-page {
 gifts-page {
   display: none; }
 
+.myGrid {
+  width: 100%;
+  height: 450px; }
+  .myGrid button {
+    margin: 0; }
+  .myGrid .ui-grid-menu-inner li {
+    background-color: gray;
+    margin: 0; }
+
+.ui-grid-menu-button {
+  height: 25px;
+  width: 25px;
+  right: 2px;
+  top: 2px; }
+
 @media (min-width: 600px) {
   .dashboard-menu {
     align-items: baseline;
@@ -407,7 +422,8 @@ gifts-page {
   .dash-menu-item {
     margin-bottom: -50px; }
   .desktop-addresses {
-    display: block;
+    display: flex;
+    justify-content: center;
     width: 90%; }
   .mobile-addresses {
     display: none; } }
