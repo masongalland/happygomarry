@@ -329,9 +329,6 @@ select {
   justify-content: space-around;
   width: 50%; }
 
-addresses-page {
-  display: none; }
-
 .addresses-container {
   background-color: white;
   width: 100%;
@@ -374,11 +371,24 @@ addresses-page {
   background-color: #67f9f0;
   color: #525252; }
 
-rsvp-page {
-  display: none; }
+.myGrid {
+  width: 100%;
+  max-height: 450px; }
+  .myGrid button {
+    margin: 0; }
+  .myGrid .ui-grid-menu-inner li {
+    background-color: gray;
+    margin: 0; }
 
-gifts-page {
-  display: none; }
+.ui-grid-menu-button {
+  height: 25px;
+  width: 25px;
+  right: 2px;
+  top: 2px; }
+
+ui-grid-footer {
+  position: absolute;
+  bottom: -4px; }
 
 @media (min-width: 600px) {
   .dashboard-menu {
@@ -407,7 +417,8 @@ gifts-page {
   .dash-menu-item {
     margin-bottom: -50px; }
   .desktop-addresses {
-    display: block;
+    display: flex;
+    justify-content: center;
     width: 90%; }
   .mobile-addresses {
     display: none; } }

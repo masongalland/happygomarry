@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('happyGoMarry', ['ui.router', 'ngMaterial', 'ngMessages']).config(function ($stateProvider, $urlRouterProvider, $mdThemingProvider) {
+angular.module('happyGoMarry', ['ui.router', 'ngMaterial', 'ngMessages', 'ui.grid', 'ui.grid.exporter', 'ui.grid.selection']).config(function ($stateProvider, $urlRouterProvider, $mdThemingProvider) {
     $urlRouterProvider.otherwise('/');
     $stateProvider.state('home', {
         url: '/',
@@ -374,29 +374,23 @@ angular.module('happyGoMarry').directive('dashControls', function () {
                     $('addresses-page, rsvp-page, edit-page').css('display', 'none');
                     $('gifts-page').css('display', 'block');
                 });
-
-                $('#addresses-table').DataTable({
-                    columnDefs: [{
-                        targets: [0, 1, 2],
-                        className: 'mdl-data-table__cell--non-numeric'
-                    }]
-                });
-                $('#rsvp-table').DataTable({
-                    columnDefs: [{
-                        targets: [0, 1, 2],
-                        className: 'mdl-data-table__cell--non-numeric'
-                    }]
-                });
             });
         }
     };
 });
 'use strict';
 
-angular.module('happyGoMarry').controller('dashboardCtrl', function ($scope, coupleSrv) {
+angular.module('happyGoMarry').controller('dashboardCtrl', function ($scope, coupleSrv, uiGridConstants) {
+
+    setTimeout(function () {
+        document.getElementsByClassName('dashDirective')[0].setAttribute('style', 'display: none;');
+        document.getElementsByClassName('dashDirective')[1].setAttribute('style', 'display: none;');
+        document.getElementsByClassName('dashDirective')[2].setAttribute('style', 'display: none;');
+    }, 1500);
+
     coupleSrv.getUser().then(function (response) {
         $scope.couple = response;
-        console.log('dashboard couple: ', $scope.couple);
+        // console.log('dashboard couple: ', $scope.couple)
         $scope.url = response.url;
         $scope.weddingDateArr = $scope.couple.weddingdate.slice(0, 10).split("-").map(function (e, i) {
             if (e[0] == 0) {
@@ -404,25 +398,36 @@ angular.module('happyGoMarry').controller('dashboardCtrl', function ($scope, cou
             }
             return Number(e);
         });
-        console.log("Array", $scope.weddingDateArr);
 
         return coupleSrv.getPayments($scope.couple.userid);
     }).then(function (response) {
         $scope.gifts = response.data;
         console.log('dash gifts: ', $scope.gifts);
-        console.log('scope.couple: ', $scope.couple);
+
+        $scope.giftOptions = {
+            data: $scope.gifts,
+            columnDefs: [{ field: 'donorfirstname', name: 'giftFN', displayName: "First Name", enableHiding: false, with: '*' }, { field: 'donorlastname', name: 'giftLN', displayName: "Last Name", with: '*' }, { field: 'donationdate', name: 'dd', cellTooltip: true, displayName: "Date", width: '11%' }, { field: 'message', name: 'message', cellTooltip: true, width: "33%" }, { field: 'amount', type: 'number', name: 'amount', cellTooltip: true, aggregationType: uiGridConstants.aggregationTypes.sum, cellFilter: "currency", footerCellFilter: 'currency', width: '*' }]
+        };
 
         coupleSrv.getDonations().then(function (response) {
             $scope.donations = response.data[0];
-            console.log($scope.donations);
+            // console.log("scope.donations", $scope.donations);
         });
         coupleSrv.getAddresses($scope.couple.userid).then(function (response) {
             $scope.addresses = response.data;
-            console.log($scope.addresses);
+            // console.log($scope.addresses);
+            $scope.gridOptions = {
+                data: $scope.addresses,
+                columnDefs: [{ field: 'firstname', displayName: "First Name", width: '13%', enableHiding: false }, { field: 'lastname', displayName: "Last Name", width: '13%' }, { field: 'street', width: '15%', cellTooltip: true }, { field: 'city', width: '13%' }, { field: 'state', width: '10%' }, { field: 'zip', width: '10%' }, { field: 'email', cellTooltip: true }]
+            };
         });
         coupleSrv.getRsvps($scope.couple.userid).then(function (response) {
             $scope.guests = response.data;
-            console.log($scope.guests);
+            // console.log($scope.guests);
+            $scope.rsvpOptions = {
+                data: $scope.guests,
+                columnDefs: [{ field: 'firstname', name: 'rsvpFN', displayName: "First Name", enableHiding: false }, { field: 'lastname', name: 'rsvpLN', displayName: "Last Name" }, { field: 'email', name: 'rsvpEmail', cellTooltip: true, displayName: "Email" }, { field: 'numberinparty', name: 'rsvpNum', cellTooltip: true, displayName: "# in Party", aggregationType: uiGridConstants.aggregationTypes.sum }]
+            };
         });
 
         $scope.userUpdates = {
@@ -435,7 +440,8 @@ angular.module('happyGoMarry').controller('dashboardCtrl', function ($scope, cou
             userId: $scope.couple.userid,
             weddingDate: new Date($scope.weddingDateArr[0], $scope.weddingDateArr[1] - 1, $scope.weddingDateArr[2])
         };
-        console.log("userUpdates.weddingDate", $scope.userUpdates.weddingDate);
+        // console.log("userUpdates.weddingDate", $scope.userUpdates.weddingDate)
+
 
         $scope.saveUpdatedCouple = function (userUpdates) {
             coupleSrv.saveUpdatedCouple(userUpdates).success(function () {

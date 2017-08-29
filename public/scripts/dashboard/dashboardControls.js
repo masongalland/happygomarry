@@ -19,28 +19,8 @@ angular.module('happyGoMarry')
                 $('#dash-gifts-btn').click(function(){
                     $('addresses-page, rsvp-page, edit-page').css('display', 'none');
                     $('gifts-page').css('display', 'block')
-                })
-
-                $('#addresses-table').DataTable( {
-                    columnDefs: [
-                        {
-                            targets: [ 0, 1, 2 ],
-                            className: 'mdl-data-table__cell--non-numeric'
-                        }
-                    ]
-                } );
-                $('#rsvp-table').DataTable( {
-                    columnDefs: [
-                        {
-                            targets: [ 0, 1, 2 ],
-                            className: 'mdl-data-table__cell--non-numeric'
-                        }
-                    ]
-                } );
-
-                
+                })              
             });
-
         }
     }
 });
