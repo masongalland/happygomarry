@@ -9,31 +9,13 @@
         </div>
     </div>
     <div class = 'desktop-addresses'>
-        <!-- <table id="rsvp-table" class="mdl-data-table" cellspacing="0" width="100%">
-            <thead>
-                <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                    <th>Number in Party</th>
-                </tr>
-            </thead>
-            <tfoot>
-                <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                    <th>Number in Party</th>
-                </tr>
-            </tfoot>
-            <tbody>
-                <tr ng-repeat = 'guest in guests'>
-                    <td>{{guest.firstname}}</td>
-                    <td>{{guest.lastname}}</td>
-                    <td>{{guest.email}}</td>
-                    <td>{{guest.numberinparty}}</td>
-                </tr>
-            </tbody>
-        </table> -->
+            <div ui-grid="{ data: rsvpOptions.data, 
+                            enableFiltering: true,
+                            columnDefs: rsvpOptions.columnDefs,
+                            enableGridMenu: true,
+                            showColumnFooter: true }"
+                ui-grid-exporter  
+                class="myGrid"></div>
+        
     </div>
 </div>

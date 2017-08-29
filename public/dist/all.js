@@ -393,7 +393,7 @@ angular.module('happyGoMarry').directive('dashControls', function () {
 });
 'use strict';
 
-angular.module('happyGoMarry').controller('dashboardCtrl', function ($scope, coupleSrv) {
+angular.module('happyGoMarry').controller('dashboardCtrl', function ($scope, coupleSrv, uiGridConstants) {
     coupleSrv.getUser().then(function (response) {
         $scope.couple = response;
         console.log('dashboard couple: ', $scope.couple);
@@ -427,6 +427,10 @@ angular.module('happyGoMarry').controller('dashboardCtrl', function ($scope, cou
         coupleSrv.getRsvps($scope.couple.userid).then(function (response) {
             $scope.guests = response.data;
             console.log($scope.guests);
+            $scope.rsvpOptions = {
+                data: $scope.guests,
+                columnDefs: [{ field: 'firstname', displayName: "First Name", enableHiding: false }, { field: 'lastname', displayName: "Last Name" }, { field: 'email', cellTooltip: true }, { field: 'numberinparty', cellTooltip: true, displayName: "# in Party", aggregationType: uiGridConstants.aggregationTypes.sum }]
+            };
         });
 
         $scope.userUpdates = {
