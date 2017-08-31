@@ -1,2 +1,2 @@
 insert into couples (auth0Id, firstName, lastName, partnerFirstName, partnerLastName, photoUrl, story, day, hour, place, url, wepayId) 
-values ($2, $1, $3, '', '', '', '', '', '', '', '', '') returning firstName, auth0Id;
+values ($2, $1, $3, '', '', '', '', '', '', '', '', '') returning firstName, lastName, auth0Id;

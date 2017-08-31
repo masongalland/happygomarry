@@ -60,6 +60,7 @@ passport.use(new Auth0Strategy({
   },
   function(accessToken, refreshToken, extraParams, profile, done) {
     //Find user in database
+    console.log("profile:" ,profile)
     db.getUserByAuthId([profile.id], function(err, user) {
       user = user[0];
       if (!user) { //if there isn't one, we'll create one!
@@ -70,7 +71,8 @@ passport.use(new Auth0Strategy({
             }
         //   console.log('USER CREATED', user);
         //   console.log('profile: ', profile)
-          return done(err, user[0]); // GOES TO SERIALIZE USER
+        
+          return done(err, user); // GOES TO SERIALIZE USER
         })
       } else { //when we find the user, return it
         // console.log('FOUND USER', user);
@@ -104,6 +106,7 @@ var couplesCtrl = require('./serverCtrls/couplesCtrl.js');
 app.get('/auth', passport.authenticate('auth0'));
 app.get('/auth/callback',
   passport.authenticate('auth0'), function(req, res) {
+    console.log("this is the req.user: ", req.user)
       if (!req.user.weddingDate) {
         res.redirect('/#/signup');
       }else {

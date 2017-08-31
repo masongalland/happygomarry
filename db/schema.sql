@@ -2,27 +2,26 @@ DROP TABLE IF EXISTS couples, wepay, payment_details, addresses, rsvp;
 
 CREATE TABLE couples(
     userId  SERIAL PRIMARY KEY,
-    auth0Id varchar(40),
+    auth0Id text,
     firstName varchar(20),
     lastName varchar(20),
+    email text,
     partnerFirstName varchar(20),
     partnerLastName varchar(20),
     weddingDate date,
     photoUrl text,
     story text,
-    day text,
-    hour varchar(250),
+    "day" text,
+    "hour" varchar(250),
     place varchar(150),
-    url text,
-    wepayId text
+    url text
 );
 
 CREATE TABLE wepay(
-    WPID SERIAL PRIMARY KEY,
-    userId integer,
-    wepayId integer,
-    numberOfDonations integer,
-    total integer
+    wepay_id SERIAL PRIMARY KEY,
+    user_id integer references couples(userId),
+    account_id integer,
+    access_token integer
 );
 
 CREATE TABLE payment_details (
@@ -57,8 +56,8 @@ CREATE TABLE rsvp(
     numberInParty integer
 );
 
-INSERT INTO couples (auth0Id, firstName, lastName, partnerFirstName, partnerLastName, weddingDate, photoUrl, story, day, hour, place, url, wepayId)
-VALUES (23452345, 'Mason', 'Galland', 'Aly', 'Galland', '11/8/2013', 'https://scontent.fmkc1-1.fna.fbcdn.net/v/t1.0-9/17342848_10212268319045927_5946671415737874840_n.jpg?oh=36187f512bd1e20daa3e26a50573c2b0&oe=595B3251', 'We met on the first day of freshman year at SUU--we lived across the hall from each other! Mason was instantly smitten, but it took Aly a while to come around. We dated for a year before Mason left on his mission for 2 years. Aly wrote Mason letters during that time, and we picked up where we left off when Mason got home. After all these years we decided to finally tie the knot!', 'Friday', '7pm MDT', 'Utah State Capitol Building', 'mason-aly', '7023984572039847');
+INSERT INTO couples (auth0Id, firstName, lastName, email, partnerFirstName, partnerLastName, weddingDate, photoUrl, story, "day", "hour", place, url)
+VALUES ("google-oauth2|109379349176193361437", "Mason", "Galland", "hgm.tester@gmail.com", "Aly", "Galland", "2013-11-04", "../../images/AlyMason.jpg", "We met on the first day of freshman year at SUU--we lived across the hall from each other! Mason was instantly smitten, but it took Aly a while to come around. We dated for a year before Mason left on his mission for 2 years. Aly wrote Mason letters during that time, and we picked up where we left off when Mason got home. After all these years we decided to finally tie the knot!", "Friday", "1970-01-01T16:09:00.000Z", "Utah State Capitol Building", "mason-aly");
 
 INSERT INTO payment_details (userId, wepayId, donorFirstName, donorLastName, amount, donationDate, message)
 VALUES (1, 23452345, 'Braydon', 'Galland', 100.50, '3/16/17', 'Congratulations, you two!');
