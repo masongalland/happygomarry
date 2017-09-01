@@ -39,7 +39,7 @@ module.exports = {
                     wp.use_staging()
                     wp.call('/account/create',
                         {
-                            "name": `${user.name}'s HappyGoMarry Account`,
+                            "name": `${user.firstname}'s HappyGoMarry Account`,
                             "description": "This is where you can access the gifts that have been sent to you through HappyGoMarry"
                         },
                         function(account){
