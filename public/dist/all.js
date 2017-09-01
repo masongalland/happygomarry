@@ -193,154 +193,13 @@ angular.module('happyGoMarry').directive('navDir', function () {
         controller: 'homeCtrl'
     };
 });
-"use strict";
 'use strict';
 
-angular.module('happyGoMarry').controller('coupleCtrl', function ($scope, coupleSrv, $rootScope) {
+angular.module('happyGoMarry').service('wepaySrv', function ($http) {
+    var baseUrl = '/api/';
 
-    coupleSrv.getDemoCouple().then(function (response) {
-        $scope.couple = response;
-        console.log('demo: ', $scope.couple);
-    });
-    coupleSrv.getPayments().then(function (response) {
-        $scope.payments = response.data;
-        console.log($scope.payments);
-    });
-    coupleSrv.getDonations().then(function (response) {
-        $scope.donations = response.data[0];
-        console.log($scope.donations);
-    });
-
-    $scope.newAddress = {
-        userId: 1, //this will be dependent on whose page they submit on
-        firstName: '',
-        lastName: '',
-        street: '',
-        city: '',
-        state: '',
-        zip: '',
-        email: ''
-    };
-    $scope.newRsvp = {
-        userId: 1, //this will be dependent on whose page they submit on
-        firstName: '',
-        lastName: '',
-        email: '',
-        numberInParty: 1
-    };
-
-    $scope.saveNewAddress = function (newAddress) {
-        coupleSrv.saveNewAddress(newAddress).success(function () {
-            swal('Thanks!', 'Your address was sent successfully.', 'success');
-        }).error(function () {
-            swal('Oops...', 'Something went wrong!', 'error');
-        });
-    };
-    $scope.saveNewRsvp = function (newRsvp) {
-        coupleSrv.saveNewRsvp(newRsvp).success(function () {
-            swal('Thanks!', 'Your RSVP was sent successfully.', 'success');
-        }).error(function () {
-            swal('Oops...', 'Something went wrong!', 'error');
-        });
-    };
-
-    // setInterval(function() {
-    //     console.log($scope.newAddress)
-    // }, 5000)
-});
-'use strict';
-
-angular.module('happyGoMarry').controller('coupleTempCtrl', function ($scope, coupleSrv, $stateParams, $rootScope) {
-
-    coupleSrv.getCouple($stateParams.url).then(function (response) {
-        $scope.coupleInfo = response[0];
-        $scope.newAddress = {
-            userId: $scope.coupleInfo.userid,
-            firstName: '',
-            lastName: '',
-            street: '',
-            city: '',
-            state: '',
-            zip: '',
-            email: ''
-        };
-        $scope.newRsvp = {
-            userId: $scope.coupleInfo.userid,
-            firstName: '',
-            lastName: '',
-            email: '',
-            numberInParty: 1
-        };
-        $scope.newGift = {
-            userId: $scope.coupleInfo.userid,
-            firstName: '',
-            lastName: '',
-            amount: 0.00,
-            date: new Date(),
-            message: ''
-        };
-        console.log('couple/;dlkf:', $scope.coupleInfo);
-
-        return coupleSrv.getPayments($scope.coupleInfo.userid);
-    }).then(function (response) {
-        $scope.payments = response.data;
-        console.log('payments: ', $scope.payments);
-        console.log('payments userid: ', $scope.coupleInfo.userid);
-
-        return coupleSrv.getDonations($scope.coupleInfo.userid);
-    }).then(function (response) {
-        $scope.donations = response.data[0];
-        console.log('donations:', $scope.donations);
-    });
-
-    $scope.saveNewAddress = function (newAddress) {
-        coupleSrv.saveNewAddress(newAddress).success(function () {
-            swal('Thanks!', 'Your address was sent successfully.', 'success');
-        }).error(function () {
-            swal('Oops...', 'Something went wrong!', 'error');
-        });
-    };
-    $scope.saveNewRsvp = function (newRsvp) {
-        coupleSrv.saveNewRsvp(newRsvp).success(function () {
-            swal('Thanks!', 'Your RSVP was sent successfully.', 'success');
-        }).error(function () {
-            swal('Oops...', 'Something went wrong!', 'error');
-        });
-    };
-    $scope.saveNewGift = function (newGift) {
-        coupleSrv.saveNewGift(newGift);
-        swal('Thanks!', 'Your Gift was sent successfully.', 'success');
-        // }).error(function(){
-        //     swal(
-        //         'Oops...',
-        //         'Something went wrong!',
-        //         'error'
-        //     );
-        // });   
-    };
-});
-'use strict';
-
-angular.module('happyGoMarry').directive('rsvpForm', function () {
-    return {
-        restrict: 'AE',
-        templateUrl: './html/couple/rsvpForm.html'
-    };
-});
-'use strict';
-
-angular.module('happyGoMarry').directive('sendAddress', function () {
-    return {
-        restrict: 'AE',
-        templateUrl: './html/couple/sendAddressTemplate.html'
-    };
-});
-'use strict';
-
-angular.module('happyGoMarry').directive('sendGift', function () {
-    return {
-        restrict: 'AE',
-        templateUrl: './html/couple/sendGift.html'
+    this.createWepayAccount = function () {
+        return $http({ method: 'POST', url: '/api/wepay/create-account' }).then(console.log('created wepay account'));
     };
 });
 'use strict';
@@ -646,17 +505,15 @@ angular.module('happyGoMarry').directive('signupControls', function () {
 });
 'use strict';
 
-angular.module('happyGoMarry').controller('signupCtrl', function ($scope, coupleSrv, $rootScope, $state) {
+angular.module('happyGoMarry').controller('signupCtrl', function ($scope, coupleSrv, wepaySrv, $rootScope, $state) {
 
     coupleSrv.getUser().then(function (response) {
-        console.log('tried to get user and got', response == 'null');
-        $rootScope.signedIn = response !== 'null' ? true : false;
-        coupleSrv.couple = response;
-        $scope.couple = coupleSrv.couple;
-        console.log('couple: ', $scope.couple);
+        $scope.couple = response;
+        console.log(response);
 
         $scope.newCouple = {
-            userId: $scope.couple.userid
+            userId: $scope.couple.userid,
+            weddingDate: new Date()
 
         };
     });
@@ -673,6 +530,7 @@ angular.module('happyGoMarry').controller('signupCtrl', function ($scope, couple
 
     $scope.saveNewCouple = function (newCouple) {
         coupleSrv.saveNewCouple(newCouple).success(function () {
+            wepaySrv.createWepayAccount();
             $state.go('couple', { url: $scope.newCouple.url });
             swal('Congratulations!', 'To edit your page, click on your name in the menu.', 'success');
         }).error(function () {
@@ -685,4 +543,153 @@ angular.module('happyGoMarry').controller('signupCtrl', function ($scope, couple
     // setInterval(function(){
     //     console.log($scope.newCouple)
     // }, 5000)
+});
+'use strict';
+
+angular.module('happyGoMarry').controller('coupleCtrl', function ($scope, coupleSrv, $rootScope) {
+
+    coupleSrv.getDemoCouple().then(function (response) {
+        $scope.couple = response;
+        console.log('demo: ', $scope.couple);
+    });
+    coupleSrv.getPayments().then(function (response) {
+        $scope.payments = response.data;
+        console.log($scope.payments);
+    });
+    coupleSrv.getDonations().then(function (response) {
+        $scope.donations = response.data[0];
+        console.log($scope.donations);
+    });
+
+    $scope.newAddress = {
+        userId: 1, //this will be dependent on whose page they submit on
+        firstName: '',
+        lastName: '',
+        street: '',
+        city: '',
+        state: '',
+        zip: '',
+        email: ''
+    };
+    $scope.newRsvp = {
+        userId: 1, //this will be dependent on whose page they submit on
+        firstName: '',
+        lastName: '',
+        email: '',
+        numberInParty: 1
+    };
+
+    $scope.saveNewAddress = function (newAddress) {
+        coupleSrv.saveNewAddress(newAddress).success(function () {
+            swal('Thanks!', 'Your address was sent successfully.', 'success');
+        }).error(function () {
+            swal('Oops...', 'Something went wrong!', 'error');
+        });
+    };
+    $scope.saveNewRsvp = function (newRsvp) {
+        coupleSrv.saveNewRsvp(newRsvp).success(function () {
+            swal('Thanks!', 'Your RSVP was sent successfully.', 'success');
+        }).error(function () {
+            swal('Oops...', 'Something went wrong!', 'error');
+        });
+    };
+
+    // setInterval(function() {
+    //     console.log($scope.newAddress)
+    // }, 5000)
+});
+'use strict';
+
+angular.module('happyGoMarry').controller('coupleTempCtrl', function ($scope, coupleSrv, $stateParams, $rootScope) {
+
+    coupleSrv.getCouple($stateParams.url).then(function (response) {
+        $scope.coupleInfo = response[0];
+        $scope.newAddress = {
+            userId: $scope.coupleInfo.userid,
+            firstName: '',
+            lastName: '',
+            street: '',
+            city: '',
+            state: '',
+            zip: '',
+            email: ''
+        };
+        $scope.newRsvp = {
+            userId: $scope.coupleInfo.userid,
+            firstName: '',
+            lastName: '',
+            email: '',
+            numberInParty: 1
+        };
+        $scope.newGift = {
+            userId: $scope.coupleInfo.userid,
+            firstName: '',
+            lastName: '',
+            amount: 0.00,
+            date: new Date(),
+            message: ''
+        };
+        console.log('couple/;dlkf:', $scope.coupleInfo);
+
+        return coupleSrv.getPayments($scope.coupleInfo.userid);
+    }).then(function (response) {
+        $scope.payments = response.data;
+        console.log('payments: ', $scope.payments);
+        console.log('payments userid: ', $scope.coupleInfo.userid);
+
+        return coupleSrv.getDonations($scope.coupleInfo.userid);
+    }).then(function (response) {
+        $scope.donations = response.data[0];
+        console.log('donations:', $scope.donations);
+    });
+
+    $scope.saveNewAddress = function (newAddress) {
+        coupleSrv.saveNewAddress(newAddress).success(function () {
+            swal('Thanks!', 'Your address was sent successfully.', 'success');
+        }).error(function () {
+            swal('Oops...', 'Something went wrong!', 'error');
+        });
+    };
+    $scope.saveNewRsvp = function (newRsvp) {
+        coupleSrv.saveNewRsvp(newRsvp).success(function () {
+            swal('Thanks!', 'Your RSVP was sent successfully.', 'success');
+        }).error(function () {
+            swal('Oops...', 'Something went wrong!', 'error');
+        });
+    };
+    $scope.saveNewGift = function (newGift) {
+        coupleSrv.saveNewGift(newGift);
+        swal('Thanks!', 'Your Gift was sent successfully.', 'success');
+        // }).error(function(){
+        //     swal(
+        //         'Oops...',
+        //         'Something went wrong!',
+        //         'error'
+        //     );
+        // });   
+    };
+});
+'use strict';
+
+angular.module('happyGoMarry').directive('rsvpForm', function () {
+    return {
+        restrict: 'AE',
+        templateUrl: './html/couple/rsvpForm.html'
+    };
+});
+'use strict';
+
+angular.module('happyGoMarry').directive('sendAddress', function () {
+    return {
+        restrict: 'AE',
+        templateUrl: './html/couple/sendAddressTemplate.html'
+    };
+});
+'use strict';
+
+angular.module('happyGoMarry').directive('sendGift', function () {
+    return {
+        restrict: 'AE',
+        templateUrl: './html/couple/sendGift.html'
+    };
 });

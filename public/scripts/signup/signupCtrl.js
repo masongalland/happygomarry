@@ -1,16 +1,14 @@
 angular.module('happyGoMarry')
-.controller('signupCtrl', function($scope, coupleSrv, $rootScope, $state){
+.controller('signupCtrl', function($scope, coupleSrv, wepaySrv, $rootScope, $state){
 
     coupleSrv.getUser()
     .then(function(response){
-        console.log('tried to get user and got', response == 'null')
-        $rootScope.signedIn = response !== 'null' ? true : false;
-        coupleSrv.couple = response;
-        $scope.couple = coupleSrv.couple;  
-        console.log('couple: ', $scope.couple)
+        $scope.couple = response;
+        console.log(response)
         
         $scope.newCouple = {
             userId: $scope.couple.userid,
+            weddingDate: new Date()
             
         } 
     })
@@ -27,6 +25,7 @@ angular.module('happyGoMarry')
 
     $scope.saveNewCouple = function(newCouple) {
         coupleSrv.saveNewCouple(newCouple).success(function() { 
+            wepaySrv.createWepayAccount()
             $state.go('couple', {url: $scope.newCouple.url});
             swal(
                 'Congratulations!',

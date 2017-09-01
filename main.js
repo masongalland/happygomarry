@@ -60,12 +60,11 @@ passport.use(new Auth0Strategy({
   },
   function(accessToken, refreshToken, extraParams, profile, done) {
     //Find user in database
-    console.log("profile:" ,profile)
     db.getUserByAuthId([profile.id], function(err, user) {
       user = user[0];
       if (!user) { //if there isn't one, we'll create one!
         console.log('CREATING USER');
-        db.createUserByAuth([profile._json.given_name, profile.id, profile._json.family_name], function(err, user) {
+        db.createUserByAuth([profile._json.given_name, profile.id, profile._json.family_name, profile._json.email], function(err, user) {
             if (err) {
                 throw new Error(err)
             }
@@ -85,7 +84,7 @@ passport.use(new Auth0Strategy({
 
 //THIS IS INVOKED ONE TIME TO SET THINGS UP
 passport.serializeUser(function(userA, done) {
-  console.log('serializing', userA);
+  // console.log('serializing', userA);
   var userB = userA;
   //Things you might do here :
    //Serialize just the id, get other information to add to session, 
@@ -114,9 +113,12 @@ app.get('/auth/callback',
       }
 })
 app.get('/auth/me', function(req, res) {
+  console.log('auth/me: ', req.user[0].auth0id)
   if (!req.user) return res.status(200).send('null');
+
   //THIS IS WHATEVER VALUE WE GOT FROM userC variable above.
-    db.getCurrentCouple([req.user.auth0id], function(err, resp){
+    db.getCurrentCouple([req.user[0].auth0id], function(err, resp){
+      // console.log('hihihi', resp)
         if (err) return console.log(err)
         else res.send(resp[0]);
     })
@@ -139,6 +141,12 @@ app.post('/api/rsvp', couplesCtrl.postNewRsvp);
 app.post('/api/new-gift', couplesCtrl.saveNewGift);
 app.put('/api/couple', couplesCtrl.updateCouple);
 app.put('/api/new-couple', couplesCtrl.saveNewCouple);
+
+///wepay endpoints
+
+var wepayCtrl = require('./serverCtrls/wepayCtrl.js');
+
+app.post('/api/wepay/create-account', wepayCtrl.createAccount);
 
 
 var server = http.createServer(app);
