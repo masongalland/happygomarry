@@ -28,8 +28,8 @@ module.exports = {
                     "scope": "manage_accounts,collect_payments,view_user,preapprove_payments,send_money",
                     "first_name": user.firstname,
                     "last_name": user.lastname,
-                    "original_ip": "216.21.163.235",
-                    "original_device": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36",
+                    "original_ip": req.query.ip,
+                    "original_device": req.query.agent,
                     "tos_acceptance_time": timeStamp
                 },
                 function(response) {

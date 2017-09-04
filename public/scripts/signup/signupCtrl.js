@@ -23,9 +23,20 @@ angular.module('happyGoMarry')
         "background-image": "url($scope.newCouple.photoUrl)"
     }
 
+    var json = 'https://api.ipify.org?format=json';
+    var userIp;
+    var userAgent = window.navigator.userAgent
+    $http.get(json)
+    .then(function(result) {
+        console.log("user ip: ", result.data.ip)
+        userIp = result.data.ip;
+    }, function(e) {
+        alert("error");
+    });
+
     $scope.saveNewCouple = function(newCouple) {
         coupleSrv.saveNewCouple(newCouple).success(function() { 
-            wepaySrv.createWepayAccount()
+            wepaySrv.createWepayAccount(userIp, userAgent)
             $state.go('couple', {url: $scope.newCouple.url});
             swal(
                 'Congratulations!',
