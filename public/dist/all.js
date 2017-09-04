@@ -201,6 +201,9 @@ angular.module('happyGoMarry').service('wepaySrv', function ($http) {
     this.createWepayAccount = function (userIp, userAgent) {
         return $http({ method: 'POST', url: baseUrl + 'create-account?ip=' + userIp + '[agent]=' + userAgent }).then(console.log('created wepay account'));
     };
+    this.createCheckout = function (data) {
+        return $http({ method: 'POST', url: baseUrl + 'create-checkout', data: data });
+    };
 });
 'use strict';
 
@@ -258,10 +261,11 @@ angular.module('happyGoMarry').controller('coupleCtrl', function ($scope, couple
 });
 'use strict';
 
-angular.module('happyGoMarry').controller('coupleTempCtrl', function ($scope, coupleSrv, $stateParams, $rootScope) {
+angular.module('happyGoMarry').controller('coupleTempCtrl', function ($scope, coupleSrv, wepaySrv, $stateParams, $rootScope) {
 
     coupleSrv.getCouple($stateParams.url).then(function (response) {
         $scope.coupleInfo = response[0];
+        console.log("coupleinfo: ", $scope.coupleInfo);
         $scope.newAddress = {
             userId: $scope.coupleInfo.userid,
             firstName: '',
@@ -317,6 +321,7 @@ angular.module('happyGoMarry').controller('coupleTempCtrl', function ($scope, co
     };
     $scope.saveNewGift = function (newGift) {
         coupleSrv.saveNewGift(newGift);
+        wepaySrv.createCheckout(newGift);
         swal('Thanks!', 'Your Gift was sent successfully.', 'success');
         // }).error(function(){
         //     swal(

@@ -1,9 +1,10 @@
 angular.module('happyGoMarry')
-.controller('coupleTempCtrl', function($scope, coupleSrv, $stateParams, $rootScope){
+.controller('coupleTempCtrl', function($scope, coupleSrv, wepaySrv, $stateParams, $rootScope){
   
     coupleSrv.getCouple($stateParams.url)
     .then(function(response){
         $scope.coupleInfo = response[0];
+        console.log("coupleinfo: ", $scope.coupleInfo)
         $scope.newAddress = {
             userId: $scope.coupleInfo.userid, 
             firstName: '',
@@ -77,7 +78,8 @@ angular.module('happyGoMarry')
         });   
     }
     $scope.saveNewGift = function(newGift) {
-        coupleSrv.saveNewGift(newGift) 
+        coupleSrv.saveNewGift(newGift);
+        wepaySrv.createCheckout(newGift); 
         swal(
             'Thanks!',
             'Your Gift was sent successfully.',

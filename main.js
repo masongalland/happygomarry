@@ -147,6 +147,7 @@ app.put('/api/new-couple', couplesCtrl.saveNewCouple);
 var wepayCtrl = require('./serverCtrls/wepayCtrl.js');
 
 app.post('/api/wepay/create-account', wepayCtrl.createAccount);
+app.post('/api/wepay/create-checkout', wepayCtrl.createCheckout);
 
 
 var server = http.createServer(app);
