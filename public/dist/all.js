@@ -128,6 +128,9 @@ angular.module('happyGoMarry').directive('animateDir', function () {
                 $('.drop-down').mouseleave(function () {
                     $('.drop-down').css('display', 'none');
                 });
+                $('#enter-payment-btn').click(function () {
+                    $("#payment-modal").css("display", "flex");
+                });
             });
         }
     };
@@ -261,7 +264,8 @@ angular.module('happyGoMarry').controller('coupleCtrl', function ($scope, couple
 });
 'use strict';
 
-angular.module('happyGoMarry').controller('coupleTempCtrl', function ($scope, coupleSrv, wepaySrv, $stateParams, $rootScope) {
+angular.module('happyGoMarry').controller('coupleTempCtrl', function ($scope, coupleSrv, wepaySrv, $stateParams, $rootScope, $sce) {
+    $scope.checkout_uri;
 
     coupleSrv.getCouple($stateParams.url).then(function (response) {
         $scope.coupleInfo = response[0];
@@ -321,8 +325,15 @@ angular.module('happyGoMarry').controller('coupleTempCtrl', function ($scope, co
     };
     $scope.saveNewGift = function (newGift) {
         coupleSrv.saveNewGift(newGift);
-        wepaySrv.createCheckout(newGift);
-        swal('Thanks!', 'Your Gift was sent successfully.', 'success');
+        wepaySrv.createCheckout(newGift).then(function (response) {
+            console.log(response.data);
+            $scope.checkout_uri = $sce.trustAsResourceUrl(response.data);
+        });
+        // swal(
+        //     'Thanks!',
+        //     'Your Gift was sent successfully.',
+        //     'success'
+        // ); 
         // }).error(function(){
         //     swal(
         //         'Oops...',

@@ -69,6 +69,9 @@ angular.module('happyGoMarry')
                 $('.drop-down').mouseleave(function(){
                     $('.drop-down').css('display', 'none')
                 })
+                $('#enter-payment-btn').click(function(){
+                    $("#payment-modal").css("display", "flex")
+                })
             });
 
         }

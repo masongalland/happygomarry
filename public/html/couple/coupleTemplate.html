@@ -81,9 +81,17 @@
                     <div class = 'bottom-border'></div>
                 </div>              
         </div>
-    </section>
+        
+    </section>    
 </div>
 
 <send-address id = 'send-address' animate-dir></send-address>
 <rsvp-form id = 'send-rsvp' animate-dir></rsvp-form>
 <send-gift id = 'send-gift' animate-dir></send-gift>
+
+
+<div id="payment-modal" class = 'modal'>
+    <div class = 'modal-content animated fadeInUpBig checkout-wrapper'>
+        <iframe id="wepay-checkout-iframe" ng-src={{checkout_uri}}></iframe> 
+    </div>
+</div> 

@@ -82,11 +82,12 @@ module.exports = {
                     "long_description": req.body.message,
                     "type": "personal",
                     "currency": "USD",
-                    "fee": {"app_fee": fee, "fee_payer": "payee"}
+                    "fee": {"app_fee": fee, "fee_payer": "payee"},
+                    "hosted_checkout": {"mode": "iframe"}
                 },
                 function(response){
                     console.log(response)
-                    res.send(response)
+                    res.send(response.hosted_checkout.checkout_uri)
                 }
             )
         })

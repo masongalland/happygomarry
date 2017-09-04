@@ -1,6 +1,7 @@
 angular.module('happyGoMarry')
-.controller('coupleTempCtrl', function($scope, coupleSrv, wepaySrv, $stateParams, $rootScope){
-  
+.controller('coupleTempCtrl', function($scope, coupleSrv, wepaySrv, $stateParams, $rootScope, $sce){
+    $scope.checkout_uri;
+
     coupleSrv.getCouple($stateParams.url)
     .then(function(response){
         $scope.coupleInfo = response[0];
@@ -79,12 +80,16 @@ angular.module('happyGoMarry')
     }
     $scope.saveNewGift = function(newGift) {
         coupleSrv.saveNewGift(newGift);
-        wepaySrv.createCheckout(newGift); 
-        swal(
-            'Thanks!',
-            'Your Gift was sent successfully.',
-            'success'
-        ); 
+        wepaySrv.createCheckout(newGift)
+        .then(function(response){
+            console.log(response.data)
+            $scope.checkout_uri = $sce.trustAsResourceUrl(response.data);
+        }); 
+        // swal(
+        //     'Thanks!',
+        //     'Your Gift was sent successfully.',
+        //     'success'
+        // ); 
         // }).error(function(){
         //     swal(
         //         'Oops...',

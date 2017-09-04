@@ -199,6 +199,16 @@
 .swal2-modal h2 {
     letter-spacing: .2em
 }
+
+#wepay-checkout-iframe{
+    min-height: 458px;
+}
+.checkout-wrapper{
+    width: auto !important;
+}
+#payment-modal{
+    display: none;
+}
 @media (min-width: 600px) {
     .one-button p {
         margin-bottom: 15px;
