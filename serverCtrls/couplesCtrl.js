@@ -1,4 +1,4 @@
-var app = require('../server.js');
+var app = require('../main.js');
 var db = app.get('db');
 
 module.exports = {

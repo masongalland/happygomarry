@@ -148,6 +148,8 @@
 .recent-gifts {
     display: flex;
     flex-direction: column-reverse;
+    max-height: 650px;
+    overflow: scroll;
 }
 .recent-gift {
     display: flex;
@@ -198,6 +200,26 @@
 }
 .swal2-modal h2 {
     letter-spacing: .2em
+}
+
+#wepay-checkout-iframe{
+    min-height: 458px;
+}
+.checkout-wrapper{
+    width: auto !important;
+    position: relative;
+}
+#payment-modal{
+    display: none;
+}
+.x-modal {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    color: #1bc0b5;
+    border-radius: 50%;
+    background-color: rgba(255, 248, 248, 0.85);
+    cursor: pointer;
 }
 @media (min-width: 600px) {
     .one-button p {

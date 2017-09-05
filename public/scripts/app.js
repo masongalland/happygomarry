@@ -1,4 +1,4 @@
-angular.module('happyGoMarry', ['ui.router', 'ngMaterial', 'ngMessages'])
+angular.module('happyGoMarry', ['ui.router', 'ngMaterial', 'ngMessages', 'ui.grid', 'ui.grid.exporter', 'ui.grid.selection'])
     .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider){
         $urlRouterProvider.otherwise('/');
         $stateProvider

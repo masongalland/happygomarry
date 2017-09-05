@@ -1,16 +1,14 @@
 angular.module('happyGoMarry')
-.controller('signupCtrl', function($scope, coupleSrv, $rootScope, $state){
+.controller('signupCtrl', function($scope, coupleSrv, wepaySrv, $rootScope, $state){
 
     coupleSrv.getUser()
     .then(function(response){
-        console.log('tried to get user and got', response == 'null')
-        $rootScope.signedIn = response !== 'null' ? true : false;
-        coupleSrv.couple = response;
-        $scope.couple = coupleSrv.couple;  
-        console.log('couple: ', $scope.couple)
+        $scope.couple = response;
+        console.log(response)
         
         $scope.newCouple = {
             userId: $scope.couple.userid,
+            weddingDate: new Date()
             
         } 
     })
@@ -25,8 +23,20 @@ angular.module('happyGoMarry')
         "background-image": "url($scope.newCouple.photoUrl)"
     }
 
+    var json = 'https://api.ipify.org?format=json';
+    var userIp;
+    var userAgent = window.navigator.userAgent
+    $http.get(json)
+    .then(function(result) {
+        console.log("user ip: ", result.data.ip)
+        userIp = result.data.ip;
+    }, function(e) {
+        alert("error");
+    });
+
     $scope.saveNewCouple = function(newCouple) {
         coupleSrv.saveNewCouple(newCouple).success(function() { 
+            wepaySrv.createWepayAccount(userIp, userAgent)
             $state.go('couple', {url: $scope.newCouple.url});
             swal(
                 'Congratulations!',

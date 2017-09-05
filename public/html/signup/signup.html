@@ -17,9 +17,6 @@
             <a ui-sref = 'couple({url: "mason-aly"})'>Demo</a>
             <a ui-sref = 'howItWorks'>About</a>
             <a ui-sref = 'howItWorks'>Contact</a>
-            <a href = '/auth' ng-hide="signedIn"><button>SIGN IN</button></a>
-            <a ui-sref = 'dashboard' ng-show="signedIn"><button>{{couple.firstname}}</button></a>
-            </a>
         </div>
     </div>
 </header>
@@ -58,7 +55,7 @@
             <h2>When is the big day?</h2>
             <md-input-container class = 'md-input datepicker'>
                 <label>Enter Date</label>
-                <md-datepicker ng-model="newCouple.weddingDate" md-open-on-focus></md-datepicker>
+                <md-datepicker aria-label="weddingDatePicker" ng-model="newCouple.weddingDate" md-open-on-focus></md-datepicker>
             </md-input-container>
             <md-input-container class = 'md-input'>
                 <label>Time</label>

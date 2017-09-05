@@ -145,7 +145,9 @@
 
 .recent-gifts {
   display: flex;
-  flex-direction: column-reverse; }
+  flex-direction: column-reverse;
+  max-height: 650px;
+  overflow: scroll; }
 
 .recent-gift {
   display: flex;
@@ -196,6 +198,25 @@
 
 .swal2-modal h2 {
   letter-spacing: .2em; }
+
+#wepay-checkout-iframe {
+  min-height: 458px; }
+
+.checkout-wrapper {
+  width: auto !important;
+  position: relative; }
+
+#payment-modal {
+  display: none; }
+
+.x-modal {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  color: #1bc0b5;
+  border-radius: 50%;
+  background-color: rgba(255, 248, 248, 0.85);
+  cursor: pointer; }
 
 @media (min-width: 600px) {
   .one-button p {
@@ -329,9 +350,6 @@ select {
   justify-content: space-around;
   width: 50%; }
 
-addresses-page {
-  display: none; }
-
 .addresses-container {
   background-color: white;
   width: 100%;
@@ -374,11 +392,24 @@ addresses-page {
   background-color: #67f9f0;
   color: #525252; }
 
-rsvp-page {
-  display: none; }
+.myGrid {
+  width: 100%;
+  max-height: 450px; }
+  .myGrid button {
+    margin: 0; }
+  .myGrid .ui-grid-menu-inner li {
+    background-color: gray;
+    margin: 0; }
 
-gifts-page {
-  display: none; }
+.ui-grid-menu-button {
+  height: 25px;
+  width: 25px;
+  right: 2px;
+  top: 2px; }
+
+ui-grid-footer {
+  position: absolute;
+  bottom: -4px; }
 
 @media (min-width: 600px) {
   .dashboard-menu {
@@ -407,7 +438,8 @@ gifts-page {
   .dash-menu-item {
     margin-bottom: -50px; }
   .desktop-addresses {
-    display: block;
+    display: flex;
+    justify-content: center;
     width: 90%; }
   .mobile-addresses {
     display: none; } }
@@ -583,7 +615,7 @@ button {
   width: 100%;
   height: 70vh;
   background: rgba(0, 0, 0, 0.25) url("../images/rsvp2.jpg") no-repeat top;
-  background-size: auto 100%;
+  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center; }

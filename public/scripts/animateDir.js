@@ -6,6 +6,7 @@ angular.module('happyGoMarry')
             $(document).ready(function () {
                 $('.send-address').click(function(){
                     $('#send-address').css('display', 'block');
+                
                 })
                 $('.send-rsvp').click(function(){
                     $('#send-rsvp').css('display', 'block');
@@ -69,6 +70,13 @@ angular.module('happyGoMarry')
                 $('.drop-down').mouseleave(function(){
                     $('.drop-down').css('display', 'none')
                 })
+                $('#enter-payment-btn').click(function(){
+                    $("#payment-modal").css("display", "flex")
+                })
+                $('.x-modal').click(function(){
+                    $("#payment-modal").css("display", "none")
+                })
+                
             });
 
         }
