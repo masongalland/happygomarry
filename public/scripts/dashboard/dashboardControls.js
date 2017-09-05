@@ -19,7 +19,8 @@ angular.module('happyGoMarry')
                 $('#dash-gifts-btn').click(function(){
                     $('addresses-page, rsvp-page, edit-page').css('display', 'none');
                     $('gifts-page').css('display', 'block')
-                })              
+                })
+
             });
         }
     }

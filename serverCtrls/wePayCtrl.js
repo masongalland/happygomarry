@@ -83,7 +83,7 @@ module.exports = {
                     "type": "personal",
                     "currency": "USD",
                     "fee": {"app_fee": fee, "fee_payer": "payee"},
-                    "hosted_checkout": {"mode": "iframe"}
+                    "hosted_checkout": {"mode": "iframe", "redirect_uri": `http://localhost:8081/#/couple/${req.body.url}`}
                 },
                 function(response){
                     console.log(response)
@@ -92,6 +92,41 @@ module.exports = {
             )
         })
       
+    },
+    getCheckouts: function(req, res){
+        var wepay_settings = {
+            'client_id'     : process.env.WEPAY_CLIENT_ID,
+            'client_secret' : process.env.WEPAY_CLIENT_SECRET,
+        }
+        var accountId;
+        db.wepay.getWepayAccount([req.params.id], function(err, resp){
+            console.log("wepayAccount info :", resp)
+            wepay_settings.access_token = resp[0].access_token;
+            accountId = resp[0].account_id;
+
+            var wp = new wepay(wepay_settings);
+            wp.use_staging()
+
+            wp.call('/checkout/find', 
+            {
+                "account_id": accountId,
+                "limit": 200,
+                "state": "released"
+            },
+            function(response){
+                let arr = response.map((e, i) => {
+                    return {
+                      "donorFirstName": e.payer.name.split(' ')[0],
+                      "donorLastName": e.payer.name.split(' ')[1],
+                      "amount": e.amount,
+                      "date": new Date(e.create_time * 1000),
+                      "message": e.long_description
+                    }
+                  })
+                res.send(arr)
+            }
+            )
+        })
     }
 }
 

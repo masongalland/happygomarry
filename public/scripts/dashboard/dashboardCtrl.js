@@ -1,11 +1,12 @@
 angular.module('happyGoMarry')
-.controller('dashboardCtrl', function($scope, coupleSrv, uiGridConstants){
+.controller('dashboardCtrl', function($scope, coupleSrv, wepaySrv, uiGridConstants){
 
     setTimeout(function(){
         document.getElementsByClassName('dashDirective')[0].setAttribute('style', 'display: none;')
         document.getElementsByClassName('dashDirective')[1].setAttribute('style', 'display: none;')
         document.getElementsByClassName('dashDirective')[2].setAttribute('style', 'display: none;')
     }, 1500)
+
 
 
     coupleSrv.getUser()
@@ -23,19 +24,24 @@ angular.module('happyGoMarry')
         return coupleSrv.getPayments($scope.couple.userid)
     })
     .then(function(response){
-        $scope.gifts = response.data;
-        console.log('dash gifts: ', $scope.gifts);
+        // $scope.gifts = response.data;
+        // console.log('dash gifts: ', $scope.gifts);
+        wepaySrv.getCheckouts($scope.couple.userid)
+        .then(function(resp){
+            console.log("checkouts in ctrl: ", resp.data)
+            $scope.gifts = resp.data;
+            $scope.giftOptions = {
+                data: $scope.gifts,
+                columnDefs: [
+                    { field: 'donorFirstName', name: 'giftFN', displayName: "First Name", enableHiding: false, with: '*' },
+                    { field: 'donorLastName', name: 'giftLN', displayName: "Last Name", with: '*'},
+                    { field: 'date', name: 'dd', cellTooltip: true, displayName: "Date", width: '11%', cellFilter: "date"},
+                    { field: 'message', name: 'message', cellTooltip: true, width: "33%"},
+                    { field: 'amount', type: 'number', name: 'amount', cellTooltip: true, aggregationType: uiGridConstants.aggregationTypes.sum, cellFilter: "currency", footerCellFilter: 'currency', width: '*'}
+                ]
+            }
+        })
 
-        $scope.giftOptions = {
-            data: $scope.gifts,
-            columnDefs: [
-                { field: 'donorfirstname', name: 'giftFN', displayName: "First Name", enableHiding: false, with: '*' },
-                { field: 'donorlastname', name: 'giftLN', displayName: "Last Name", with: '*'},
-                { field: 'donationdate', name: 'dd', cellTooltip: true, displayName: "Date", width: '11%'},
-                { field: 'message', name: 'message', cellTooltip: true, width: "33%"},
-                { field: 'amount', type: 'number', name: 'amount', cellTooltip: true, aggregationType: uiGridConstants.aggregationTypes.sum, cellFilter: "currency", footerCellFilter: 'currency', width: '*'}
-            ]
-        }
 
         coupleSrv.getDonations().then(function(response){
             $scope.donations = response.data[0];
@@ -70,6 +76,7 @@ angular.module('happyGoMarry')
                 ]
             }
         })
+        
 
         
         

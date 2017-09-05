@@ -113,11 +113,12 @@ app.get('/auth/callback',
       }
 })
 app.get('/auth/me', function(req, res) {
-  console.log('auth/me: ', req.user[0].auth0id)
+  // console.log("req.user: ", req.user)
+  // console.log('auth/me: ', req.user.auth0id)
   if (!req.user) return res.status(200).send('null');
 
   //THIS IS WHATEVER VALUE WE GOT FROM userC variable above.
-    db.getCurrentCouple([req.user[0].auth0id], function(err, resp){
+    db.getCurrentCouple([req.user.auth0id], function(err, resp){
       // console.log('hihihi', resp)
         if (err) return console.log(err)
         else res.send(resp[0]);
@@ -148,6 +149,7 @@ var wepayCtrl = require('./serverCtrls/wepayCtrl.js');
 
 app.post('/api/wepay/create-account', wepayCtrl.createAccount);
 app.post('/api/wepay/create-checkout', wepayCtrl.createCheckout);
+app.get('/api/wepay/checkouts/:id', wepayCtrl.getCheckouts);
 
 
 var server = http.createServer(app);

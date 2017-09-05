@@ -66,16 +66,16 @@
     <section class = 'gifting-container'>
         <div class = 'gifting'>
             <div class = 'gift-summary'>
-                <div class = 'total-gifts animated flip'>{{donations.number_of_donors}}</div>
+                <div class = 'total-gifts animated flip'>{{payments.length}}</div>
                 <h3>People have sent a cash gift</h3>
                 <button class = 'send-gift-btn send-gift'>Send Gift</button>
                 <p>Send a cash gift to show the </br>lucky couple some love</p>
             </div>
             <h2>Recent Gifts</h2>
-            <div class = 'recent-gifts'>
-                <div class = 'recent-gift-container' ng-repeat = 'payment in payments'>
+            <div id="recent-gifts" class = 'recent-gifts'>
+                <div class = 'recent-gift-container' ng-repeat = 'payment in payments | orderBy:"date"'>
                     <div class = 'recent-gift' >
-                        <div class = 'recent-gift-icon'>{{payment.donorfirstname[0]}}{{payment.donorlastname[0]}}</div>
+                        <div class = 'recent-gift-icon'>{{payment.donorFirstName[0]}}{{payment.donorLastName[0]}}</div>
                         <p>{{payment.message}}</p>
                     </div>
                     <div class = 'bottom-border'></div>
@@ -91,7 +91,9 @@
 
 
 <div id="payment-modal" class = 'modal'>
-    <div class = 'modal-content animated fadeInUpBig checkout-wrapper'>
-        <iframe id="wepay-checkout-iframe" ng-src={{checkout_uri}}></iframe> 
+    <div class = 'modal-content animated fadeInRightBig checkout-wrapper'>
+        <i class="fa fa-times-circle-o fa-2x x-modal" aria-hidden="true"></i>
+        <i ng-hide="checkout_uri" class="fa fa-spinner fa-4x" aria-hidden="true"></i>
+        <iframe ng-show="checkout_uri" id="wepay-checkout-iframe" ng-src={{checkout_uri}}></iframe> 
     </div>
 </div> 

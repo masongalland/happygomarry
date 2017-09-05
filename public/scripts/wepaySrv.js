@@ -7,6 +7,10 @@ angular.module('happyGoMarry').service('wepaySrv', function($http){
     this.createCheckout = function(data) {
         return $http({ method: 'POST', url: `${baseUrl}create-checkout`, data: data})
     }
+    this.getCheckouts = function(userId){
+        return $http({method: 'GET', url: `${baseUrl}checkouts/${userId}`})
+        
+    }
 
 
 

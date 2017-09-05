@@ -1,6 +1,10 @@
 angular.module('happyGoMarry')
 .controller('coupleTempCtrl', function($scope, coupleSrv, wepaySrv, $stateParams, $rootScope, $sce){
     $scope.checkout_uri;
+    // setTimeout(function(){
+    //     var myDiv = document.getElementById('recent-gifts').scrollTop = 0;
+    // }, 2000)
+    
 
     coupleSrv.getCouple($stateParams.url)
     .then(function(response){
@@ -29,23 +33,29 @@ angular.module('happyGoMarry')
             lastName: '',
             amount: 0.00,
             date: new Date(),
-            message: ''
+            message: '',
+            url: $scope.coupleInfo.url
         }
         console.log('couple/;dlkf:', $scope.coupleInfo);
+        wepaySrv.getCheckouts($scope.coupleInfo.userid)
+        .then(function(results){
+            $scope.payments = results.data
+        })
 
-        return coupleSrv.getPayments($scope.coupleInfo.userid)
+        // return coupleSrv.getPayments($scope.coupleInfo.userid)
     })
-    .then(function(response){
-        $scope.payments = response.data;
-        console.log('payments: ', $scope.payments);
-        console.log('payments userid: ', $scope.coupleInfo.userid)
+    // .then(function(response){
+    //     $scope.payments = response.data;
+    //     console.log('payments: ', $scope.payments);
+    //     console.log('payments userid: ', $scope.coupleInfo.userid)
 
-        return     coupleSrv.getDonations($scope.coupleInfo.userid)
-    })
-    .then(function(response){
-        $scope.donations = response.data[0];
-        console.log('donations:', $scope.donations);
-    });
+    //     return     coupleSrv.getDonations($scope.coupleInfo.userid)
+    // })
+    // .then(function(response){
+    //     document.getElementById('recent-gifts').scrollTop = 0
+    //     $scope.donations = response.data[0];
+    //     console.log('donations:', $scope.donations);
+    // });
 
 
     $scope.saveNewAddress = function(newAddress) {
@@ -79,7 +89,7 @@ angular.module('happyGoMarry')
         });   
     }
     $scope.saveNewGift = function(newGift) {
-        coupleSrv.saveNewGift(newGift);
+        // coupleSrv.saveNewGift(newGift);
         wepaySrv.createCheckout(newGift)
         .then(function(response){
             console.log(response.data)
