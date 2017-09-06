@@ -71,7 +71,7 @@ passport.use(new Auth0Strategy({
         //   console.log('USER CREATED', user);
         //   console.log('profile: ', profile)
         
-          return done(err, user); // GOES TO SERIALIZE USER
+          return done(err, user[0]); // GOES TO SERIALIZE USER
         })
       } else { //when we find the user, return it
         // console.log('FOUND USER', user);

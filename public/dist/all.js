@@ -691,7 +691,7 @@ angular.module('happyGoMarry').directive('signupControls', function () {
 });
 'use strict';
 
-angular.module('happyGoMarry').controller('signupCtrl', function ($scope, coupleSrv, wepaySrv, $rootScope, $state) {
+angular.module('happyGoMarry').controller('signupCtrl', function ($scope, coupleSrv, wepaySrv, $rootScope, $state, $http) {
 
     coupleSrv.getUser().then(function (response) {
         $scope.couple = response;
