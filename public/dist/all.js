@@ -425,12 +425,6 @@ angular.module('happyGoMarry').directive('dashControls', function () {
 
 angular.module('happyGoMarry').controller('dashboardCtrl', function ($scope, coupleSrv, wepaySrv, uiGridConstants) {
 
-    setTimeout(function () {
-        document.getElementsByClassName('dashDirective')[0].setAttribute('style', 'display: none;');
-        document.getElementsByClassName('dashDirective')[1].setAttribute('style', 'display: none;');
-        document.getElementsByClassName('dashDirective')[2].setAttribute('style', 'display: none;');
-    }, 1500);
-
     coupleSrv.getUser().then(function (response) {
         $scope.couple = response;
         // console.log('dashboard couple: ', $scope.couple)
@@ -453,6 +447,11 @@ angular.module('happyGoMarry').controller('dashboardCtrl', function ($scope, cou
                 data: $scope.gifts,
                 columnDefs: [{ field: 'donorFirstName', name: 'giftFN', displayName: "First Name", enableHiding: false, with: '*' }, { field: 'donorLastName', name: 'giftLN', displayName: "Last Name", with: '*' }, { field: 'date', name: 'dd', cellTooltip: true, displayName: "Date", width: '11%', cellFilter: "date" }, { field: 'message', name: 'message', cellTooltip: true, width: "33%" }, { field: 'amount', type: 'number', name: 'amount', cellTooltip: true, aggregationType: uiGridConstants.aggregationTypes.sum, cellFilter: "currency", footerCellFilter: 'currency', width: '*' }]
             };
+            setTimeout(function () {
+                document.getElementsByClassName('dashDirective')[0].setAttribute('style', 'display: none;');
+                document.getElementsByClassName('dashDirective')[1].setAttribute('style', 'display: none;');
+                document.getElementsByClassName('dashDirective')[2].setAttribute('style', 'display: none;');
+            }, 1000);
         });
 
         coupleSrv.getDonations().then(function (response) {
