@@ -1,11 +1,7 @@
 angular.module('happyGoMarry')
 .controller('dashboardCtrl', function($scope, coupleSrv, wepaySrv, uiGridConstants){
 
-    setTimeout(function(){
-        document.getElementsByClassName('dashDirective')[0].setAttribute('style', 'display: none;')
-        document.getElementsByClassName('dashDirective')[1].setAttribute('style', 'display: none;')
-        document.getElementsByClassName('dashDirective')[2].setAttribute('style', 'display: none;')
-    }, 1500)
+    
 
     coupleSrv.getUser()
     .then(function(response){
@@ -38,6 +34,11 @@ angular.module('happyGoMarry')
                     { field: 'amount', type: 'number', name: 'amount', cellTooltip: true, aggregationType: uiGridConstants.aggregationTypes.sum, cellFilter: "currency", footerCellFilter: 'currency', width: '*'}
                 ]
             }
+            setTimeout(function(){
+                document.getElementsByClassName('dashDirective')[0].setAttribute('style', 'display: none;')
+                document.getElementsByClassName('dashDirective')[1].setAttribute('style', 'display: none;')
+                document.getElementsByClassName('dashDirective')[2].setAttribute('style', 'display: none;')
+            }, 1000)
         })
 
 

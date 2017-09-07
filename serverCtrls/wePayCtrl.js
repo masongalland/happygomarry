@@ -80,7 +80,7 @@ module.exports = {
                     "type": "personal",
                     "currency": "USD",
                     "fee": {"app_fee": fee, "fee_payer": "payee"},
-                    "hosted_checkout": {"mode": "iframe", "redirect_uri": `http://happygomarry.site/#/couple/${req.body.url}`}
+                    "hosted_checkout": {"mode": "iframe", "redirect_uri": `http://localhost:8081/#/couple/${req.body.url}`}
                 },
                 function(response){
                     console.log(response)
