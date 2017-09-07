@@ -204,8 +204,8 @@ angular.module('happyGoMarry').directive('navDir', function () {
 angular.module('happyGoMarry').service('wepaySrv', function ($http) {
     var baseUrl = '/api/wepay/';
 
-    this.createWepayAccount = function (userIp, userAgent) {
-        return $http({ method: 'POST', url: baseUrl + 'create-account?ip=' + userIp + '[agent]=' + userAgent }).then(console.log('created wepay account'));
+    this.createWepayAccount = function (data) {
+        return $http({ method: 'POST', url: baseUrl + 'create-account', data: data }).then(console.log('created wepay account'));
     };
     this.createCheckout = function (data) {
         return $http({ method: 'POST', url: baseUrl + 'create-checkout', data: data });
@@ -309,6 +309,7 @@ angular.module('happyGoMarry').controller('coupleTempCtrl', function ($scope, co
         console.log('couple/;dlkf:', $scope.coupleInfo);
         wepaySrv.getCheckouts($scope.coupleInfo.userid).then(function (results) {
             $scope.payments = results.data;
+            console.log($scope.payments);
         });
 
         // return coupleSrv.getPayments($scope.coupleInfo.userid)
@@ -485,8 +486,6 @@ angular.module('happyGoMarry').controller('dashboardCtrl', function ($scope, cou
             userId: $scope.couple.userid,
             weddingDate: new Date($scope.weddingDateArr[0], $scope.weddingDateArr[1] - 1, $scope.weddingDateArr[2])
         };
-        // console.log("userUpdates.weddingDate", $scope.userUpdates.weddingDate)
-
 
         $scope.saveUpdatedCouple = function (userUpdates) {
             coupleSrv.saveUpdatedCouple(userUpdates).success(function () {
@@ -498,10 +497,6 @@ angular.module('happyGoMarry').controller('dashboardCtrl', function ($scope, cou
             console.log('updatedCouple', $scope.couple);
         };
     });
-
-    // setInterval(function() {
-    //     console.log($scope.userUpdates.date)
-    // }, 2000)
 });
 'use strict';
 
@@ -691,7 +686,7 @@ angular.module('happyGoMarry').directive('signupControls', function () {
 });
 'use strict';
 
-angular.module('happyGoMarry').controller('signupCtrl', function ($scope, coupleSrv, wepaySrv, $rootScope, $state) {
+angular.module('happyGoMarry').controller('signupCtrl', function ($scope, coupleSrv, wepaySrv, $rootScope, $state, $http) {
 
     coupleSrv.getUser().then(function (response) {
         $scope.couple = response;
@@ -714,21 +709,27 @@ angular.module('happyGoMarry').controller('signupCtrl', function ($scope, couple
         "background-image": "url($scope.newCouple.photoUrl)"
     };
 
+    var wepayData = {
+        ip: null,
+        agent: window.navigator.userAgent
+    };
+
     var json = 'https://api.ipify.org?format=json';
-    var userIp;
-    var userAgent = window.navigator.userAgent;
     $http.get(json).then(function (result) {
-        console.log("user ip: ", result.data.ip);
-        userIp = result.data.ip;
+        wepayData.ip = result.data.ip;
+        console.log(wepayData);
     }, function (e) {
         alert("error");
     });
-
     $scope.saveNewCouple = function (newCouple) {
         coupleSrv.saveNewCouple(newCouple).success(function () {
-            wepaySrv.createWepayAccount(userIp, userAgent);
-            $state.go('couple', { url: $scope.newCouple.url });
-            swal('Congratulations!', 'To edit your page, click on your name in the menu.', 'success');
+            wepaySrv.createWepayAccount(wepayData).then(function (response) {
+                console.log("Did it create wepay account? ", response);
+                if (response.data == "true") {
+                    $state.go('couple', { url: $scope.newCouple.url });
+                    swal('Congratulations!', 'To edit your page, click on your name in the menu.', 'success');
+                }
+            });
         }).error(function () {
             swal('Oops...', 'Something went wrong!', 'error');
         });

@@ -1,5 +1,5 @@
 angular.module('happyGoMarry')
-.controller('signupCtrl', function($scope, coupleSrv, wepaySrv, $rootScope, $state){
+.controller('signupCtrl', function($scope, coupleSrv, wepaySrv, $rootScope, $state, $http){
 
     coupleSrv.getUser()
     .then(function(response){
@@ -23,26 +23,33 @@ angular.module('happyGoMarry')
         "background-image": "url($scope.newCouple.photoUrl)"
     }
 
+    var wepayData = {
+        ip: null,
+        agent: window.navigator.userAgent
+    };
+
     var json = 'https://api.ipify.org?format=json';
-    var userIp;
-    var userAgent = window.navigator.userAgent
     $http.get(json)
     .then(function(result) {
-        console.log("user ip: ", result.data.ip)
-        userIp = result.data.ip;
+        wepayData.ip = result.data.ip;
+        console.log(wepayData)
     }, function(e) {
         alert("error");
     });
-
     $scope.saveNewCouple = function(newCouple) {
         coupleSrv.saveNewCouple(newCouple).success(function() { 
-            wepaySrv.createWepayAccount(userIp, userAgent)
-            $state.go('couple', {url: $scope.newCouple.url});
-            swal(
-                'Congratulations!',
-                'To edit your page, click on your name in the menu.',
-                'success'
-            ); 
+            wepaySrv.createWepayAccount(wepayData)
+            .then(function(response){
+                console.log("Did it create wepay account? ", response)
+                if(response.data == "true"){
+                    $state.go('couple', {url: $scope.newCouple.url});
+                    swal(
+                        'Congratulations!',
+                        'To edit your page, click on your name in the menu.',
+                        'success'
+                    ); 
+                }
+            })
         }).error(function(){
             swal(
                 'Oops...',

@@ -1170,3 +1170,6 @@ input[type=number] {
 ._md-datepicker-floating-label > md-datepicker .md-datepicker-button {
   float: none;
   margin-top: -25.5px; }
+
+.md-datepicker-input-mask {
+  overflow: hidden; }
