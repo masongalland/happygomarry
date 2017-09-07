@@ -7,8 +7,6 @@ angular.module('happyGoMarry')
         document.getElementsByClassName('dashDirective')[2].setAttribute('style', 'display: none;')
     }, 1500)
 
-
-
     coupleSrv.getUser()
     .then(function(response){
         $scope.couple = response;  
@@ -76,10 +74,7 @@ angular.module('happyGoMarry')
                 ]
             }
         })
-        
-
-        
-        
+   
         $scope.userUpdates = {
         firstName: $scope.couple.firstname,
         partnerFirstName: $scope.couple.partnerfirstname,
@@ -90,9 +85,7 @@ angular.module('happyGoMarry')
         userId: $scope.couple.userid,
         weddingDate: new Date($scope.weddingDateArr[0], $scope.weddingDateArr[1] - 1, $scope.weddingDateArr[2])
         }
-        // console.log("userUpdates.weddingDate", $scope.userUpdates.weddingDate)
-            
-        
+   
         $scope.saveUpdatedCouple = function(userUpdates) {
             coupleSrv.saveUpdatedCouple(userUpdates).success(function() { 
                 swal(
@@ -111,10 +104,4 @@ angular.module('happyGoMarry')
             console.log('updatedCouple', $scope.couple)
         }
     })
-
-
-
-    // setInterval(function() {
-    //     console.log($scope.userUpdates.date)
-    // }, 2000)
 })

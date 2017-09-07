@@ -7,13 +7,14 @@ var wepay = require('wepay').WEPAY;
 
 module.exports = {
     createAccount: function(req, res) {
+        console.log("req.body: ", req.body)
         var wepay_settings = {
             'client_id'     : process.env.WEPAY_CLIENT_ID,
             'client_secret' : process.env.WEPAY_CLIENT_SECRET,
         }
         var wp = new wepay(wepay_settings);
         wp.use_staging()
-        var user = req.user[0];
+        var user = req.user;
         var timeStamp = Math.round((new Date()).getTime() / 1000);
         wp.call('/user/register', 
             {
@@ -23,8 +24,8 @@ module.exports = {
                 "scope": "manage_accounts,collect_payments,view_user,preapprove_payments,send_money",
                 "first_name": user.firstname,
                 "last_name": user.lastname,
-                "original_ip": req.query.ip,
-                "original_device": req.query.agent,
+                "original_ip": req.body.ip,
+                "original_device": req.body.agent,
                 "tos_acceptance_time": timeStamp
             },
             function(response) {
@@ -40,12 +41,13 @@ module.exports = {
                     function(account){
                         console.log("account worked: ", account);
                         
-                        db.wepay.createAccount([user.userid, account.id, wepay_settings.access_token], function(err, resp){
+                        db.wepay.createAccount([user.userid, account.account_id, wepay_settings.access_token], function(err, resp){
                             console.log("added this record to wepay table: ", resp);
+                            res.status(200).send("true")
+                            wp.call('/user/send_confirmation', {}, function(response){
+                                console.log("confirmation email sent: ", response)
+                            })
                         });
-                        wp.call('/user/send_confirmation', {}, function(response){
-                            console.log("confirmation email sent: ", response)
-                        })
                     }
                 )
             }
@@ -105,11 +107,15 @@ module.exports = {
             wp.call('/checkout/find', 
             {
                 "account_id": accountId,
-                "limit": 200,
-                "state": "released"
+                "limit": 2000
             },
             function(response){
-                let arr = response.map((e, i) => {
+                let successful = response.filter((e, i) => {
+                    if (e.state !== "expired" && e.state !== "failed"){
+                        return e;
+                    }
+                })
+                let arr = successful.map((e, i) => {
                     return {
                       "donorFirstName": e.payer.name.split(' ')[0],
                       "donorLastName": e.payer.name.split(' ')[1],

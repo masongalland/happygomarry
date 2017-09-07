@@ -40,6 +40,7 @@ angular.module('happyGoMarry')
         wepaySrv.getCheckouts($scope.coupleInfo.userid)
         .then(function(results){
             $scope.payments = results.data
+            console.log($scope.payments)
         })
 
         // return coupleSrv.getPayments($scope.coupleInfo.userid)

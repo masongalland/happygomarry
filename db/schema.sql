@@ -21,7 +21,7 @@ CREATE TABLE wepay(
     wepay_id SERIAL PRIMARY KEY,
     user_id integer references couples(userId),
     account_id integer,
-    access_token integer
+    access_token text
 );
 
 CREATE TABLE payment_details (
@@ -101,3 +101,29 @@ VALUES (2, 'Jane', 'Doe', 'test@gmail.com', 3),
        (2, 'John', 'Smith', 'test@gmail.com', 4),
        (2, 'John', 'Smith', 'test@gmail.com', 4),
        (2, 'John', 'Smith', 'test@gmail.com', 4);
+
+
+Drop Table wepay;
+Drop Table couples;
+CREATE TABLE couples(
+    userId  SERIAL PRIMARY KEY,
+    auth0Id text,
+    firstName varchar(20),
+    lastName varchar(20),
+    email text,
+    partnerFirstName varchar(20),
+    partnerLastName varchar(20),
+    weddingDate date,
+    photoUrl text,
+    story text,
+    "day" text,
+    "hour" varchar(250),
+    place varchar(150),
+    url text
+);
+CREATE TABLE wepay(
+    wepay_id SERIAL PRIMARY KEY,
+    user_id integer references couples(userId),
+    account_id integer,
+    access_token text
+);
