@@ -42,23 +42,7 @@ angular.module('happyGoMarry')
             $scope.payments = results.data
             console.log($scope.payments)
         })
-
-        // return coupleSrv.getPayments($scope.coupleInfo.userid)
     })
-    // .then(function(response){
-    //     $scope.payments = response.data;
-    //     console.log('payments: ', $scope.payments);
-    //     console.log('payments userid: ', $scope.coupleInfo.userid)
-
-    //     return     coupleSrv.getDonations($scope.coupleInfo.userid)
-    // })
-    // .then(function(response){
-    //     document.getElementById('recent-gifts').scrollTop = 0
-    //     $scope.donations = response.data[0];
-    //     console.log('donations:', $scope.donations);
-    // });
-
-
     $scope.saveNewAddress = function(newAddress) {
         coupleSrv.saveNewAddress(newAddress).success(function() { 
             swal(

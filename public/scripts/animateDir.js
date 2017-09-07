@@ -5,6 +5,7 @@ angular.module('happyGoMarry')
         link: function(scope, element, attributes) {
             $(document).ready(function () {
                 $('.send-address').click(function(){
+                    console.log('clicked address')
                     $('#send-address').css('display', 'block');
                 
                 })
@@ -17,7 +18,7 @@ angular.module('happyGoMarry')
                 $('.cancel-btn, .submit-btn').click(function(){
                     $('#send-address, #send-rsvp, #send-gift').css('display', 'none');
                 });
-                $('.send-gift, #dash-gifts-btn').mouseenter(function(){
+                $('#couple-send-gift, #dash-gifts-btn').mouseenter(function(){
                     $('.gray-present').css('display', 'none');
                     $('.green-present').css('display', 'block')
                 }).mouseleave(function(){

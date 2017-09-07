@@ -64,6 +64,7 @@ angular.module('happyGoMarry').directive('animateDir', function () {
         link: function link(scope, element, attributes) {
             $(document).ready(function () {
                 $('.send-address').click(function () {
+                    console.log('clicked address');
                     $('#send-address').css('display', 'block');
                 });
                 $('.send-rsvp').click(function () {
@@ -75,7 +76,7 @@ angular.module('happyGoMarry').directive('animateDir', function () {
                 $('.cancel-btn, .submit-btn').click(function () {
                     $('#send-address, #send-rsvp, #send-gift').css('display', 'none');
                 });
-                $('.send-gift, #dash-gifts-btn').mouseenter(function () {
+                $('#couple-send-gift, #dash-gifts-btn').mouseenter(function () {
                     $('.gray-present').css('display', 'none');
                     $('.green-present').css('display', 'block');
                 }).mouseleave(function () {
@@ -311,23 +312,7 @@ angular.module('happyGoMarry').controller('coupleTempCtrl', function ($scope, co
             $scope.payments = results.data;
             console.log($scope.payments);
         });
-
-        // return coupleSrv.getPayments($scope.coupleInfo.userid)
     });
-    // .then(function(response){
-    //     $scope.payments = response.data;
-    //     console.log('payments: ', $scope.payments);
-    //     console.log('payments userid: ', $scope.coupleInfo.userid)
-
-    //     return     coupleSrv.getDonations($scope.coupleInfo.userid)
-    // })
-    // .then(function(response){
-    //     document.getElementById('recent-gifts').scrollTop = 0
-    //     $scope.donations = response.data[0];
-    //     console.log('donations:', $scope.donations);
-    // });
-
-
     $scope.saveNewAddress = function (newAddress) {
         coupleSrv.saveNewAddress(newAddress).success(function () {
             swal('Thanks!', 'Your address was sent successfully.', 'success');
