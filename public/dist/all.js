@@ -64,6 +64,7 @@ angular.module('happyGoMarry').directive('animateDir', function () {
         link: function link(scope, element, attributes) {
             $(document).ready(function () {
                 $('.send-address').click(function () {
+                    console.log('clicked address');
                     $('#send-address').css('display', 'block');
                 });
                 $('.send-rsvp').click(function () {
@@ -75,7 +76,7 @@ angular.module('happyGoMarry').directive('animateDir', function () {
                 $('.cancel-btn, .submit-btn').click(function () {
                     $('#send-address, #send-rsvp, #send-gift').css('display', 'none');
                 });
-                $('.send-gift, #dash-gifts-btn').mouseenter(function () {
+                $('#couple-send-gift, #dash-gifts-btn').mouseenter(function () {
                     $('.gray-present').css('display', 'none');
                     $('.green-present').css('display', 'block');
                 }).mouseleave(function () {
@@ -272,10 +273,6 @@ angular.module('happyGoMarry').controller('coupleCtrl', function ($scope, couple
 
 angular.module('happyGoMarry').controller('coupleTempCtrl', function ($scope, coupleSrv, wepaySrv, $stateParams, $rootScope, $sce) {
     $scope.checkout_uri;
-    // setTimeout(function(){
-    //     var myDiv = document.getElementById('recent-gifts').scrollTop = 0;
-    // }, 2000)
-
 
     coupleSrv.getCouple($stateParams.url).then(function (response) {
         $scope.coupleInfo = response[0];
@@ -310,24 +307,11 @@ angular.module('happyGoMarry').controller('coupleTempCtrl', function ($scope, co
         wepaySrv.getCheckouts($scope.coupleInfo.userid).then(function (results) {
             $scope.payments = results.data;
             console.log($scope.payments);
+            setTimeout(function () {
+                var myDiv = document.getElementById('recent-gifts').scrollTop = 0;
+            }, 500);
         });
-
-        // return coupleSrv.getPayments($scope.coupleInfo.userid)
     });
-    // .then(function(response){
-    //     $scope.payments = response.data;
-    //     console.log('payments: ', $scope.payments);
-    //     console.log('payments userid: ', $scope.coupleInfo.userid)
-
-    //     return     coupleSrv.getDonations($scope.coupleInfo.userid)
-    // })
-    // .then(function(response){
-    //     document.getElementById('recent-gifts').scrollTop = 0
-    //     $scope.donations = response.data[0];
-    //     console.log('donations:', $scope.donations);
-    // });
-
-
     $scope.saveNewAddress = function (newAddress) {
         coupleSrv.saveNewAddress(newAddress).success(function () {
             swal('Thanks!', 'Your address was sent successfully.', 'success');

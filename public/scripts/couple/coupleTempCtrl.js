@@ -1,11 +1,7 @@
 angular.module('happyGoMarry')
 .controller('coupleTempCtrl', function($scope, coupleSrv, wepaySrv, $stateParams, $rootScope, $sce){
     $scope.checkout_uri;
-    // setTimeout(function(){
-    //     var myDiv = document.getElementById('recent-gifts').scrollTop = 0;
-    // }, 2000)
     
-
     coupleSrv.getCouple($stateParams.url)
     .then(function(response){
         $scope.coupleInfo = response[0];
@@ -41,24 +37,11 @@ angular.module('happyGoMarry')
         .then(function(results){
             $scope.payments = results.data
             console.log($scope.payments)
+            setTimeout(function(){
+                var myDiv = document.getElementById('recent-gifts').scrollTop = 0;
+            }, 500)
         })
-
-        // return coupleSrv.getPayments($scope.coupleInfo.userid)
     })
-    // .then(function(response){
-    //     $scope.payments = response.data;
-    //     console.log('payments: ', $scope.payments);
-    //     console.log('payments userid: ', $scope.coupleInfo.userid)
-
-    //     return     coupleSrv.getDonations($scope.coupleInfo.userid)
-    // })
-    // .then(function(response){
-    //     document.getElementById('recent-gifts').scrollTop = 0
-    //     $scope.donations = response.data[0];
-    //     console.log('donations:', $scope.donations);
-    // });
-
-
     $scope.saveNewAddress = function(newAddress) {
         coupleSrv.saveNewAddress(newAddress).success(function() { 
             swal(
