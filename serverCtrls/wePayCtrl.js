@@ -1,5 +1,4 @@
 var app = require('../main.js');
-var db = app.get('db');
 var axios = require('axios');
 
 var baseUrl = 'https://stage.wepayapi.com/v2'
@@ -16,7 +15,7 @@ module.exports = {
         wp.use_staging()
         var user = req.user;
         var timeStamp = Math.round((new Date()).getTime() / 1000);
-        wp.call('/user/register', 
+        wp.call('/user/register',
             {
                 "client_id": wepay_settings.client_id,
                 "client_secret": wepay_settings.client_secret,
@@ -39,39 +38,42 @@ module.exports = {
                         "description": "This is where you can access the gifts that have been sent to you through HappyGoMarry"
                     },
                     function(account){
+                        var db = app.get('db');
+
                         console.log("account worked: ", account);
-                        
-                        db.wepay.createAccount([user.userid, account.account_id, wepay_settings.access_token], function(err, resp){
+
+                        db.wepay.createAccount([user.userid, account.account_id, wepay_settings.access_token]).then(resp => {
                             console.log("added this record to wepay table: ", resp);
                             res.status(200).send("true")
                             wp.call('/user/send_confirmation', {}, function(response){
                                 console.log("confirmation email sent: ", response)
                             })
-                        });
+                        })
                     }
                 )
             }
         );
     },
     createCheckout: function(req, res){
+        var db = app.get('db');
+
         console.log("hit the server")
         var wepay_settings = {
             'client_id'     : process.env.WEPAY_CLIENT_ID,
             'client_secret' : process.env.WEPAY_CLIENT_SECRET,
         }
         var accountId;
-        db.wepay.getWepayAccount([req.body.userId], function(err, resp){
-            console.log("wepayAccount info :", resp)
+        db.wepay.getWepayAccount([req.body.userId]).then(resp => {
             wepay_settings.access_token = resp[0].access_token;
             accountId = resp[0].account_id;
 
 
             var wp = new wepay(wepay_settings);
             wp.use_staging()
-    
+
             var fee = req.body.amount * 0.05;
-    
-            wp.call('/checkout/create', 
+
+            wp.call('/checkout/create',
                 {
                     "account_id": accountId,
                     "amount": req.body.amount,
@@ -80,7 +82,7 @@ module.exports = {
                     "type": "personal",
                     "currency": "USD",
                     "fee": {"app_fee": fee, "fee_payer": "payee"},
-                    "hosted_checkout": {"mode": "iframe", "redirect_uri": `http://happygomarry.site/#/couple/${req.body.url}`}
+                    "hosted_checkout": {"mode": "iframe", "redirect_uri": `${process.env.WEPAY_REDIRECT_URI}${req.body.url}`}
                 },
                 function(response){
                     console.log(response)
@@ -88,15 +90,16 @@ module.exports = {
                 }
             )
         })
-      
+
     },
     getCheckouts: function(req, res){
+        var db = app.get('db');
         var wepay_settings = {
             'client_id'     : process.env.WEPAY_CLIENT_ID,
             'client_secret' : process.env.WEPAY_CLIENT_SECRET,
         }
         var accountId;
-        db.wepay.getWepayAccount([req.params.id], function(err, resp){
+        db.wepay.getWepayAccount([req.params.id]).then(resp => {
             console.log("wepayAccount info :", resp)
             wepay_settings.access_token = resp[0].access_token;
             accountId = resp[0].account_id;
@@ -104,7 +107,7 @@ module.exports = {
             var wp = new wepay(wepay_settings);
             wp.use_staging()
 
-            wp.call('/checkout/find', 
+            wp.call('/checkout/find',
             {
                 "account_id": accountId,
                 "limit": 2000
