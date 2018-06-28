@@ -1,3 +1,5 @@
+"use strict";
+
 var app = require('../main.js');
 
 module.exports = {
