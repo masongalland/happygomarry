@@ -3,7 +3,6 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var massive = require('massive');
-var http = require('http');
 var session = require('express-session'),
 	passport = require('passport'),
 	Auth0Strategy = require('passport-auth0');
@@ -123,8 +122,6 @@ app.post('/api/wepay/create-checkout', wepayCtrl.createCheckout);
 app.get('/api/wepay/checkouts/:id', wepayCtrl.getCheckouts);
 
 
-var server = http.createServer(app);
-
-server.listen(port, function () {
+app.listen(port, function () {
 	console.log('listening on port ', port)
 });
