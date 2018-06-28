@@ -1,15 +1,13 @@
-"use strict";
-
 require('dotenv').config();
 var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var massive = require('massive');
 var http = require('http');
-const session = require('express-session'),
+var session = require('express-session'),
 	passport = require('passport'),
 	Auth0Strategy = require('passport-auth0');
-const port = 3005;
+var port = 3005;
 
 var app = module.exports = express();
 app.use(bodyParser.json());
@@ -90,7 +88,7 @@ app.get('/auth/me', function (req, res) {
 	if (!req.user) return res.status(200).send('null');
 
 	//THIS IS WHATEVER VALUE WE GOT FROM userC variable above.
-	let db = app.get('db');
+	var db = app.get('db');
 
 	db.getCurrentCouple([req.user.auth0id]).then(resp => {
 		 res.status(200).send(resp[0]);
