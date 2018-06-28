@@ -1,5 +1,3 @@
-"use strict";
-
 var app = require('../main.js');
 var axios = require('axios');
 
@@ -32,7 +30,7 @@ module.exports = {
             function(response) {
                 console.log("it worked!", response)
                 wepay_settings.access_token = response.access_token;
-                let wp = new wepay(wepay_settings);
+                var wp = new wepay(wepay_settings);
                 wp.use_staging()
                 wp.call('/account/create',
                     {
@@ -115,12 +113,12 @@ module.exports = {
                 "limit": 2000
             },
             function(response){
-                let successful = response.filter((e, i) => {
+                var successful = response.filter((e, i) => {
                     if (e.state !== "expired" && e.state !== "failed"){
                         return e;
                     }
                 })
-                let arr = successful.map((e, i) => {
+                var arr = successful.map((e, i) => {
                     return {
                       "donorFirstName": e.payer.name.split(' ')[0],
                       "donorLastName": e.payer.name.split(' ')[1],

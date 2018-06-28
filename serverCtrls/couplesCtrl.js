@@ -1,5 +1,3 @@
-"use strict";
-
 var app = require('../main.js');
 
 module.exports = {
@@ -39,7 +37,7 @@ module.exports = {
     },
     postNewAddress: function(req, res) {
         var db = app.get('db');
-        let params = [req.body.userId, req.body.firstName, req.body.lastName, req.body.street, req.body.city, req.body.state, req.body.zip, req.body.email]
+        var params = [req.body.userId, req.body.firstName, req.body.lastName, req.body.street, req.body.city, req.body.state, req.body.zip, req.body.email]
 
         db.postNewAddress(params).then(resp => {
             res.status(200).send("Sent new address")
@@ -47,7 +45,7 @@ module.exports = {
     },
     postNewRsvp: function(req, res) {
         var db = app.get('db');
-        let params = [req.body.userId, req.body.firstName, req.body.lastName, req.body.email, req.body.numberInParty]
+        var params = [req.body.userId, req.body.firstName, req.body.lastName, req.body.email, req.body.numberInParty]
 
         db.postNewRsvp(params).then(resp => {
             res.status(200).send("Sent new RSVP")
@@ -55,7 +53,7 @@ module.exports = {
     },
     updateCouple: function(req, res) {
         var db = app.get('db');
-        let params = [req.body.firstName, req.body.partnerFirstName,  req.body.photoUrl, req.body.story, req.body.hour, req.body.place, req.body.userId, req.body.weddingDate]
+        var params = [req.body.firstName, req.body.partnerFirstName,  req.body.photoUrl, req.body.story, req.body.hour, req.body.place, req.body.userId, req.body.weddingDate]
 
         db.updateCouple(params).then(resp => {
             res.status(200).send("Success")
@@ -63,7 +61,7 @@ module.exports = {
     },
     saveNewCouple: function(req, res) {
         var db = app.get('db');
-        let params = [req.body.partnerFirstName, req.body.partnerLastName, req.body.weddingDate, req.body.hour, req.body.place, req.body.photoUrl, req.body.story, req.body.userId, req.body.url]
+        var params = [req.body.partnerFirstName, req.body.partnerLastName, req.body.weddingDate, req.body.hour, req.body.place, req.body.photoUrl, req.body.story, req.body.userId, req.body.url]
 
         db.saveNewCouple(params).then(resp => {
             res.status(200).send("Success")
@@ -83,7 +81,7 @@ module.exports = {
     },
     saveNewGift: function(req, res) {
         var db = app.get('db');
-        let params = [req.body.userId, req.body.firstName, req.body.lastName, req.body.amount, req.body.date, req.body.message]
+        var params = [req.body.userId, req.body.firstName, req.body.lastName, req.body.amount, req.body.date, req.body.message]
 
         db.saveNewGift(params).then(resp => {
             res.status(200).send("Saved new gift")
